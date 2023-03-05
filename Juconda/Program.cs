@@ -1,15 +1,52 @@
+using Juconda.Core.Mappings;
+using Juconda.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddMvc().AddRazorRuntimeCompilation();
+
+var connection = builder.Configuration.GetConnectionString("Connection");
+builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
+
+builder.Services.AddAutoMapper(c => c.AddProfile(new MappingProfile()));
+
+// добавление сервисов Idenity
+builder.Services.AddDefaultIdentity<IdentityUser>()
+.AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequiredLength = 5;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireDigit = false;
+
+    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+    options.SignIn.RequireConfirmedAccount = false;
+
+    options.User.RequireUniqueEmail = false;
+
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(24);
+    options.Lockout.MaxFailedAccessAttempts = 10;
+    options.Lockout.AllowedForNewUsers = true;
+});
+
+//builder.Services.ConfigureApplicationCookie(options =>
+//{
+//    options.AccessDeniedPath = "/Auth/Account/AccessDenied";
+//    options.LoginPath = "/Auth/Account/Login";
+//});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
@@ -18,6 +55,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
