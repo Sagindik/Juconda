@@ -42,25 +42,25 @@
                 <!--/noindex-->
                 <ul class="vertical menu" data-drilldown data-wrapper data-back-button="<li class='js-drilldown-back'><a href='javascript:;'>Вернуться назад</a></li>">
                     <li>
-                        <a href="/company/" rel="nofollow">Компания</a>
+                        <a href="@Url.Action("Index", "AboutUs")">Компания</a>
                         <ul class="menu vertical">
-                            <li><a href="/o-nas/" rel="nofollow">О Нас</a></li>
-                            <li><a href="/company/news/" rel="nofollow">Новости</a></li>
-                            <li><a href="/company/contacts/" rel="nofollow">Контакты</a></li>
+                            <li><a href="@Url.Action("Index", "AboutUs")">О Нас</a></li>
+                            <li><a href="@Url.Action("Index", "News")">Новости</a></li>
+                            <li><a href="@Url.Action("Index", "Contact")">Контакты</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="/shop/" rel="nofollow">Интернет-магазин</a>
                         <ul class="menu vertical">
-                            <li><a href="/shop/payment/" rel="nofollow">Оплата заказа</a></li>
-                            <li><a href="/shop/delivery/" rel="nofollow">Доставка товара</a></li>
-                            <li><a href="/shop/return/" rel="nofollow">Возврат и обмен</a></li>
+                            <li><a href="@Url.Action("Index", "Payment")">Оплата заказа</a></li>
+                            <li><a href="@Url.Action("Index", "Delivery")">Доставка товара</a></li>
+                            <li><a href="@Url.Action("Index", "Return")">Возврат и обмен</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="/info/" rel="nofollow">Информация</a>
+                        <a href="@Url.Action("Index", "Info")">Информация</a>
                         <ul class="menu vertical">
-                            <li><a href="/info/suppliers/" rel="nofollow">Поставщикам</a></li>
+                            <li><a href="@Url.Action("Index", "Supplier")">Поставщикам</a></li>
                             <li><a href="/info/guaranty/" rel="nofollow">Гарантия</a></li>
                         </ul>
                     </li>
@@ -85,13 +85,13 @@
                 <!--                <div class="container row">-->
                 <div class="container row" style="max-width: 76.3125rem;">
                     <ul class="menu float-left">
-                        <li><a href="/o-nas/">О нас</a></li>
-                        <li><a href="/shop/delivery/">Как это работает</a></li>
-                        <li><a href="/shop/payment/">Оплата</a></li>
-                        <li><a href="/company/contacts/">Контакты</a></li>
+                        <li><a href="@Url.Action("Index", "AboutUs")">О нас</a></li>
+                        <li><a href="@Url.Action("Index", "Delivery")">Как это работает</a></li>
+                        <li><a href="@Url.Action("Index", "Payment")">Оплата заказа</a></li>
+                        <li><a href="@Url.Action("Index", "Contact")">Контакты</a></li>
                     </ul>
                     <div class="float-left" style="padding: .71rem 1rem;line-height: 1;  color: #ffffff; font-weight: 700;">
-                        Доставка с 8:00 - 22:00
+                        Доставка круглосуточно
                     </div>
                     <div class="float-right inline-block-container">
                         <div class="inline-block-item relative">
@@ -155,7 +155,7 @@
                                 <use href="#svg-icon-phone" />
                             </svg>
                             <div class="inline-block-item">
-                                <div class="header-phone-number"><a href="tel:+373 (777) 777-77">77-77-777</a></div>
+                                <div class="header-phone-number"><a href="tel:+373 (777) 540-92">777-540-92</a></div>
                                 <div class="header-phone-link"><a href="#request-callback" class="fancybox">Заказать обратный звонок</a></div>
                             </div>
                         </div>
@@ -257,34 +257,34 @@
                         <img src="~/images/logo.png">
                     </a>
                     <div class="footer-info-phone">
-                        <div class="footer-info-phone-number"><a href="tel:+992 (55) 152-0100">55-152-0100</a></div>
+                        <div class="footer-info-phone-number"><a href="tel:+373 (777) 540-92">777-540-92</a></div>
                         <div class="footer-info-phone-link"><a href="#request-callback" class="fancybox">Заказать обратный звонок</a></div>
                     </div>
-                    <a class="footer-info-mail" href="mailto:info@rason24.tj">info@rason24.tj</a>
+                    <a class="footer-info-mail" href="mailto:Dzhokonda@mail.ru">Dzhokonda@mail.ru</a>
                 </div>
                 <!--noindex-->
                 <nav class="footer-main-menu inline-block-item show-for-xlarge">
                     <ul class="inline-block-container">
                         <li class="inline-block-item footer-main-menu-category">
-                            <a href="/company/" rel="nofollow">Компания</a>
+                            <a href="@Url.Action("Index", "AboutUs")">Компания</a>
                             <ul class="menu vertical footer-main-menu-list">
-                                <li><a href="/o-nas/" rel="nofollow">О Нас</a></li>
-                                <li><a href="/company/news/" rel="nofollow">Новости</a></li>
-                                <li><a href="/company/contacts/" rel="nofollow">Контакты</a></li>
+                                <li><a href="@Url.Action("Index", "AboutUs")">О Нас</a></li>
+                                <li><a href="@Url.Action("Index", "News")">Новости</a></li>
+                                <li><a href="@Url.Action("Index", "Contact")">Контакты</a></li>
                             </ul>
                         </li>
                         <li class="inline-block-item footer-main-menu-category">
                             <a href="/shop/" rel="nofollow">Интернет-магазин</a>
                             <ul class="menu vertical footer-main-menu-list">
-                                <li><a href="/shop/payment/" rel="nofollow">Оплата заказа</a></li>
-                                <li><a href="/shop/delivery/" rel="nofollow">Доставка товара</a></li>
-                                <li><a href="/shop/return/" rel="nofollow">Возврат и обмен</a></li>
+                                <li><a href="@Url.Action("Index", "Payment")">Оплата заказа</a></li>
+                                <li><a href="@Url.Action("Index", "Delivery")">Доставка товара</a></li>
+                                <li><a href="@Url.Action("Index", "Return")">Возврат и обмен</a></li>
                             </ul>
                         </li>
                         <li class="inline-block-item footer-main-menu-category">
-                            <a href="/info/" rel="nofollow">Информация</a>
+                            <a href="@Url.Action("Index", "Info")">Информация</a>
                             <ul class="menu vertical footer-main-menu-list">
-                                <li><a href="/info/suppliers/" rel="nofollow">Поставщикам</a></li>
+                                <li><a href="@Url.Action("Index", "Supplier")">Поставщикам</a></li>
                                 <li><a href="/info/guaranty/" rel="nofollow">Гарантия</a></li>
                             </ul>
                         </li>
