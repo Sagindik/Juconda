@@ -1,7 +1,9 @@
 using Juconda.Core.Mappings;
+using Juconda.Domain.Models;
 using Juconda.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.Xml;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,11 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connect
 builder.Services.AddAutoMapper(c => c.AddProfile(new MappingProfile()));
 
 // добавление сервисов Idenity
-builder.Services.AddDefaultIdentity<IdentityUser>()
-.AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>();
-
-builder.Services.Configure<IdentityOptions>(options =>
+builder.Services.AddIdentity<User, Juconda.Domain.Models.Identity.IdentityRole>(options =>
 {
     options.Password.RequiredLength = 5;
     options.Password.RequireNonAlphanumeric = false;
@@ -34,7 +32,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(24);
     options.Lockout.MaxFailedAccessAttempts = 10;
     options.Lockout.AllowedForNewUsers = true;
-});
+})
+.AddEntityFrameworkStores<AppDbContext>();
 
 //builder.Services.ConfigureApplicationCookie(options =>
 //{

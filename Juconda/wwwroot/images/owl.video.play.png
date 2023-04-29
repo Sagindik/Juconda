@@ -189,7 +189,7 @@
             <span class="header-block-info-counter inline-block-item" title="0 позиций"></span>
         </span>
         <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
-            <span class="header-block-info-link">Корзина</span>
+            <span class="header-block-info-link" href="@Url.Action("Index", "Cart")">Корзина</span>
             <span class="header-block-info-desc price-block" title="0 товаров в корзине">0 товаров в корзине</span>
         </span>
     <!--'end_frame_cache_bx_cart_block_mini'--></a>

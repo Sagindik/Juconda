@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Juconda.Core\Juconda.Core.csproj" />
+    <ProjectReference Include="..\Juconda.Domain\Juconda.Domain.csproj" />
     <ProjectReference Include="..\Juconda.Infrastructure\Juconda.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="inline-block-item relative" id="bx_personal_menu">
-                            <a href="#" class="button transparent header-line-top-profile">
+                            <a asp-controller="Account" asp-action="LogIn" class="button transparent header-line-top-profile">
                                 <svg class="icon">
                                     <use href="#svg-icon-profile" />
                                 </svg>
@@ -161,20 +161,20 @@
                         </div>
                     </div>
                     <div class="header-cart header-block-info inline-block-item">
-                        <a href="/personal/cart/" class="inline-block-container" id="bx_cart_block">
+                        <a href="@Url.Action("Index", "Cart")" class="inline-block-container" id="bx_cart_block">
                             <svg class="icon vertical-middle">
                                 <use href="#svg-icon-cart" />
                             </svg>
                             <span class="inline-block-item vertical-middle">
                                 <span class="header-block-info-link">Корзина</span>
-                                <span class="header-block-info-desc price-block" title> </span>
+                                <span class="header-block-info-desc price-block"> </span>
                             </span>
                         </a>
                     </div>
                 </div>
                 <ul class="header-fixed-block">
                     <li class="header-cart header-block-info header-fixed-item">
-                        <a href="/personal/cart/" class="inline-block-container vertical-middle" id="bx_cart_block_mini">
+                        <a href="@Url.Action("Index", "Cart")" class="inline-block-container vertical-middle" id="bx_cart_block_mini">
                             <span class="inline-block-item relative">
                                 <svg class="icon">
                                     <use href="#svg-icon-cart" />

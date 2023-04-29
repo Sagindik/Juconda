@@ -1,0 +1,46 @@
+﻿@using Juconda.Models.Account;
+@model RegisterViewModel
+
+@{
+	Layout = "~/Views/Shared/_LayoutLogIn.cshtml";
+}
+
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" asp-controller="Account" asp-action="Register">
+					<span class="login100-form-title">
+						Регистрация
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Введите почту">
+						<input asp-for="Email" class="input100" type="email" placeholder="Почта">
+						<span asp-validation-for="Email" class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Введите логин">
+						<input asp-for="UserName" class="input100" type="text" placeholder="Логин">
+						<span asp-validation-for="UserName" class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Введите пароль">
+						<input asp-for="Password" class="input100" type="password" placeholder="Пароль">
+						<span asp-validation-for="Password" class="focus-input100"></span>
+					</div>	
+					
+					<div class="wrap-input100 validate-input m-b-64" data-validate="Подтвердите пароль">
+						<input asp-for="PasswordConfirm" class="input100" type="password" placeholder="Подтвердите пароль">
+						<span asp-validation-for="PasswordConfirm" class="focus-input100"></span>
+					</div>
+
+					<div class="container-login100-form-btn m-b-32">
+						<button class="login100-form-btn" type="submit">
+							Зарегистрировать
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
