@@ -3,11 +3,10 @@ using Juconda.Domain.Models;
 using Juconda.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography;
 
 namespace Juconda.Controllers
 {
-    public class AccountController : Controller
+	public class AccountController : Controller
 	{
 		private readonly UserManager<User> _userManager;
 		private readonly SignInManager<User> _signInManager;

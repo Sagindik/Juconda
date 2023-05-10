@@ -1,9 +1,7 @@
 using Juconda.Core.Mappings;
 using Juconda.Domain.Models;
 using Juconda.Infrastructure;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.Xml;
 
 var builder = WebApplication.CreateBuilder(args);
 

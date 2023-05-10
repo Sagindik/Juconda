@@ -1,5 +1,4 @@
 ﻿using Juconda.Domain.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,5 +12,9 @@ namespace Juconda.Infrastructure
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<CountryOfProduction> CountryOfProductions { get; set; }
     }
 }
