@@ -26,7 +26,13 @@ namespace Juconda.Controllers
 			return View(new LogInViewModel { ReturnUrl = returnUrl });
 		}
 
-		[HttpPost]
+        [HttpGet]
+        public IActionResult PersonalCabinet(string returnUrl = null)
+        {
+            return View(new PersonalCabinetViewModel { ReturnUrl = returnUrl });
+        }
+
+        [HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> LogIn(LogInViewModel model)
 		{

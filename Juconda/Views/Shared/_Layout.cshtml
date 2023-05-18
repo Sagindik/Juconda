@@ -6,10 +6,7 @@
     <title>Онлайн-магазин продуктов питания Джоконда - быстрая доставка свежих продуктов</title>
     <link href="~/css/core.min.css" type="text/css" rel="stylesheet">
 
-    <script async src="js/tag.js"></script>
     <script type="text/javascript" async src="~/js/ba.js"></script>
-    @*<script type="text/javascript" data-skip-moving="true">(function (w, d) { var v = w.frameCacheVars = { 'CACHE_MODE': 'HTMLCACHE', 'banner': { 'url': 'http://www.1c-bitrix.ru/composite/', 'text': 'Быстро с 1С-Битрикс', 'bgcolor': '#E94524', 'style': 'white' }, 'storageBlocks': [], 'dynamicBlocks': { 'bx_custom_menu': 'bc95dfc14146', 'bx_compare_count': '664a268f2c64', 'bx_favorite_count': '11e9841da416', 'bx_personal_menu': 'bfdeaefa77c3', 'bx_cart_block': '50edaa27e630', 'bx_cart_block_mini': '56d93495024e', 'bx_favorite_count_mini': 'b910eb7e1aeb', 'bx_compare_count_mini': '15148dd14c27', 'jmonnO': 'df97bcfbc2b2', 'bx_subscribe_small': '2688b47b88b6', 'bx_fancybox_blocks': 'bc95dfc14146', 'bx_cookie_info': '0cf31b2c283c' }, 'AUTO_UPDATE': true, 'AUTO_UPDATE_TTL': '120' }; var inv = false; if (v.AUTO_UPDATE === false) { if (v.AUTO_UPDATE_TTL && v.AUTO_UPDATE_TTL > 0) { var lm = Date.parse(d.lastModified); if (!isNaN(lm)) { var td = new Date().getTime(); if ((lm + v.AUTO_UPDATE_TTL * 1000) >= td) { w.frameRequestStart = false; w.preventAutoUpdate = true; return; } inv = true; } } else { w.frameRequestStart = false; w.preventAutoUpdate = true; return; } } var r = w.XMLHttpRequest ? new XMLHttpRequest() : (w.ActiveXObject ? new w.ActiveXObject("Microsoft.XMLHTTP") : null); if (!r) { return; } w.frameRequestStart = true; var m = v.CACHE_MODE; var l = w.location; var x = new Date().getTime(); var q = "?bxrand=" + x + (l.search.length > 0 ? "&" + l.search.substring(1) : ""); var u = l.protocol + "//" + l.host + l.pathname + q; r.open("GET", u, true); r.setRequestHeader("BX-ACTION-TYPE", "get_dynamic"); r.setRequestHeader("X-Bitrix-Composite", "get_dynamic"); r.setRequestHeader("BX-CACHE-MODE", m); r.setRequestHeader("BX-CACHE-BLOCKS", v.dynamicBlocks ? JSON.stringify(v.dynamicBlocks) : ""); if (inv) { r.setRequestHeader("BX-INVALIDATE-CACHE", "Y"); } try { r.setRequestHeader("BX-REF", d.referrer || ""); } catch (e) { } if (m === "APPCACHE") { r.setRequestHeader("BX-APPCACHE-PARAMS", JSON.stringify(v.PARAMS)); r.setRequestHeader("BX-APPCACHE-URL", v.PAGE_URL ? v.PAGE_URL : ""); } r.onreadystatechange = function () { if (r.readyState != 4) { return; } var a = r.getResponseHeader("BX-RAND"); var b = w.BX && w.BX.frameCache ? w.BX.frameCache : false; if (a != x || !((r.status >= 200 && r.status < 300) || r.status === 304 || r.status === 1223 || r.status === 0)) { var f = { error: true, reason: a != x ? "bad_rand" : "bad_status", url: u, xhr: r, status: r.status }; if (w.BX && w.BX.ready) { BX.ready(function () { setTimeout(function () { BX.onCustomEvent("onFrameDataRequestFail", [f]); }, 0); }); } else { w.frameRequestFail = f; } return; } if (b) { b.onFrameDataReceived(r.responseText); if (!w.frameUpdateInvoked) { b.update(false); } w.frameUpdateInvoked = true; } else { w.frameDataString = r.responseText; } }; r.send(); })(window, document);</script>*@
-    <script type="text/javascript" data-skip-moving="true">(function (w, d, n) { var cl = "bx-core"; var ht = d.documentElement; var htc = ht ? ht.className : undefined; if (htc === undefined || htc.indexOf(cl) !== -1) { return; } var ua = n.userAgent; if (/(iPad;)|(iPhone;)/i.test(ua)) { cl += " bx-ios"; } else if (/Android/i.test(ua)) { cl += " bx-android"; } cl += (/(ipad|iphone|android|mobile|touch)/i.test(ua) ? " bx-touch" : " bx-no-touch"); cl += w.devicePixelRatio && w.devicePixelRatio >= 2 ? " bx-retina" : " bx-no-retina"; var ieVersion = -1; if (/AppleWebKit/.test(ua)) { cl += " bx-chrome"; } else if ((ieVersion = getIeVersion()) > 0) { cl += " bx-ie bx-ie" + ieVersion; if (ieVersion > 7 && ieVersion < 10 && !isDoctype()) { cl += " bx-quirks"; } } else if (/Opera/.test(ua)) { cl += " bx-opera"; } else if (/Gecko/.test(ua)) { cl += " bx-firefox"; } if (/Macintosh/i.test(ua)) { cl += " bx-mac"; } ht.className = htc ? htc + " " + cl : cl; function isDoctype() { if (d.compatMode) { return d.compatMode == "CSS1Compat"; } return d.documentElement && d.documentElement.clientHeight; } function getIeVersion() { if (/Opera/i.test(ua) || /Webkit/i.test(ua) || /Firefox/i.test(ua) || /Chrome/i.test(ua)) { return -1; } var rv = -1; if (!!(w.MSStream) && !(w.ActiveXObject) && ("ActiveXObject" in w)) { rv = 11; } else if (!!d.documentMode && d.documentMode >= 10) { rv = 10; } else if (!!d.documentMode && d.documentMode >= 9) { rv = 9; } else if (d.attachEvent && !/Opera/.test(ua)) { rv = 8; } if (rv == -1 || rv == 8) { var re; if (n.appName == "Microsoft Internet Explorer") { re = new RegExp("MSIE ([0-9]+[\.0-9]*)"); if (re.exec(ua) != null) { rv = parseFloat(RegExp.$1); } } else if (n.appName == "Netscape") { rv = 11; re = new RegExp("Trident/.*rv:([0-9]+[\.0-9]*)"); if (re.exec(ua) != null) { rv = parseFloat(RegExp.$1); } } } return rv; } })(window, document, navigator);</script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,900,900italic&amp;subset=cyrillic-ext,cyrillic,latin" type="text/css" rel="stylesheet">
     <link href="~/css/ui.font.opensans.min.css" type="text/css" rel="stylesheet">
@@ -118,7 +115,7 @@
                         </div>
                         <div class="inline-block-item relative" id="bx_personal_menu">
                             @if(User?.Identity?.IsAuthenticated ?? false) {
-                                <a asp-controller="Account" asp-action="LogIn" class="button transparent header-line-top-profile">
+                                <a asp-controller="Account" asp-action="PersonalCabinet" class="button transparent header-line-top-profile">
                                     <svg class="icon">
                                         <use href="#svg-icon-profile" />
                                     </svg>
@@ -320,7 +317,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script src="~/js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript">if (!window.BX) window.BX = {}; if (!window.BX.message) window.BX.message = function (mess) { if (typeof mess === 'object') { for (let i in mess) { BX.message[i] = mess[i]; } return true; } };</script>
+    @*<script type="text/javascript">if (!window.BX) window.BX = {}; if (!window.BX.message) window.BX.message = function (mess) { if (typeof mess === 'object') { for (let i in mess) { BX.message[i] = mess[i]; } return true; } };</script>
     <script type="text/javascript">(window.BX || top.BX).message({ 'JS_CORE_LOADING': 'Загрузка...', 'JS_CORE_NO_DATA': '- Нет данных -', 'JS_CORE_WINDOW_CLOSE': 'Закрыть', 'JS_CORE_WINDOW_EXPAND': 'Развернуть', 'JS_CORE_WINDOW_NARROW': 'Свернуть в окно', 'JS_CORE_WINDOW_SAVE': 'Сохранить', 'JS_CORE_WINDOW_CANCEL': 'Отменить', 'JS_CORE_WINDOW_CONTINUE': 'Продолжить', 'JS_CORE_H': 'ч', 'JS_CORE_M': 'м', 'JS_CORE_S': 'с', 'JSADM_AI_HIDE_EXTRA': 'Скрыть лишние', 'JSADM_AI_ALL_NOTIF': 'Показать все', 'JSADM_AUTH_REQ': 'Требуется авторизация!', 'JS_CORE_WINDOW_AUTH': 'Войти', 'JS_CORE_IMAGE_FULL': 'Полный размер' });</script>
     <script type="text/javascript" src="~/js/core.min.js"></script>
     <script>
@@ -335,9 +332,9 @@
     <script type="text/javascript" src="~/js/main.popup.bundle.min.js"></script>
     <script type="text/javascript" src="~/js/core_currency.min.js"></script>
     <script type="text/javascript" src="~/js/settings_s1.min.js"></script>
-    <script type="text/javascript" src="~/js/script.min.js"></script>
-    <script type="text/javascript">BX.setJSList(['/bitrix/js/main/core/core_fx.js', '/bitrix/js/main/pageobject/pageobject.js', '/bitrix/js/main/core/core_window.js', '/bitrix/js/main/date/main.date.js', '/bitrix/js/main/core/core_date.js', '/bitrix/js/main/session.js', '/bitrix/js/main/polyfill/customevent/main.polyfill.customevent.js', '/local/templates/rason_food/js/jquery.min.js', '/local/templates/rason_food/js/foundation.min.js', '/local/templates/rason_food/js/isotope.pkgd.min.js', '/local/templates/rason_food/js/slideout.min.js', '/local/templates/rason_food/js/owl.carousel.min.js', '/local/templates/rason_food/js/fancybox.min.js', '/local/templates/rason_food/js/fancybox-thumbs.js', '/local/templates/rason_food/js/zoomsl.min.js', '/local/templates/rason_food/js/selectbox.min.js', '/local/templates/rason_food/js/jquery.inputmask.bundle.js', '/local/templates/rason_food/js/jquery.lazy.min.js', '/local/templates/rason_food/js/yandex.maps.js', '/local/templates/rason_food/js/main.js', '/local/templates/rason_food/js/colorpicker.min.js', '/local/templates/rason_food/js/jquery.validate.min.js', '/local/templates/rason_food/js/custom.js', '/local/templates/rason_food/js/site.js', '/bitrix/components/bitrix/search.title/script.js', '/local/templates/rason_food/components/bitrix/sale.basket.basket.line/.default/script.js', '/local/templates/rason_food/components/bitrix/sale.basket.basket.line/mini/script.js', '/local/templates/rason_food/js/catalog.element.script.js', '/local/templates/rason_food/js/catalog.section.script.js', '/local/templates/rason_food/components/bitrix/catalog.section/favorites/script.js']);</script>
-    <script type="text/javascript">BX.setCSSList(['/local/templates/rason_food/themes/green_red/css/main.css', '/local/templates/rason_food/css/custom.css', '/local/templates/rason_food/css/site.css', '/local/templates/rason_food/css/markets.css', '/local/templates/rason_food/template_styles.css']);</script>
+    <script type="text/javascript" src="~/js/script.min.js"></script>*@
+    @*<script type="text/javascript">BX.setJSList(['/bitrix/js/main/core/core_fx.js', '/bitrix/js/main/pageobject/pageobject.js', '/bitrix/js/main/core/core_window.js', '/bitrix/js/main/date/main.date.js', '/bitrix/js/main/core/core_date.js', '/bitrix/js/main/session.js', '/bitrix/js/main/polyfill/customevent/main.polyfill.customevent.js', '/local/templates/rason_food/js/jquery.min.js', '/local/templates/rason_food/js/foundation.min.js', '/local/templates/rason_food/js/isotope.pkgd.min.js', '/local/templates/rason_food/js/slideout.min.js', '/local/templates/rason_food/js/owl.carousel.min.js', '/local/templates/rason_food/js/fancybox.min.js', '/local/templates/rason_food/js/fancybox-thumbs.js', '/local/templates/rason_food/js/zoomsl.min.js', '/local/templates/rason_food/js/selectbox.min.js', '/local/templates/rason_food/js/jquery.inputmask.bundle.js', '/local/templates/rason_food/js/jquery.lazy.min.js', '/local/templates/rason_food/js/yandex.maps.js', '/local/templates/rason_food/js/main.js', '/local/templates/rason_food/js/colorpicker.min.js', '/local/templates/rason_food/js/jquery.validate.min.js', '/local/templates/rason_food/js/custom.js', '/local/templates/rason_food/js/site.js', '/bitrix/components/bitrix/search.title/script.js', '/local/templates/rason_food/components/bitrix/sale.basket.basket.line/.default/script.js', '/local/templates/rason_food/components/bitrix/sale.basket.basket.line/mini/script.js', '/local/templates/rason_food/js/catalog.element.script.js', '/local/templates/rason_food/js/catalog.section.script.js', '/local/templates/rason_food/components/bitrix/catalog.section/favorites/script.js']);</script>*@
+    @*<script type="text/javascript">BX.setCSSList(['/local/templates/rason_food/themes/green_red/css/main.css', '/local/templates/rason_food/css/custom.css', '/local/templates/rason_food/css/site.css', '/local/templates/rason_food/css/markets.css', '/local/templates/rason_food/template_styles.css']);</script>*@
     @*<script type="text/javascript">
         (function () {
             "use strict";
@@ -374,10 +371,10 @@
 
     <script type="text/javascript" src="~/js/template_f8e63fff48629476330f3adc295f9bbe_v1.js"></script>
     <script type="text/javascript" src="~/js/default_833a757bba77fa87ae690c0cfdc876b3_v1.js"></script>
-    <script type="text/javascript">var _ba = _ba || []; _ba.push(["aid", "ecc7a6fe92aab27a02b26c2e5b3851af"]); _ba.push(["host", "rason24.tj"]); (function () { var ba = document.createElement("script"); ba.type = "text/javascript"; ba.async = true; ba.src = (document.location.protocol == "https:" ? "https://" : "http://") + "bitrix.info/ba.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ba, s); })();</script>
+    @*<script type="text/javascript">var _ba = _ba || []; _ba.push(["aid", "ecc7a6fe92aab27a02b26c2e5b3851af"]); _ba.push(["host", "rason24.tj"]); (function () { var ba = document.createElement("script"); ba.type = "text/javascript"; ba.async = true; ba.src = (document.location.protocol == "https:" ? "https://" : "http://") + "bitrix.info/ba.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ba, s); })();</script>*@
 
 
-    <script src="//code.jivosite.com/widget/A5wzuI4bMb" async></script>
+    @*<script src="//code.jivosite.com/widget/A5wzuI4bMb" async></script>*@
     <script>
         var NL_ADD_2_COMPARE = 'Перейти в сравнение';
         var NL_ADD_2_COMPARE_URL = '/catalog/compare/';
@@ -410,25 +407,25 @@
     <script>
         var bx_cart_block = new BitrixSmallCart;
     </script>
-    <script>
+    @*<script>
         bx_cart_block.siteId = 's1';
         bx_cart_block.cartId = 'bx_cart_block';
         bx_cart_block.ajaxPath = '/bitrix/components/bitrix/sale.basket.basket.line/ajax.php';
         bx_cart_block.templateName = '.default';
         bx_cart_block.arParams = { 'PATH_TO_BASKET': '/personal/cart/', 'PATH_TO_PERSONAL': '/personal/', 'SHOW_PERSONAL_LINK': 'N', 'SHOW_NUM_PRODUCTS': 'Y', 'SHOW_TOTAL_PRICE': 'Y', 'SHOW_PRODUCTS': 'Y', 'POSITION_FIXED': 'N', 'HIDE_ON_BASKET_PAGES': 'N', 'COMPONENT_TEMPLATE': 'w_mein_korzina', 'PATH_TO_ORDER': '/personal/order/make/', 'SHOW_EMPTY_VALUES': 'Y', 'SHOW_AUTHOR': 'N', 'PATH_TO_AUTHORIZE': '/login/', 'SHOW_REGISTRATION': 'N', 'PATH_TO_REGISTER': '/login/', 'PATH_TO_PROFILE': '/personal/', 'SHOW_DELAY': 'N', 'SHOW_NOTAVAIL': 'N', 'SHOW_IMAGE': 'Y', 'SHOW_PRICE': 'Y', 'SHOW_SUMMARY': 'Y', 'MAX_IMAGE_SIZE': '70', 'COMPOSITE_FRAME_MODE': 'A', 'COMPOSITE_FRAME_TYPE': 'AUTO', 'CACHE_TYPE': 'A', 'POSITION_VERTICAL': 'top', 'POSITION_HORIZONTAL': 'right', 'AJAX': 'N', '~PATH_TO_BASKET': '/personal/cart/', '~PATH_TO_PERSONAL': '/personal/', '~SHOW_PERSONAL_LINK': 'N', '~SHOW_NUM_PRODUCTS': 'Y', '~SHOW_TOTAL_PRICE': 'Y', '~SHOW_PRODUCTS': 'Y', '~POSITION_FIXED': 'N', '~HIDE_ON_BASKET_PAGES': 'N', '~COMPONENT_TEMPLATE': 'w_mein_korzina', '~PATH_TO_ORDER': '/personal/order/make/', '~SHOW_EMPTY_VALUES': 'Y', '~SHOW_AUTHOR': 'N', '~PATH_TO_AUTHORIZE': '/login/', '~SHOW_REGISTRATION': 'N', '~PATH_TO_REGISTER': '/login/', '~PATH_TO_PROFILE': '/personal/', '~SHOW_DELAY': 'N', '~SHOW_NOTAVAIL': 'N', '~SHOW_IMAGE': 'Y', '~SHOW_PRICE': 'Y', '~SHOW_SUMMARY': 'Y', '~MAX_IMAGE_SIZE': '70', '~COMPOSITE_FRAME_MODE': 'A', '~COMPOSITE_FRAME_TYPE': 'AUTO', '~CACHE_TYPE': 'A', '~POSITION_VERTICAL': 'top', '~POSITION_HORIZONTAL': 'right', '~AJAX': 'N', 'cartId': 'bx_cart_block' }; // TODO \Bitrix\Main\Web\Json::encode
         bx_cart_block.activate();
-    </script>
-    <script>
+    </script>*@
+   @* <script>
         var bx_cart_block_mini = new BitrixSmallCart;
-    </script>
-    <script>
+    </script>*@
+   @* <script>
         bx_cart_block_mini.siteId = 's1';
         bx_cart_block_mini.cartId = 'bx_cart_block_mini';
         bx_cart_block_mini.ajaxPath = '/bitrix/components/bitrix/sale.basket.basket.line/ajax.php';
         bx_cart_block_mini.templateName = 'mini';
         bx_cart_block_mini.arParams = { 'PATH_TO_BASKET': '/personal/cart/', 'PATH_TO_PERSONAL': '/personal/', 'SHOW_PERSONAL_LINK': 'N', 'SHOW_NUM_PRODUCTS': 'Y', 'SHOW_TOTAL_PRICE': 'Y', 'SHOW_PRODUCTS': 'Y', 'POSITION_FIXED': 'N', 'HIDE_ON_BASKET_PAGES': 'N', 'CACHE_TYPE': 'A', 'PATH_TO_ORDER': '/personal/order/make/', 'SHOW_EMPTY_VALUES': 'Y', 'SHOW_AUTHOR': 'N', 'SHOW_REGISTRATION': 'N', 'PATH_TO_REGISTER': '/test/registration.php', 'PATH_TO_AUTHORIZE': '/test/registration.php', 'PATH_TO_PROFILE': '/personal/', 'SHOW_DELAY': 'Y', 'SHOW_NOTAVAIL': 'Y', 'SHOW_IMAGE': 'Y', 'SHOW_PRICE': 'Y', 'SHOW_SUMMARY': 'Y', 'POSITION_VERTICAL': 'top', 'POSITION_HORIZONTAL': 'right', 'MAX_IMAGE_SIZE': '70', 'AJAX': 'N', '~PATH_TO_BASKET': '/personal/cart/', '~PATH_TO_PERSONAL': '/personal/', '~SHOW_PERSONAL_LINK': 'N', '~SHOW_NUM_PRODUCTS': 'Y', '~SHOW_TOTAL_PRICE': 'Y', '~SHOW_PRODUCTS': 'Y', '~POSITION_FIXED': 'N', '~HIDE_ON_BASKET_PAGES': 'N', '~CACHE_TYPE': 'A', '~PATH_TO_ORDER': '/personal/order/make/', '~SHOW_EMPTY_VALUES': 'Y', '~SHOW_AUTHOR': 'N', '~SHOW_REGISTRATION': 'N', '~PATH_TO_REGISTER': '/test/registration.php', '~PATH_TO_AUTHORIZE': '/test/registration.php', '~PATH_TO_PROFILE': '/personal/', '~SHOW_DELAY': 'Y', '~SHOW_NOTAVAIL': 'Y', '~SHOW_IMAGE': 'Y', '~SHOW_PRICE': 'Y', '~SHOW_SUMMARY': 'Y', '~POSITION_VERTICAL': 'top', '~POSITION_HORIZONTAL': 'right', '~MAX_IMAGE_SIZE': '70', '~AJAX': 'N', 'cartId': 'bx_cart_block_mini' }; // TODO \Bitrix\Main\Web\Json::encode
         bx_cart_block_mini.activate();
-    </script>
+    </script>*@
     <script>
         var NL_ADD_2_LIKED_DELETE = 'Убрать из избранных';
         var NL_ADD_2_LIKED = 'В избранное';
@@ -539,10 +536,10 @@
         var NL_ADD_TO_BASKET_URL = '/personal/cart/';
         var NL_ADD_TO_BASKET_BUTTON = 'В корзину';
     </script>
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         BX.Currency.setCurrencies([{ 'CURRENCY': 'RUB', 'FORMAT': { 'FORMAT_STRING': '# с.', 'DEC_POINT': '.', 'THOUSANDS_SEP': ' ', 'DECIMALS': 2, 'THOUSANDS_VARIANT': 'B', 'HIDE_ZERO': 'Y' } }, { 'CURRENCY': 'TJS', 'FORMAT': { 'FORMAT_STRING': '# с.', 'DEC_POINT': '.', 'THOUSANDS_SEP': ' ', 'DECIMALS': 2, 'THOUSANDS_VARIANT': 'S', 'HIDE_ZERO': 'Y' } }]);
-    </script>
-    <script type="text/javascript">
+    </script>*@
+    @*<script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
             m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
             m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
@@ -554,7 +551,7 @@
             trackLinks: true,
             accurateTrackBounce: true
         });
-    </script>
+    </script>*@
     <script src="~/js/jsnow.js"></script>
 
     <script>

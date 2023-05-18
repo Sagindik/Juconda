@@ -1,0 +1,99 @@
+﻿@*@using Juconda.Models.Account;
+@model PersonalCabinetViewModel
+
+@{
+	Layout = "~/Views/Shared/_LayoutLogIn.cshtml";
+}
+
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" asp-controller="Account" asp-action="PersonalCabinet">
+					<span class="login100-form-title">
+						Авторизация
+					</span>
+
+					<div class="text-right p-t-13 p-b-23">
+						<span class="txt1">
+							Я забыл
+						</span>
+
+						<a href="#" class="txt2">
+							Логин / Пароль?
+						</a>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit">
+							Войти
+						</button>
+					</div>
+
+					<div class="flex-col-c p-t-170 p-b-40">
+						<span class="txt1 p-b-9">
+							Еще нет аккаунта?
+						</span>
+
+						<a asp-action="Register" class="txt3">
+							Зарегистрироваться сейчас
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>*@
+
+
+
+@*﻿@model IEnumerable<Juconda.Models.Account.PersonalCabinetViewModel> 
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Продукты</h1>
+
+<p>
+    <a asp-action="Create">Создать</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Наименование
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naimenovanie)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+<section class="inner">
+    <div class="advanced-container-medium">
+        <nav>
+            <ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="/" title="Джоконда" itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">Джоконда</span></a><meta itemprop="position" content="1"></li>
+            </ul>
+        </nav>
+    </div>
+</section>*@
