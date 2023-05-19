@@ -1,11 +1,11 @@
-﻿@*@using Juconda.Models.Account;
+﻿@using Juconda.Models.Account;
 @model PersonalCabinetViewModel
 
 @{
-	Layout = "~/Views/Shared/_LayoutLogIn.cshtml";
+    // This is setting the property to Hahaha
+    ViewBag.Title = "Hahaha";
 }
-
-<body>
+@*<body>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -45,9 +45,97 @@
 	</div>
 </body>*@
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 main">
+            <div class="row">
+                <div class="col-xs-4 indent">
+                    <h1>Личный кабинет</h1>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div id="MainInfo" class="panel-collapse collapse in">
+                    <div class="hold-form panel-body">
+                        <div class="info-wrap">
+                            <form action="#">
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-xs-1">
+                                            <label>Фамилия:</label>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <textarea disabled>@User?.Identity.Name</textarea>
+                                        </div>
 
 
-@*﻿@model IEnumerable<Juconda.Models.Account.PersonalCabinetViewModel> 
+                                        <div class="col-xs-1">
+                                            <label>Имя:</label>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <textarea disabled>@User?.Identity.IsAuthenticated</textarea>
+                                        </div>
+
+
+                                        <div class="col-xs-1">
+                                            <label>Отчество:</label>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <textarea disabled>@Model.RememberMe</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-1">
+                                            <label>Телефон для обратной связи:</label>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <textarea class="iTooltip ittW4 ittH1" disabled ng-placeholder="validator.isInvalid('entity.mobilePhone')"></textarea>
+                                            <input value="@Model.Password" kendo-masked-text-box k-mask="'0-000-000-00-00'"
+                                                   style="width: 100%;" type="text"
+                                                   class="form-control valTool" ng-model="mobilePhoneBind"
+                                                   ng-readonly="isReadonly()">
+                                        </div>
+
+
+                                        <div class="col-xs-1">
+                                            <label>Почта:</label>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <textarea class="iTooltip ittW4 ittH1" disabled ng-placeholder="validator.isInvalid('entity.email')"></textarea>
+                                            <input type="text" class="form-control valTool" ng-model="emailBind"
+                                                   ng-readonly="isReadonly()">
+                                        </div>
+
+
+                                        <div class="col-xs-1">
+                                            <label>Должность:</label>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <textarea class="iTooltip ittW4 ittH1" disabled ng-placeholder="validator.isInvalid('entity.position')"></textarea>
+                                            <input type="text" class="form-control valTool" ng-model="positionBind"
+                                                   ng-readonly="isReadonly()">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*﻿@model IEnumerable<Juconda.Models.Account.PersonalCabinetViewModel>
 
 @{
     ViewData["Title"] = "Index";
