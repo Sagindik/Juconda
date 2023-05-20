@@ -22,28 +22,28 @@ namespace Juconda.Controllers
             // Retrieve the product from the database.           
             ShoppingCartId = GetCartId();
 
-            var cartItem = _context.CartItems.SingleOrDefault(
+            var cartItem = _context.BasketItems.FirstOrDefault(
                 c => c.CartId == ShoppingCartId
                 && c.ProductId == id);
 
             if (cartItem == null)
             {
                 // Create a new cart item if no cart item exists.                 
-                cartItem = new CartItem
+                cartItem = new BasketItem
                 {
                     ProductId = id,
                     CartId = ShoppingCartId,
                     Product = _context.Products.FirstOrDefault(p => p.Id == id),
-                    Quantity = 1
+                    Count = 1
                 };
 
-                _context.CartItems.Add(cartItem);
+                _context.BasketItems.Add(cartItem);
             }
             else
             {
                 // If the item does exist in the cart,                  
                 // then add one to the quantity.                 
-                cartItem.Quantity++;
+                cartItem.Count++;
             }
             _context.SaveChanges();
         }
@@ -51,7 +51,7 @@ namespace Juconda.Controllers
         public int RemoveFromCart(int id)
         {
             // Get the cart
-            var cartItem = _context.CartItems.Single(
+            var cartItem = _context.BasketItems.Single(
                 cart => cart.CartId == ShoppingCartId
                 && cart.ProductId == id);
 
@@ -59,14 +59,14 @@ namespace Juconda.Controllers
 
             if (cartItem != null)
             {
-                if (cartItem.Quantity > 1)
+                if (cartItem.Count > 1)
                 {
-                    cartItem.Quantity--;
-                    itemCount = cartItem.Quantity;
+                    cartItem.Count--;
+                    itemCount = cartItem.Count;
                 }
                 else
                 {
-                    _context.CartItems.Remove(cartItem);
+                    _context.BasketItems.Remove(cartItem);
                 }
                 // Save changes
                 _context.SaveChanges();
@@ -76,42 +76,42 @@ namespace Juconda.Controllers
 
         public void EmptyCart()
         {
-            var cartItems = _context.CartItems.Where(
+            var cartItems = _context.BasketItems.Where(
                 cart => cart.CartId == ShoppingCartId);
 
             foreach (var cartItem in cartItems)
             {
-                _context.CartItems.Remove(cartItem);
+                _context.BasketItems.Remove(cartItem);
             }
             // Save changes
             _context.SaveChanges();
         }
 
-        public List<CartItem> GetCartItems()
+        public List<BasketItem> GetCartItems()
         {
             ShoppingCartId = GetCartId();
 
-            return _context.CartItems.Where(
+            return _context.BasketItems.Where(
                 c => c.CartId == ShoppingCartId).ToList();
         }
 
-        public int GetCount()
-        {
-            // Get the count of each item in the cart and sum them up
-            int? count = (from cartItems in _context.CartItems
-                          where cartItems.CartId == ShoppingCartId
-                          select (int?)cartItems.Quantity).Sum();
-            // Return 0 if all entries are null
-            return count ?? 0;
-        }
+        //public int GetCount()
+        //{
+        //    // Get the count of each item in the cart and sum them up
+        //    int? count = (from cartItems in _context.CartItems
+        //                  where cartItems.CartId == ShoppingCartId
+        //                  select (int?)cartItems.Count).Sum();
+        //    // Return 0 if all entries are null
+        //    return count ?? 0;
+        //}
 
         public decimal GetTotal()
         {
             // Multiply album price by count of that album to get 
             // the current price for each of those albums in the cart
             // sum all album price totals to get the cart total
-            decimal? total = _context.CartItems.Where(_ => _.CartId == ShoppingCartId && _.Product != null)
-                .Select(_ => _.Quantity * _.Product.Price).Sum();
+            decimal? total = _context.BasketItems.Where(_ => _.CartId == ShoppingCartId && _.Product != null)
+                .Select(_ => _.Count * _.Product.Price).Sum();
 
             return total ?? decimal.Zero;
         }

@@ -1,5 +1,5 @@
 using Juconda.Core.Mappings;
-using Juconda.Domain.Models;
+using Juconda.Domain.Models.Users;
 using Juconda.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 

@@ -2,7 +2,7 @@
 
 namespace Juconda.Domain.Models
 {
-    public class CountryOfProduction : NameEntityBase
+    public class Basket : BaseEntity
     {
     }
 }

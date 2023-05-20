@@ -1,4 +1,4 @@
-﻿using Juconda.Domain.Models;
+﻿using Juconda.Domain.Models.Users;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Juconda.Core.Common
 {
-	public class CustomPasswordHasher : IPasswordHasher<User>
+    public class CustomPasswordHasher : IPasswordHasher<User>
 	{
 		private readonly int _iterCount;
 		private readonly RandomNumberGenerator _rng;
