@@ -7,8 +7,6 @@ namespace Juconda.Domain.Models
     /// </summary>
     public class BasketItem : BaseEntity
     {
-        public string CartId { get; set; }
-
         /// <summary>
         /// Количество
         /// </summary>

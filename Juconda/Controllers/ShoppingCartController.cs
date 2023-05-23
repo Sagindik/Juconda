@@ -1,116 +1,135 @@
-﻿using Juconda.Domain.Models;
+﻿using AutoMapper;
+using Juconda.Core.Services;
+using Juconda.Domain.Models;
 using Juconda.Infrastructure;
+using Juconda.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Juconda.Controllers
 {
     public class ShoppingCartController : Controller
     {
+        private AppDbContext _context;
+        private IMapper _mapper;
+        private ShopService _shopService;
+
         public string ShoppingCartId { get; set; }
-
-        private AppDbContext _context { get; set; }
-
         public const string CartSessionKey = "CartId";
 
-        public ShoppingCartController(AppDbContext context)
+        public ShoppingCartController(AppDbContext context, IMapper mapper, ShopService shopService)
         {
             _context = context;
+            _mapper = mapper;
+            _shopService = shopService;
         }
 
-        public void AddToCart(int id)
+        public async Task<IActionResult> Index()
         {
-            // Retrieve the product from the database.           
-            ShoppingCartId = GetCartId();
+            var basket = await _shopService.GetCurrentBasket();
 
-            var cartItem = _context.BasketItems.FirstOrDefault(
-                c => c.CartId == ShoppingCartId
-                && c.ProductId == id);
+            if (basket == null)
+                return View(new List<BasketItemViewModel>());
 
-            if (cartItem == null)
-            {
-                // Create a new cart item if no cart item exists.                 
-                cartItem = new BasketItem
+            var basketItems = _context.BasketItems.Where(_ => _.Actual && _.BasketId == basket.Id).ToList();
+
+            var models = _mapper.Map<List<BasketItemViewModel>>(basketItems);
+
+            return View(models);
+        }
+
+        public async Task<IActionResult> AddToCart(int id)
+        {
+            var basket = await _shopService.GetCurrentBasket();
+
+            if (basket == null)
+                return NotFound();
+
+            var basketItem = basket.BasketItems.FirstOrDefault(_ => _.Actual && _.ProductId == id);
+
+            if (basketItem == null)
+            {               
+                basketItem = new BasketItem
                 {
                     ProductId = id,
-                    CartId = ShoppingCartId,
                     Product = _context.Products.FirstOrDefault(p => p.Id == id),
                     Count = 1
                 };
 
-                _context.BasketItems.Add(cartItem);
+                _context.BasketItems.Add(basketItem);
             }
             else
-            {
-                // If the item does exist in the cart,                  
-                // then add one to the quantity.                 
-                cartItem.Count++;
+            {                 
+                basketItem.Count++;
+                _context.BasketItems.Update(basketItem);
             }
+
             _context.SaveChanges();
+
+            return Ok();
         }
 
-        public int RemoveFromCart(int id)
-        {
-            // Get the cart
-            var cartItem = _context.BasketItems.Single(
-                cart => cart.CartId == ShoppingCartId
-                && cart.ProductId == id);
-
-            int itemCount = 0;
-
-            if (cartItem != null)
-            {
-                if (cartItem.Count > 1)
-                {
-                    cartItem.Count--;
-                    itemCount = cartItem.Count;
-                }
-                else
-                {
-                    _context.BasketItems.Remove(cartItem);
-                }
-                // Save changes
-                _context.SaveChanges();
-            }
-            return itemCount;
-        }
-
-        public void EmptyCart()
-        {
-            var cartItems = _context.BasketItems.Where(
-                cart => cart.CartId == ShoppingCartId);
-
-            foreach (var cartItem in cartItems)
-            {
-                _context.BasketItems.Remove(cartItem);
-            }
-            // Save changes
-            _context.SaveChanges();
-        }
-
-        public List<BasketItem> GetCartItems()
-        {
-            ShoppingCartId = GetCartId();
-
-            return _context.BasketItems.Where(
-                c => c.CartId == ShoppingCartId).ToList();
-        }
-
-        //public int GetCount()
+        //public int RemoveFromCart(int id)
         //{
-        //    // Get the count of each item in the cart and sum them up
-        //    int? count = (from cartItems in _context.CartItems
-        //                  where cartItems.CartId == ShoppingCartId
-        //                  select (int?)cartItems.Count).Sum();
-        //    // Return 0 if all entries are null
-        //    return count ?? 0;
+        //    // Get the cart
+        //    var cartItem = _context.BasketItems.Single(
+        //        cart => cart.CartId == ShoppingCartId
+        //        && cart.ProductId == id);
+
+        //    int itemCount = 0;
+
+        //    if (cartItem != null)
+        //    {
+        //        if (cartItem.Count > 1)
+        //        {
+        //            cartItem.Count--;
+        //            itemCount = cartItem.Count;
+        //        }
+        //        else
+        //        {
+        //            _context.BasketItems.Remove(cartItem);
+        //        }
+        //        // Save changes
+        //        _context.SaveChanges();
+        //    }
+        //    return itemCount;
         //}
 
-        public decimal GetTotal()
+        //public void EmptyCart()
+        //{
+        //    var cartItems = _context.BasketItems.Where(
+        //        cart => cart.CartId == ShoppingCartId);
+
+        //    foreach (var cartItem in cartItems)
+        //    {
+        //        _context.BasketItems.Remove(cartItem);
+        //    }
+        //    // Save changes
+        //    _context.SaveChanges();
+        //}
+
+        //public List<BasketItem> GetCartItems()
+        //{
+        //    ShoppingCartId = GetCartId();
+
+        //    return _context.BasketItems.Where(
+        //        c => c.CartId == ShoppingCartId).ToList();
+        //}
+
+        ////public int GetCount()
+        ////{
+        ////    // Get the count of each item in the cart and sum them up
+        ////    int? count = (from cartItems in _context.CartItems
+        ////                  where cartItems.CartId == ShoppingCartId
+        ////                  select (int?)cartItems.Count).Sum();
+        ////    // Return 0 if all entries are null
+        ////    return count ?? 0;
+        ////}
+
+        public async Task<decimal> GetTotal()
         {
-            // Multiply album price by count of that album to get 
-            // the current price for each of those albums in the cart
-            // sum all album price totals to get the cart total
-            decimal? total = _context.BasketItems.Where(_ => _.CartId == ShoppingCartId && _.Product != null)
+            var basket = await _shopService.GetCurrentBasket();
+
+            decimal? total = _context.BasketItems.Where(_ => _.BasketId == basket.Id && _.Product != null)
                 .Select(_ => _.Count * _.Product.Price).Sum();
 
             return total ?? decimal.Zero;
@@ -163,24 +182,24 @@ namespace Juconda.Controllers
         //    _context.SaveChanges();
         //}
 
-        public string GetCartId()
-        {
-            if (HttpContext.Session.GetString(CartSessionKey) == null)
-            {
-                if (!string.IsNullOrWhiteSpace(HttpContext?.User?.Identity?.Name))
-                {
-                    HttpContext.Session.SetString(CartSessionKey, HttpContext?.User?.Identity?.Name ?? "");
-                }
-                else
-                {
-                    // Generate a new random GUID using System.Guid class
-                    Guid tempCartId = Guid.NewGuid();
-                    // Send tempCartId back to client as a cookie
-                    HttpContext.Session.SetString(CartSessionKey, tempCartId.ToString());
-                }
-            }
+        //public string GetCartId()
+        //{
+        //    if (HttpContext.Session.GetString(CartSessionKey) == null)
+        //    {
+        //        if (!string.IsNullOrWhiteSpace(HttpContext?.User?.Identity?.Name))
+        //        {
+        //            HttpContext.Session.SetString(CartSessionKey, HttpContext?.User?.Identity?.Name ?? "");
+        //        }
+        //        else
+        //        {
+        //            // Generate a new random GUID using System.Guid class
+        //            Guid tempCartId = Guid.NewGuid();
+        //            // Send tempCartId back to client as a cookie
+        //            HttpContext.Session.SetString(CartSessionKey, tempCartId.ToString());
+        //        }
+        //    }
 
-            return HttpContext?.Session?.GetString(CartSessionKey) ?? string.Empty;
-        }
+        //    return HttpContext?.Session?.GetString(CartSessionKey) ?? string.Empty;
+        //}
     }
 }

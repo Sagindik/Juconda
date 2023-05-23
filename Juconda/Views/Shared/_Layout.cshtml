@@ -76,8 +76,6 @@
         </div>
     </nav>
     <div id="page">
-        <div id="bx_custom_menu">
-        </div>
         <header>
             <!--            <div class="hide-for-xlargeheader-line-top hide-for-small-only hide-for-medium-only hide-for-large-only">-->
             <div class="header-line-top hide-for-small-only hide-for-medium-only hide-for-large-only">
@@ -170,20 +168,20 @@
                         </div>
                     </div>
                     <div class="header-cart header-block-info inline-block-item">
-                        <a href="@Url.Action("Index", "Cart")" class="inline-block-container" id="bx_cart_block">
+                        <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container" id="bx_cart_block">
                             <svg class="icon vertical-middle">
                                 <use href="#svg-icon-cart" />
                             </svg>
                             <span class="inline-block-item vertical-middle">
                                 <span class="header-block-info-link">Корзина</span>
-                                <span class="header-block-info-desc price-block"> </span>
+                                <span class="header-block-info-desc price-block"></span>
                             </span>
                         </a>
                     </div>
                 </div>
                 <ul class="header-fixed-block">
                     <li class="header-cart header-block-info header-fixed-item">
-                        <a href="@Url.Action("Index", "Cart")" class="inline-block-container vertical-middle" id="bx_cart_block_mini">
+                        <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container vertical-middle" id="bx_cart_block_mini">
                             <span class="inline-block-item relative">
                                 <svg class="icon">
                                     <use href="#svg-icon-cart" />
@@ -223,7 +221,7 @@
                                 </span>
                                 <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
                                     <span class="header-block-info-link">Сравнение</span>
-                                    <span class="header-block-info-desc" title="0 товаров в сравнении">00 товаров в сравнении</span>
+                                    <span class="header-block-info-desc" title="0 товаров в сравнении">0 товаров в сравнении</span>
                                 </span>
                             </a>
                         </div>
@@ -333,245 +331,10 @@
     <script type="text/javascript" src="~/js/core_currency.min.js"></script>
     <script type="text/javascript" src="~/js/settings_s1.min.js"></script>
     <script type="text/javascript" src="~/js/script.min.js"></script>*@
-    @*<script type="text/javascript">BX.setJSList(['/bitrix/js/main/core/core_fx.js', '/bitrix/js/main/pageobject/pageobject.js', '/bitrix/js/main/core/core_window.js', '/bitrix/js/main/date/main.date.js', '/bitrix/js/main/core/core_date.js', '/bitrix/js/main/session.js', '/bitrix/js/main/polyfill/customevent/main.polyfill.customevent.js', '/local/templates/rason_food/js/jquery.min.js', '/local/templates/rason_food/js/foundation.min.js', '/local/templates/rason_food/js/isotope.pkgd.min.js', '/local/templates/rason_food/js/slideout.min.js', '/local/templates/rason_food/js/owl.carousel.min.js', '/local/templates/rason_food/js/fancybox.min.js', '/local/templates/rason_food/js/fancybox-thumbs.js', '/local/templates/rason_food/js/zoomsl.min.js', '/local/templates/rason_food/js/selectbox.min.js', '/local/templates/rason_food/js/jquery.inputmask.bundle.js', '/local/templates/rason_food/js/jquery.lazy.min.js', '/local/templates/rason_food/js/yandex.maps.js', '/local/templates/rason_food/js/main.js', '/local/templates/rason_food/js/colorpicker.min.js', '/local/templates/rason_food/js/jquery.validate.min.js', '/local/templates/rason_food/js/custom.js', '/local/templates/rason_food/js/site.js', '/bitrix/components/bitrix/search.title/script.js', '/local/templates/rason_food/components/bitrix/sale.basket.basket.line/.default/script.js', '/local/templates/rason_food/components/bitrix/sale.basket.basket.line/mini/script.js', '/local/templates/rason_food/js/catalog.element.script.js', '/local/templates/rason_food/js/catalog.section.script.js', '/local/templates/rason_food/components/bitrix/catalog.section/favorites/script.js']);</script>*@
-    @*<script type="text/javascript">BX.setCSSList(['/local/templates/rason_food/themes/green_red/css/main.css', '/local/templates/rason_food/css/custom.css', '/local/templates/rason_food/css/site.css', '/local/templates/rason_food/css/markets.css', '/local/templates/rason_food/template_styles.css']);</script>*@
-    @*<script type="text/javascript">
-        (function () {
-            "use strict";
-
-            var counter = function () {
-                var cookie = (function (name) {
-                    var parts = ("; " + document.cookie).split("; " + name + "=");
-                    if (parts.length == 2) {
-                        try { return JSON.parse(decodeURIComponent(parts.pop().split(";").shift())); }
-                        catch (e) { }
-                    }
-                })("BITRIX_CONVERSION_CONTEXT_s1");
-
-                if (cookie && cookie.EXPIRE >= BX.message("SERVER_TIME"))
-                    return;
-
-                var request = new XMLHttpRequest();
-                request.open("POST", "/bitrix/tools/conversion/ajax_counter.php", true);
-                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                request.send(
-                    "SITE_ID=" + encodeURIComponent("s1") +
-                    "&sessid=" + encodeURIComponent(BX.bitrix_sessid()) +
-                    "&HTTP_REFERER=" + encodeURIComponent(document.referrer)
-                );
-            };
-
-            if (window.frameRequestStart === true)
-                BX.addCustomEvent("onFrameDataReceived", counter);
-            else
-                BX.ready(counter);
-        })();
-    </script>*@
-    @*<script>; window.ww_metrics_check = false; setInterval(function () { window.ww_metrics_check = false; }, 5000); function ww_metrics_postcheck() { if (!window.ww_metrics_check) { window.ww_metrics_check = true; BX.ajax({ url: '/bitrix/components/webway/metrics.simple/wwcheckmetrics.php', data: { sessid: BX.bitrix_sessid(), cur_page: '/index.php', use_chat: window.ww_is_webchat_show }, method: 'POST', dataType: 'json', async: true, onsuccess: function (data) { } }); } }; document.addEventListener('mousemove', function () { ww_metrics_postcheck(); }); document.addEventListener('touchmove', function () { ww_metrics_postcheck(); }); document.addEventListener('scroll', function () { ww_metrics_postcheck(); }); window.addEventListener('beforeunload', function () { window.ww_metrics_check = false; ww_metrics_postcheck(); }); document.cookie = "WW_BX_USER_ID=bx482d2d90990fa469be2f6f12e24e6503;path=/;max-age=946857600";</script>*@
 
     <script type="text/javascript" src="~/js/template_f8e63fff48629476330f3adc295f9bbe_v1.js"></script>
     <script type="text/javascript" src="~/js/default_833a757bba77fa87ae690c0cfdc876b3_v1.js"></script>
-    @*<script type="text/javascript">var _ba = _ba || []; _ba.push(["aid", "ecc7a6fe92aab27a02b26c2e5b3851af"]); _ba.push(["host", "rason24.tj"]); (function () { var ba = document.createElement("script"); ba.type = "text/javascript"; ba.async = true; ba.src = (document.location.protocol == "https:" ? "https://" : "http://") + "bitrix.info/ba.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ba, s); })();</script>*@
 
-
-    @*<script src="//code.jivosite.com/widget/A5wzuI4bMb" async></script>*@
-    <script>
-        var NL_ADD_2_COMPARE = 'Перейти в сравнение';
-        var NL_ADD_2_COMPARE_URL = '/catalog/compare/';
-    </script>
-    <script>
-        var NL_ADD_2_LIKED_DELETE = 'Убрать из избранных';
-        var NL_ADD_2_LIKED = 'В избранное';
-    </script>
-    <script>
-        BX.ready(function () {
-            var searchTitle = new JCTitleSearch({
-                'AJAX_PAGE': '/',
-                'CONTAINER_ID': 'search-dropdown',
-                'INPUT_ID': 'title-search-input',
-                'MIN_QUERY_LEN': 2
-            });
-
-            searchTitle.ShowResult = function (result) {
-                if (result != null)
-                    $('#search-dropdown').html(result);
-
-                if ($('#search-dropdown').html() != '')
-                    $('#search-dropdown').addClass('is-open');
-                else
-                    $('#search-dropdown').removeClass('is-open');
-
-            };
-        });
-    </script>
-    <script>
-        var bx_cart_block = new BitrixSmallCart;
-    </script>
-    @*<script>
-        bx_cart_block.siteId = 's1';
-        bx_cart_block.cartId = 'bx_cart_block';
-        bx_cart_block.ajaxPath = '/bitrix/components/bitrix/sale.basket.basket.line/ajax.php';
-        bx_cart_block.templateName = '.default';
-        bx_cart_block.arParams = { 'PATH_TO_BASKET': '/personal/cart/', 'PATH_TO_PERSONAL': '/personal/', 'SHOW_PERSONAL_LINK': 'N', 'SHOW_NUM_PRODUCTS': 'Y', 'SHOW_TOTAL_PRICE': 'Y', 'SHOW_PRODUCTS': 'Y', 'POSITION_FIXED': 'N', 'HIDE_ON_BASKET_PAGES': 'N', 'COMPONENT_TEMPLATE': 'w_mein_korzina', 'PATH_TO_ORDER': '/personal/order/make/', 'SHOW_EMPTY_VALUES': 'Y', 'SHOW_AUTHOR': 'N', 'PATH_TO_AUTHORIZE': '/login/', 'SHOW_REGISTRATION': 'N', 'PATH_TO_REGISTER': '/login/', 'PATH_TO_PROFILE': '/personal/', 'SHOW_DELAY': 'N', 'SHOW_NOTAVAIL': 'N', 'SHOW_IMAGE': 'Y', 'SHOW_PRICE': 'Y', 'SHOW_SUMMARY': 'Y', 'MAX_IMAGE_SIZE': '70', 'COMPOSITE_FRAME_MODE': 'A', 'COMPOSITE_FRAME_TYPE': 'AUTO', 'CACHE_TYPE': 'A', 'POSITION_VERTICAL': 'top', 'POSITION_HORIZONTAL': 'right', 'AJAX': 'N', '~PATH_TO_BASKET': '/personal/cart/', '~PATH_TO_PERSONAL': '/personal/', '~SHOW_PERSONAL_LINK': 'N', '~SHOW_NUM_PRODUCTS': 'Y', '~SHOW_TOTAL_PRICE': 'Y', '~SHOW_PRODUCTS': 'Y', '~POSITION_FIXED': 'N', '~HIDE_ON_BASKET_PAGES': 'N', '~COMPONENT_TEMPLATE': 'w_mein_korzina', '~PATH_TO_ORDER': '/personal/order/make/', '~SHOW_EMPTY_VALUES': 'Y', '~SHOW_AUTHOR': 'N', '~PATH_TO_AUTHORIZE': '/login/', '~SHOW_REGISTRATION': 'N', '~PATH_TO_REGISTER': '/login/', '~PATH_TO_PROFILE': '/personal/', '~SHOW_DELAY': 'N', '~SHOW_NOTAVAIL': 'N', '~SHOW_IMAGE': 'Y', '~SHOW_PRICE': 'Y', '~SHOW_SUMMARY': 'Y', '~MAX_IMAGE_SIZE': '70', '~COMPOSITE_FRAME_MODE': 'A', '~COMPOSITE_FRAME_TYPE': 'AUTO', '~CACHE_TYPE': 'A', '~POSITION_VERTICAL': 'top', '~POSITION_HORIZONTAL': 'right', '~AJAX': 'N', 'cartId': 'bx_cart_block' }; // TODO \Bitrix\Main\Web\Json::encode
-        bx_cart_block.activate();
-    </script>*@
-   @* <script>
-        var bx_cart_block_mini = new BitrixSmallCart;
-    </script>*@
-   @* <script>
-        bx_cart_block_mini.siteId = 's1';
-        bx_cart_block_mini.cartId = 'bx_cart_block_mini';
-        bx_cart_block_mini.ajaxPath = '/bitrix/components/bitrix/sale.basket.basket.line/ajax.php';
-        bx_cart_block_mini.templateName = 'mini';
-        bx_cart_block_mini.arParams = { 'PATH_TO_BASKET': '/personal/cart/', 'PATH_TO_PERSONAL': '/personal/', 'SHOW_PERSONAL_LINK': 'N', 'SHOW_NUM_PRODUCTS': 'Y', 'SHOW_TOTAL_PRICE': 'Y', 'SHOW_PRODUCTS': 'Y', 'POSITION_FIXED': 'N', 'HIDE_ON_BASKET_PAGES': 'N', 'CACHE_TYPE': 'A', 'PATH_TO_ORDER': '/personal/order/make/', 'SHOW_EMPTY_VALUES': 'Y', 'SHOW_AUTHOR': 'N', 'SHOW_REGISTRATION': 'N', 'PATH_TO_REGISTER': '/test/registration.php', 'PATH_TO_AUTHORIZE': '/test/registration.php', 'PATH_TO_PROFILE': '/personal/', 'SHOW_DELAY': 'Y', 'SHOW_NOTAVAIL': 'Y', 'SHOW_IMAGE': 'Y', 'SHOW_PRICE': 'Y', 'SHOW_SUMMARY': 'Y', 'POSITION_VERTICAL': 'top', 'POSITION_HORIZONTAL': 'right', 'MAX_IMAGE_SIZE': '70', 'AJAX': 'N', '~PATH_TO_BASKET': '/personal/cart/', '~PATH_TO_PERSONAL': '/personal/', '~SHOW_PERSONAL_LINK': 'N', '~SHOW_NUM_PRODUCTS': 'Y', '~SHOW_TOTAL_PRICE': 'Y', '~SHOW_PRODUCTS': 'Y', '~POSITION_FIXED': 'N', '~HIDE_ON_BASKET_PAGES': 'N', '~CACHE_TYPE': 'A', '~PATH_TO_ORDER': '/personal/order/make/', '~SHOW_EMPTY_VALUES': 'Y', '~SHOW_AUTHOR': 'N', '~SHOW_REGISTRATION': 'N', '~PATH_TO_REGISTER': '/test/registration.php', '~PATH_TO_AUTHORIZE': '/test/registration.php', '~PATH_TO_PROFILE': '/personal/', '~SHOW_DELAY': 'Y', '~SHOW_NOTAVAIL': 'Y', '~SHOW_IMAGE': 'Y', '~SHOW_PRICE': 'Y', '~SHOW_SUMMARY': 'Y', '~POSITION_VERTICAL': 'top', '~POSITION_HORIZONTAL': 'right', '~MAX_IMAGE_SIZE': '70', '~AJAX': 'N', 'cartId': 'bx_cart_block_mini' }; // TODO \Bitrix\Main\Web\Json::encode
-        bx_cart_block_mini.activate();
-    </script>*@
-    <script>
-        var NL_ADD_2_LIKED_DELETE = 'Убрать из избранных';
-        var NL_ADD_2_LIKED = 'В избранное';
-        var NL_PRODUCT_1 = 'товар';
-        var NL_PRODUCT_2 = 'товара';
-        var NL_PRODUCT_10 = 'товаров';
-        var NL_ADD_2_LIKED_CAPTION = 'в избранном';
-    </script>
-    <script>
-        var NL_ADD_2_COMPARE = 'Перейти в сравнение';
-        var NL_ADD_2_COMPARE_URL = '/catalog/compare/';
-        var NL_ADD_2_COMPARE_CAPTION = 'в сравнении';
-    </script>
-    <script type="text/javascript" id>if (document.querySelector(".header-menu-toggle__btn")) { var button1 = document.querySelector(".header-menu-toggle__btn"); button1.addEventListener("click", function (a) { dataLayer.push({ event: "login-click" }) }) } if (document.querySelector(".home-header button")) { var button2 = document.querySelector(".home-header button"); button2.addEventListener("click", function (a) { dataLayer.push({ event: "login-click" }) }) };</script>
-
-    <script type="text/javascript">
-        var obbx_3966226736_161180 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '16118', 'NAME': 'Банан 1кг', 'PICT': { 'ID': '33416', 'SRC': '/upload/iblock/3a6/3a6f7773bcf7de237a3863264f6717f6.jpeg', 'WIDTH': '1920', 'HEIGHT': '1599' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=16118', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15148', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'TJS', 'VALUE_VAT': '28', 'VALUE_NOVAT': '28', 'DISCOUNT_VALUE_VAT': '28', 'DISCOUNT_VALUE_NOVAT': '28', 'ROUND_VALUE_VAT': '28', 'ROUND_VALUE_NOVAT': '28', 'VALUE': '28', 'UNROUND_DISCOUNT_VALUE': '28', 'DISCOUNT_VALUE': '28', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '28 с.', 'PRINT_VALUE_VAT': '28 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '28 с.', 'PRINT_DISCOUNT_VALUE_VAT': '28 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '28 с.', 'PRINT_DISCOUNT_VALUE': '28 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_3966226736_161180', 'PICT_ID': 'bx_3966226736_161180_secondpict', 'QUANTITY_ID': 'bx_3966226736_161180_quantity', 'QUANTITY_UP_ID': 'bx_3966226736_161180_quant_up', 'QUANTITY_DOWN_ID': 'bx_3966226736_161180_quant_down', 'PRICE_ID': 'bx_3966226736_161180_price', 'PRICE_HOVER_ID': 'bx_3966226736_161180_price_hover', 'BUY_ID': 'bx_3966226736_161180_buy_link', 'LIKED_COMPARE_ID': 'bx_3966226736_161180_add_liked_compare_', 'ECONOMY_ID': 'bx_3966226736_161180_economy_', 'ACTION_ECONOMY_ID': 'bx_3966226736_161180_action_economy', 'BASKET_PROP_DIV': 'bx_3966226736_161180_basket_prop', 'BASKET_ACTIONS_ID': 'bx_3966226736_161180_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_3966226736_161180_not_avail', 'COMPARE_LINK_ID': 'bx_3966226736_161180_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_3966226736_161190 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '16119', 'NAME': 'Апельсины 1кг', 'PICT': { 'ID': '33212', 'SRC': '/upload/iblock/914/9140c33d986c9bb4cbb6e8ff33c1f505.jpg', 'WIDTH': '600', 'HEIGHT': '600' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=16119', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15149', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'TJS', 'VALUE_VAT': '25', 'VALUE_NOVAT': '25', 'DISCOUNT_VALUE_VAT': '25', 'DISCOUNT_VALUE_NOVAT': '25', 'ROUND_VALUE_VAT': '25', 'ROUND_VALUE_NOVAT': '25', 'VALUE': '25', 'UNROUND_DISCOUNT_VALUE': '25', 'DISCOUNT_VALUE': '25', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '25 с.', 'PRINT_VALUE_VAT': '25 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '25 с.', 'PRINT_DISCOUNT_VALUE_VAT': '25 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '25 с.', 'PRINT_DISCOUNT_VALUE': '25 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_3966226736_161190', 'PICT_ID': 'bx_3966226736_161190_secondpict', 'QUANTITY_ID': 'bx_3966226736_161190_quantity', 'QUANTITY_UP_ID': 'bx_3966226736_161190_quant_up', 'QUANTITY_DOWN_ID': 'bx_3966226736_161190_quant_down', 'PRICE_ID': 'bx_3966226736_161190_price', 'PRICE_HOVER_ID': 'bx_3966226736_161190_price_hover', 'BUY_ID': 'bx_3966226736_161190_buy_link', 'LIKED_COMPARE_ID': 'bx_3966226736_161190_add_liked_compare_', 'ECONOMY_ID': 'bx_3966226736_161190_economy_', 'ACTION_ECONOMY_ID': 'bx_3966226736_161190_action_economy', 'BASKET_PROP_DIV': 'bx_3966226736_161190_basket_prop', 'BASKET_ACTIONS_ID': 'bx_3966226736_161190_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_3966226736_161190_not_avail', 'COMPARE_LINK_ID': 'bx_3966226736_161190_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_3966226736_161230 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '16123', 'NAME': 'Помидоры 1кг ', 'PICT': { 'ID': '33170', 'SRC': '/upload/iblock/d13/d139c303eed18e9a03381846841760ca.jpg', 'WIDTH': '349', 'HEIGHT': '359' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=16123', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15153', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'TJS', 'VALUE_VAT': '23.5', 'VALUE_NOVAT': '23.5', 'DISCOUNT_VALUE_VAT': '23.5', 'DISCOUNT_VALUE_NOVAT': '23.5', 'ROUND_VALUE_VAT': '23.5', 'ROUND_VALUE_NOVAT': '23.5', 'VALUE': '23.5', 'UNROUND_DISCOUNT_VALUE': '23.5', 'DISCOUNT_VALUE': '23.5', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '23.50 с.', 'PRINT_VALUE_VAT': '23.50 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '23.50 с.', 'PRINT_DISCOUNT_VALUE_VAT': '23.50 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '23.50 с.', 'PRINT_DISCOUNT_VALUE': '23.50 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_3966226736_161230', 'PICT_ID': 'bx_3966226736_161230_secondpict', 'QUANTITY_ID': 'bx_3966226736_161230_quantity', 'QUANTITY_UP_ID': 'bx_3966226736_161230_quant_up', 'QUANTITY_DOWN_ID': 'bx_3966226736_161230_quant_down', 'PRICE_ID': 'bx_3966226736_161230_price', 'PRICE_HOVER_ID': 'bx_3966226736_161230_price_hover', 'BUY_ID': 'bx_3966226736_161230_buy_link', 'LIKED_COMPARE_ID': 'bx_3966226736_161230_add_liked_compare_', 'ECONOMY_ID': 'bx_3966226736_161230_economy_', 'ACTION_ECONOMY_ID': 'bx_3966226736_161230_action_economy', 'BASKET_PROP_DIV': 'bx_3966226736_161230_basket_prop', 'BASKET_ACTIONS_ID': 'bx_3966226736_161230_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_3966226736_161230_not_avail', 'COMPARE_LINK_ID': 'bx_3966226736_161230_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_3966226736_161200 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '16120', 'NAME': 'Киви 1кг ', 'PICT': { 'ID': '33172', 'SRC': '/upload/iblock/ae2/ae24ee9db8460302eea6534f1067ec5e.jpg', 'WIDTH': '800', 'HEIGHT': '1000' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=16120', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15150', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'TJS', 'VALUE_VAT': '30', 'VALUE_NOVAT': '30', 'DISCOUNT_VALUE_VAT': '30', 'DISCOUNT_VALUE_NOVAT': '30', 'ROUND_VALUE_VAT': '30', 'ROUND_VALUE_NOVAT': '30', 'VALUE': '30', 'UNROUND_DISCOUNT_VALUE': '30', 'DISCOUNT_VALUE': '30', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '30 с.', 'PRINT_VALUE_VAT': '30 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '30 с.', 'PRINT_DISCOUNT_VALUE_VAT': '30 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '30 с.', 'PRINT_DISCOUNT_VALUE': '30 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_3966226736_161200', 'PICT_ID': 'bx_3966226736_161200_secondpict', 'QUANTITY_ID': 'bx_3966226736_161200_quantity', 'QUANTITY_UP_ID': 'bx_3966226736_161200_quant_up', 'QUANTITY_DOWN_ID': 'bx_3966226736_161200_quant_down', 'PRICE_ID': 'bx_3966226736_161200_price', 'PRICE_HOVER_ID': 'bx_3966226736_161200_price_hover', 'BUY_ID': 'bx_3966226736_161200_buy_link', 'LIKED_COMPARE_ID': 'bx_3966226736_161200_add_liked_compare_', 'ECONOMY_ID': 'bx_3966226736_161200_economy_', 'ACTION_ECONOMY_ID': 'bx_3966226736_161200_action_economy', 'BASKET_PROP_DIV': 'bx_3966226736_161200_basket_prop', 'BASKET_ACTIONS_ID': 'bx_3966226736_161200_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_3966226736_161200_not_avail', 'COMPARE_LINK_ID': 'bx_3966226736_161200_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_3966226736_161210 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '16121', 'NAME': 'Огурцы Орзу 1кг', 'PICT': { 'ID': '33164', 'SRC': '/upload/iblock/537/537a41f2f4c6227593eea804173904f0.jpg', 'WIDTH': '800', 'HEIGHT': '800' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=16121', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15151', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'TJS', 'VALUE_VAT': '15.5', 'VALUE_NOVAT': '15.5', 'DISCOUNT_VALUE_VAT': '15.5', 'DISCOUNT_VALUE_NOVAT': '15.5', 'ROUND_VALUE_VAT': '15.5', 'ROUND_VALUE_NOVAT': '15.5', 'VALUE': '15.5', 'UNROUND_DISCOUNT_VALUE': '15.5', 'DISCOUNT_VALUE': '15.5', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '15.50 с.', 'PRINT_VALUE_VAT': '15.50 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '15.50 с.', 'PRINT_DISCOUNT_VALUE_VAT': '15.50 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '15.50 с.', 'PRINT_DISCOUNT_VALUE': '15.50 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_3966226736_161210', 'PICT_ID': 'bx_3966226736_161210_secondpict', 'QUANTITY_ID': 'bx_3966226736_161210_quantity', 'QUANTITY_UP_ID': 'bx_3966226736_161210_quant_up', 'QUANTITY_DOWN_ID': 'bx_3966226736_161210_quant_down', 'PRICE_ID': 'bx_3966226736_161210_price', 'PRICE_HOVER_ID': 'bx_3966226736_161210_price_hover', 'BUY_ID': 'bx_3966226736_161210_buy_link', 'LIKED_COMPARE_ID': 'bx_3966226736_161210_add_liked_compare_', 'ECONOMY_ID': 'bx_3966226736_161210_economy_', 'ACTION_ECONOMY_ID': 'bx_3966226736_161210_action_economy', 'BASKET_PROP_DIV': 'bx_3966226736_161210_basket_prop', 'BASKET_ACTIONS_ID': 'bx_3966226736_161210_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_3966226736_161210_not_avail', 'COMPARE_LINK_ID': 'bx_3966226736_161210_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_3966226736_211490 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '21149', 'NAME': 'Огурцы Родничок маринованные с/б 2л', 'PICT': { 'ID': '33431', 'SRC': '/upload/iblock/375/375b564c3d789a058226bc4af34a1a4f.jpg', 'WIDTH': '1200', 'HEIGHT': '1200' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=21149', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15201', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'RUB', 'VALUE_VAT': '23.9', 'VALUE_NOVAT': '23.9', 'DISCOUNT_VALUE_VAT': '23.9', 'DISCOUNT_VALUE_NOVAT': '23.9', 'ROUND_VALUE_VAT': '23.9', 'ROUND_VALUE_NOVAT': '23.9', 'VALUE': '23.9', 'UNROUND_DISCOUNT_VALUE': '23.9', 'DISCOUNT_VALUE': '23.9', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '23.90 с.', 'PRINT_VALUE_VAT': '23.90 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '23.90 с.', 'PRINT_DISCOUNT_VALUE_VAT': '23.90 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '23.90 с.', 'PRINT_DISCOUNT_VALUE': '23.90 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_3966226736_211490', 'PICT_ID': 'bx_3966226736_211490_secondpict', 'QUANTITY_ID': 'bx_3966226736_211490_quantity', 'QUANTITY_UP_ID': 'bx_3966226736_211490_quant_up', 'QUANTITY_DOWN_ID': 'bx_3966226736_211490_quant_down', 'PRICE_ID': 'bx_3966226736_211490_price', 'PRICE_HOVER_ID': 'bx_3966226736_211490_price_hover', 'BUY_ID': 'bx_3966226736_211490_buy_link', 'LIKED_COMPARE_ID': 'bx_3966226736_211490_add_liked_compare_', 'ECONOMY_ID': 'bx_3966226736_211490_economy_', 'ACTION_ECONOMY_ID': 'bx_3966226736_211490_action_economy', 'BASKET_PROP_DIV': 'bx_3966226736_211490_basket_prop', 'BASKET_ACTIONS_ID': 'bx_3966226736_211490_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_3966226736_211490_not_avail', 'COMPARE_LINK_ID': 'bx_3966226736_211490_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'Y', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        BX.message({
-            BTN_MESSAGE_BASKET_REDIRECT: 'Перейти в корзину',
-            BASKET_URL: '/personal/cart/',
-            ADD_TO_BASKET_BUTTON: 'В корзину',
-            ADD_TO_BASKET: 'В корзине',
-            ADD_TO_BASKET_OK: 'Товар добавлен в корзину',
-            TITLE_ERROR: 'Ошибка',
-            TITLE_BASKET_PROPS: 'Свойства товара, добавляемые в корзину',
-            TITLE_SUCCESSFUL: 'Товар добавлен в корзину',
-            BASKET_UNKNOWN_ERROR: 'Неизвестная ошибка при добавлении товара в корзину',
-            BTN_MESSAGE_SEND_PROPS: 'Выбрать',
-            BTN_MESSAGE_CLOSE: 'Закрыть',
-            BTN_MESSAGE_CLOSE_POPUP: 'Продолжить покупки',
-            COMPARE_MESSAGE_OK: 'Товар добавлен в список сравнения',
-            COMPARE_UNKNOWN_ERROR: 'При добавлении товара в список сравнения произошла ошибка',
-            COMPARE_TITLE: 'Сравнение товаров',
-            BTN_MESSAGE_COMPARE_REDIRECT: 'Перейти в сравнение',
-            BTN_COMPARE_REDIRECT: 'Перейти в сравнение',
-            SITE_ID: 's1'
-        });
-        var NL_ADD_TO_BASKET = 'В корзине';
-        var NL_ADD_TO_BASKET_URL = '/personal/cart/';
-        var NL_ADD_TO_BASKET_BUTTON = 'В корзину';
-    </script>
-    <script type="text/javascript">
-        BX.Currency.setCurrencies([{ 'CURRENCY': 'RUB', 'FORMAT': { 'FORMAT_STRING': '# с.', 'DEC_POINT': '.', 'THOUSANDS_SEP': ' ', 'DECIMALS': 2, 'THOUSANDS_VARIANT': 'B', 'HIDE_ZERO': 'Y' } }, { 'CURRENCY': 'TJS', 'FORMAT': { 'FORMAT_STRING': '# с.', 'DEC_POINT': '.', 'THOUSANDS_SEP': ' ', 'DECIMALS': 2, 'THOUSANDS_VARIANT': 'S', 'HIDE_ZERO': 'Y' } }]);
-    </script>
-    <script type="text/javascript">
-        var obbx_1970176138_161270 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '16127', 'NAME': 'Конфеты Rafaello 240 гр', 'PICT': { 'ID': '33224', 'SRC': '/upload/iblock/98b/98b8c4ca71eeddbfbc8f5d88f011146d.webp', 'WIDTH': '1200', 'HEIGHT': '918' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=16127', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15157', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'TJS', 'VALUE_VAT': '107.91', 'VALUE_NOVAT': '107.91', 'DISCOUNT_VALUE_VAT': '107.91', 'DISCOUNT_VALUE_NOVAT': '107.91', 'ROUND_VALUE_VAT': '107.91', 'ROUND_VALUE_NOVAT': '107.91', 'VALUE': '107.91', 'UNROUND_DISCOUNT_VALUE': '107.91', 'DISCOUNT_VALUE': '107.91', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '107.91 с.', 'PRINT_VALUE_VAT': '107.91 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '107.91 с.', 'PRINT_DISCOUNT_VALUE_VAT': '107.91 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '107.91 с.', 'PRINT_DISCOUNT_VALUE': '107.91 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_1970176138_161270', 'PICT_ID': 'bx_1970176138_161270_secondpict', 'QUANTITY_ID': 'bx_1970176138_161270_quantity', 'QUANTITY_UP_ID': 'bx_1970176138_161270_quant_up', 'QUANTITY_DOWN_ID': 'bx_1970176138_161270_quant_down', 'PRICE_ID': 'bx_1970176138_161270_price', 'PRICE_HOVER_ID': 'bx_1970176138_161270_price_hover', 'BUY_ID': 'bx_1970176138_161270_buy_link', 'LIKED_COMPARE_ID': 'bx_1970176138_161270_add_liked_compare_', 'ECONOMY_ID': 'bx_1970176138_161270_economy_', 'ACTION_ECONOMY_ID': 'bx_1970176138_161270_action_economy', 'BASKET_PROP_DIV': 'bx_1970176138_161270_basket_prop', 'BASKET_ACTIONS_ID': 'bx_1970176138_161270_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_1970176138_161270_not_avail', 'COMPARE_LINK_ID': 'bx_1970176138_161270_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_1970176138_211440 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '21144', 'NAME': 'Казы Qazi Markazi 500гр', 'PICT': { 'ID': '33422', 'SRC': '/upload/iblock/e8d/e8da75938a168edd50f2f6bc0b2d6b59.JPG', 'WIDTH': '503', 'HEIGHT': '357' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=21144', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15196', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'RUB', 'VALUE_VAT': '105', 'VALUE_NOVAT': '105', 'DISCOUNT_VALUE_VAT': '105', 'DISCOUNT_VALUE_NOVAT': '105', 'ROUND_VALUE_VAT': '105', 'ROUND_VALUE_NOVAT': '105', 'VALUE': '105', 'UNROUND_DISCOUNT_VALUE': '105', 'DISCOUNT_VALUE': '105', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '105 с.', 'PRINT_VALUE_VAT': '105 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '105 с.', 'PRINT_DISCOUNT_VALUE_VAT': '105 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '105 с.', 'PRINT_DISCOUNT_VALUE': '105 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_1970176138_211440', 'PICT_ID': 'bx_1970176138_211440_secondpict', 'QUANTITY_ID': 'bx_1970176138_211440_quantity', 'QUANTITY_UP_ID': 'bx_1970176138_211440_quant_up', 'QUANTITY_DOWN_ID': 'bx_1970176138_211440_quant_down', 'PRICE_ID': 'bx_1970176138_211440_price', 'PRICE_HOVER_ID': 'bx_1970176138_211440_price_hover', 'BUY_ID': 'bx_1970176138_211440_buy_link', 'LIKED_COMPARE_ID': 'bx_1970176138_211440_add_liked_compare_', 'ECONOMY_ID': 'bx_1970176138_211440_economy_', 'ACTION_ECONOMY_ID': 'bx_1970176138_211440_action_economy', 'BASKET_PROP_DIV': 'bx_1970176138_211440_basket_prop', 'BASKET_ACTIONS_ID': 'bx_1970176138_211440_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_1970176138_211440_not_avail', 'COMPARE_LINK_ID': 'bx_1970176138_211440_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_1970176138_211470 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '21147', 'NAME': 'Сыр Bonfesto Mozzarella 45% 125г', 'PICT': { 'ID': '33428', 'SRC': '/upload/iblock/08f/08f1e4764f0e5383d5fb023c4bd9d944.webp', 'WIDTH': '951', 'HEIGHT': '956' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=21147', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15199', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'RUB', 'VALUE_VAT': '22.9', 'VALUE_NOVAT': '22.9', 'DISCOUNT_VALUE_VAT': '22.9', 'DISCOUNT_VALUE_NOVAT': '22.9', 'ROUND_VALUE_VAT': '22.9', 'ROUND_VALUE_NOVAT': '22.9', 'VALUE': '22.9', 'UNROUND_DISCOUNT_VALUE': '22.9', 'DISCOUNT_VALUE': '22.9', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '22.90 с.', 'PRINT_VALUE_VAT': '22.90 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '22.90 с.', 'PRINT_DISCOUNT_VALUE_VAT': '22.90 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '22.90 с.', 'PRINT_DISCOUNT_VALUE': '22.90 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_1970176138_211470', 'PICT_ID': 'bx_1970176138_211470_secondpict', 'QUANTITY_ID': 'bx_1970176138_211470_quantity', 'QUANTITY_UP_ID': 'bx_1970176138_211470_quant_up', 'QUANTITY_DOWN_ID': 'bx_1970176138_211470_quant_down', 'PRICE_ID': 'bx_1970176138_211470_price', 'PRICE_HOVER_ID': 'bx_1970176138_211470_price_hover', 'BUY_ID': 'bx_1970176138_211470_buy_link', 'LIKED_COMPARE_ID': 'bx_1970176138_211470_add_liked_compare_', 'ECONOMY_ID': 'bx_1970176138_211470_economy_', 'ACTION_ECONOMY_ID': 'bx_1970176138_211470_action_economy', 'BASKET_PROP_DIV': 'bx_1970176138_211470_basket_prop', 'BASKET_ACTIONS_ID': 'bx_1970176138_211470_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_1970176138_211470_not_avail', 'COMPARE_LINK_ID': 'bx_1970176138_211470_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_1970176138_161280 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '16128', 'NAME': 'Конфеты Rafaello 500 гр', 'PICT': { 'ID': '33228', 'SRC': '/upload/iblock/d9d/d9dcbb5024e3b6a4b11de2fe3723dd1c.webp', 'WIDTH': '1000', 'HEIGHT': '1000' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=16128', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15158', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'TJS', 'VALUE_VAT': '279.81', 'VALUE_NOVAT': '279.81', 'DISCOUNT_VALUE_VAT': '279.81', 'DISCOUNT_VALUE_NOVAT': '279.81', 'ROUND_VALUE_VAT': '279.81', 'ROUND_VALUE_NOVAT': '279.81', 'VALUE': '279.81', 'UNROUND_DISCOUNT_VALUE': '279.81', 'DISCOUNT_VALUE': '279.81', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '279.81 с.', 'PRINT_VALUE_VAT': '279.81 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '279.81 с.', 'PRINT_DISCOUNT_VALUE_VAT': '279.81 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '279.81 с.', 'PRINT_DISCOUNT_VALUE': '279.81 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_1970176138_161280', 'PICT_ID': 'bx_1970176138_161280_secondpict', 'QUANTITY_ID': 'bx_1970176138_161280_quantity', 'QUANTITY_UP_ID': 'bx_1970176138_161280_quant_up', 'QUANTITY_DOWN_ID': 'bx_1970176138_161280_quant_down', 'PRICE_ID': 'bx_1970176138_161280_price', 'PRICE_HOVER_ID': 'bx_1970176138_161280_price_hover', 'BUY_ID': 'bx_1970176138_161280_buy_link', 'LIKED_COMPARE_ID': 'bx_1970176138_161280_add_liked_compare_', 'ECONOMY_ID': 'bx_1970176138_161280_economy_', 'ACTION_ECONOMY_ID': 'bx_1970176138_161280_action_economy', 'BASKET_PROP_DIV': 'bx_1970176138_161280_basket_prop', 'BASKET_ACTIONS_ID': 'bx_1970176138_161280_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_1970176138_161280_not_avail', 'COMPARE_LINK_ID': 'bx_1970176138_161280_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_1970176138_211450 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '21145', 'NAME': 'Coffee mate', 'PICT': { 'ID': '33421', 'SRC': '/upload/iblock/7a9/7a965d6753e79b65e3e4b9f3112a9513.gif', 'WIDTH': '500', 'HEIGHT': '500' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=21145', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15197', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'RUB', 'VALUE_VAT': '42.42', 'VALUE_NOVAT': '42.42', 'DISCOUNT_VALUE_VAT': '42.42', 'DISCOUNT_VALUE_NOVAT': '42.42', 'ROUND_VALUE_VAT': '42.42', 'ROUND_VALUE_NOVAT': '42.42', 'VALUE': '42.42', 'UNROUND_DISCOUNT_VALUE': '42.42', 'DISCOUNT_VALUE': '42.42', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '42.42 с.', 'PRINT_VALUE_VAT': '42.42 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '42.42 с.', 'PRINT_DISCOUNT_VALUE_VAT': '42.42 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '42.42 с.', 'PRINT_DISCOUNT_VALUE': '42.42 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_1970176138_211450', 'PICT_ID': 'bx_1970176138_211450_secondpict', 'QUANTITY_ID': 'bx_1970176138_211450_quantity', 'QUANTITY_UP_ID': 'bx_1970176138_211450_quant_up', 'QUANTITY_DOWN_ID': 'bx_1970176138_211450_quant_down', 'PRICE_ID': 'bx_1970176138_211450_price', 'PRICE_HOVER_ID': 'bx_1970176138_211450_price_hover', 'BUY_ID': 'bx_1970176138_211450_buy_link', 'LIKED_COMPARE_ID': 'bx_1970176138_211450_add_liked_compare_', 'ECONOMY_ID': 'bx_1970176138_211450_economy_', 'ACTION_ECONOMY_ID': 'bx_1970176138_211450_action_economy', 'BASKET_PROP_DIV': 'bx_1970176138_211450_basket_prop', 'BASKET_ACTIONS_ID': 'bx_1970176138_211450_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_1970176138_211450_not_avail', 'COMPARE_LINK_ID': 'bx_1970176138_211450_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_1970176138_211480 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '21148', 'NAME': 'Напиток My Aloe в ассортименте 500мл', 'PICT': { 'ID': '33430', 'SRC': '/upload/iblock/1fd/1fde0d7f30b2cf6f9a52547049f4d22e.jpg', 'WIDTH': '640', 'HEIGHT': '640' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=21148', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15200', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'RUB', 'VALUE_VAT': '18.9', 'VALUE_NOVAT': '18.9', 'DISCOUNT_VALUE_VAT': '18.9', 'DISCOUNT_VALUE_NOVAT': '18.9', 'ROUND_VALUE_VAT': '18.9', 'ROUND_VALUE_NOVAT': '18.9', 'VALUE': '18.9', 'UNROUND_DISCOUNT_VALUE': '18.9', 'DISCOUNT_VALUE': '18.9', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '18.90 с.', 'PRINT_VALUE_VAT': '18.90 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '18.90 с.', 'PRINT_DISCOUNT_VALUE_VAT': '18.90 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '18.90 с.', 'PRINT_DISCOUNT_VALUE': '18.90 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_1970176138_211480', 'PICT_ID': 'bx_1970176138_211480_secondpict', 'QUANTITY_ID': 'bx_1970176138_211480_quantity', 'QUANTITY_UP_ID': 'bx_1970176138_211480_quant_up', 'QUANTITY_DOWN_ID': 'bx_1970176138_211480_quant_down', 'PRICE_ID': 'bx_1970176138_211480_price', 'PRICE_HOVER_ID': 'bx_1970176138_211480_price_hover', 'BUY_ID': 'bx_1970176138_211480_buy_link', 'LIKED_COMPARE_ID': 'bx_1970176138_211480_add_liked_compare_', 'ECONOMY_ID': 'bx_1970176138_211480_economy_', 'ACTION_ECONOMY_ID': 'bx_1970176138_211480_action_economy', 'BASKET_PROP_DIV': 'bx_1970176138_211480_basket_prop', 'BASKET_ACTIONS_ID': 'bx_1970176138_211480_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_1970176138_211480_not_avail', 'COMPARE_LINK_ID': 'bx_1970176138_211480_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_1970176138_161320 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '16132', 'NAME': 'Конфеты Ferrero Raffaello с цельн миндалем 100г', 'PICT': { 'ID': '33424', 'SRC': '/upload/iblock/151/151ae178391bcabe15284dc782f2583a.jpg', 'WIDTH': '450', 'HEIGHT': '450' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=16132', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15162', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'TJS', 'VALUE_VAT': '50.9', 'VALUE_NOVAT': '50.9', 'DISCOUNT_VALUE_VAT': '50.9', 'DISCOUNT_VALUE_NOVAT': '50.9', 'ROUND_VALUE_VAT': '50.9', 'ROUND_VALUE_NOVAT': '50.9', 'VALUE': '50.9', 'UNROUND_DISCOUNT_VALUE': '50.9', 'DISCOUNT_VALUE': '50.9', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '50.90 с.', 'PRINT_VALUE_VAT': '50.90 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '50.90 с.', 'PRINT_DISCOUNT_VALUE_VAT': '50.90 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '50.90 с.', 'PRINT_DISCOUNT_VALUE': '50.90 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_1970176138_161320', 'PICT_ID': 'bx_1970176138_161320_secondpict', 'QUANTITY_ID': 'bx_1970176138_161320_quantity', 'QUANTITY_UP_ID': 'bx_1970176138_161320_quant_up', 'QUANTITY_DOWN_ID': 'bx_1970176138_161320_quant_down', 'PRICE_ID': 'bx_1970176138_161320_price', 'PRICE_HOVER_ID': 'bx_1970176138_161320_price_hover', 'BUY_ID': 'bx_1970176138_161320_buy_link', 'LIKED_COMPARE_ID': 'bx_1970176138_161320_add_liked_compare_', 'ECONOMY_ID': 'bx_1970176138_161320_economy_', 'ACTION_ECONOMY_ID': 'bx_1970176138_161320_action_economy', 'BASKET_PROP_DIV': 'bx_1970176138_161320_basket_prop', 'BASKET_ACTIONS_ID': 'bx_1970176138_161320_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_1970176138_161320_not_avail', 'COMPARE_LINK_ID': 'bx_1970176138_161320_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'N', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        var obbx_1970176138_211460 = new JCCatalogSection({ 'PRODUCT_TYPE': '1', 'SHOW_QUANTITY': true, 'SHOW_ADD_BASKET_BTN': false, 'SHOW_BUY_BTN': true, 'SHOW_ABSENT': true, 'SHOW_OLD_PRICE': true, 'ADD_TO_BASKET_ACTION': 'ADD', 'SHOW_CLOSE_POPUP': false, 'SHOW_DISCOUNT_PERCENT': false, 'DISPLAY_COMPARE': true, 'BIG_DATA': '', 'PRODUCT': { 'ID': '21146', 'NAME': 'Дет/каша Фруто няня 200г гречневая 4+ м/у', 'PICT': { 'ID': '33426', 'SRC': '/upload/iblock/e32/e3269793cdc4949b046d53829c94081c.jpg', 'WIDTH': '375', 'HEIGHT': '450' }, 'CAN_BUY': true, 'SUBSCRIPTION': false, 'CHECK_QUANTITY': false, 'MAX_QUANTITY': '0', 'STEP_QUANTITY': '1', 'QUANTITY_FLOAT': false, 'SUBSCRIBE_URL': '/?action=SUBSCRIBE_PRODUCT&id=21146', 'BASIS_PRICE': { 'PRICE_ID': '1', 'ID': '15198', 'CAN_ACCESS': 'Y', 'CAN_BUY': 'Y', 'MIN_PRICE': 'Y', 'CURRENCY': 'RUB', 'VALUE_VAT': '27.97', 'VALUE_NOVAT': '27.97', 'DISCOUNT_VALUE_VAT': '27.97', 'DISCOUNT_VALUE_NOVAT': '27.97', 'ROUND_VALUE_VAT': '27.97', 'ROUND_VALUE_NOVAT': '27.97', 'VALUE': '27.97', 'UNROUND_DISCOUNT_VALUE': '27.97', 'DISCOUNT_VALUE': '27.97', 'DISCOUNT_DIFF': '0', 'DISCOUNT_DIFF_PERCENT': '0', 'VATRATE_VALUE': '0', 'DISCOUNT_VATRATE_VALUE': '0', 'ROUND_VATRATE_VALUE': '0', 'PRINT_VALUE_NOVAT': '27.97 с.', 'PRINT_VALUE_VAT': '27.97 с.', 'PRINT_VATRATE_VALUE': '0 с.', 'PRINT_DISCOUNT_VALUE_NOVAT': '27.97 с.', 'PRINT_DISCOUNT_VALUE_VAT': '27.97 с.', 'PRINT_DISCOUNT_VATRATE_VALUE': '0 с.', 'PRINT_VALUE': '27.97 с.', 'PRINT_DISCOUNT_VALUE': '27.97 с.', 'PRINT_DISCOUNT_DIFF': '0 с.', 'ECONOMY': '0' } }, 'BASKET': { 'ADD_PROPS': true, 'QUANTITY': 'quantity', 'PROPS': 'prop', 'EMPTY_PROPS': false, 'ADD_URL_TEMPLATE': '/?action=ADD2BASKET&id=#ID#', 'BUY_URL_TEMPLATE': '/?action=BUY&id=#ID#' }, 'VISUAL': { 'ID': 'bx_1970176138_211460', 'PICT_ID': 'bx_1970176138_211460_secondpict', 'QUANTITY_ID': 'bx_1970176138_211460_quantity', 'QUANTITY_UP_ID': 'bx_1970176138_211460_quant_up', 'QUANTITY_DOWN_ID': 'bx_1970176138_211460_quant_down', 'PRICE_ID': 'bx_1970176138_211460_price', 'PRICE_HOVER_ID': 'bx_1970176138_211460_price_hover', 'BUY_ID': 'bx_1970176138_211460_buy_link', 'LIKED_COMPARE_ID': 'bx_1970176138_211460_add_liked_compare_', 'ECONOMY_ID': 'bx_1970176138_211460_economy_', 'ACTION_ECONOMY_ID': 'bx_1970176138_211460_action_economy', 'BASKET_PROP_DIV': 'bx_1970176138_211460_basket_prop', 'BASKET_ACTIONS_ID': 'bx_1970176138_211460_basket_actions', 'NOT_AVAILABLE_MESS': 'bx_1970176138_211460_not_avail', 'COMPARE_LINK_ID': 'bx_1970176138_211460_compare_link', 'ECONOMY_HTML': 'Экономия: <span>#ECONOMY_PRICE#<\/span>' }, 'LAST_ELEMENT': 'Y', 'COMPARE': { 'COMPARE_URL_TEMPLATE': '/catalog/compare/?action=ADD_TO_COMPARE_LIST&id=#ID#', 'COMPARE_PATH': '/catalog/compare/' } });
-    </script>
-    <script type="text/javascript">
-        BX.message({
-            BTN_MESSAGE_BASKET_REDIRECT: 'Перейти в корзину',
-            BASKET_URL: '/personal/cart/',
-            ADD_TO_BASKET_BUTTON: 'В корзину',
-            ADD_TO_BASKET: 'В корзине',
-            ADD_TO_BASKET_OK: 'Товар добавлен в корзину',
-            TITLE_ERROR: 'Ошибка',
-            TITLE_BASKET_PROPS: 'Свойства товара, добавляемые в корзину',
-            TITLE_SUCCESSFUL: 'Товар добавлен в корзину',
-            BASKET_UNKNOWN_ERROR: 'Неизвестная ошибка при добавлении товара в корзину',
-            BTN_MESSAGE_SEND_PROPS: 'Выбрать',
-            BTN_MESSAGE_CLOSE: 'Закрыть',
-            BTN_MESSAGE_CLOSE_POPUP: 'Продолжить покупки',
-            COMPARE_MESSAGE_OK: 'Товар добавлен в список сравнения',
-            COMPARE_UNKNOWN_ERROR: 'При добавлении товара в список сравнения произошла ошибка',
-            COMPARE_TITLE: 'Сравнение товаров',
-            BTN_MESSAGE_COMPARE_REDIRECT: 'Перейти в сравнение',
-            BTN_COMPARE_REDIRECT: 'Перейти в сравнение',
-            SITE_ID: 's1'
-        });
-        var NL_ADD_TO_BASKET = 'В корзине';
-        var NL_ADD_TO_BASKET_URL = '/personal/cart/';
-        var NL_ADD_TO_BASKET_BUTTON = 'В корзину';
-    </script>
-    @*<script type="text/javascript">
-        BX.Currency.setCurrencies([{ 'CURRENCY': 'RUB', 'FORMAT': { 'FORMAT_STRING': '# с.', 'DEC_POINT': '.', 'THOUSANDS_SEP': ' ', 'DECIMALS': 2, 'THOUSANDS_VARIANT': 'B', 'HIDE_ZERO': 'Y' } }, { 'CURRENCY': 'TJS', 'FORMAT': { 'FORMAT_STRING': '# с.', 'DEC_POINT': '.', 'THOUSANDS_SEP': ' ', 'DECIMALS': 2, 'THOUSANDS_VARIANT': 'S', 'HIDE_ZERO': 'Y' } }]);
-    </script>*@
-    @*<script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(68773408, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true
-        });
-    </script>*@
-    <script src="~/js/jsnow.js"></script>
-
-    <script>
-
-        $(document).ready(function () {
-
-            $("body").jSnow({
-                vSize: 100, // Размер области
-                flakes: 30, // Количество снежинок
-                flakeColor: ["#fff"], // Цвет
-                flakeMinSize: 10, // Минимальный размер снежинки
-                flakeMaxSize: 20, // Максимальный размер снежинки
-                fallingSpeedMin: 1, // Минимальная скорость снежинки
-                fallingSpeedMax: 2, // Максимальная скорость снежинки
-                flakeCode: ["•"] // Вид снежинки ( можно вставить *)
-            });
-
-        });
-
-    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

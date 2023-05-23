@@ -1,0 +1,142 @@
+﻿@using Juconda.ViewModels;
+@model List<BasketItemViewModel>;
+
+<section class="cart">
+    <div class="inner-bg">
+        <div class="advanced-container-medium">
+            <nav class="show-for-large">
+                <ul class="breadcrumbs cart">
+                    <li class="active"><div class="float-right"><span>1</span> Корзина</div></li>
+                    <li><div class="float-right"><span>2</span> Контакты и доставка</div></li>
+                    <li><div class="float-right"><span>3</span> Оплата</div></li>
+                </ul>
+            </nav>
+            <article class="inner-container cart-container">
+
+                @if(Model.Any())
+                {
+                    <form method="post" action="/personal/cart/" name="basket_form" id="basket_form" data-ajax="/personal/cart/?load=Y">
+                        <div id="basket_items">
+                            <div class="text-center">
+                                <div class="cart-caption">
+                                    <p>Корзина</p>
+                                    <a class="clear_basket" href="javascript:void(0);">Очистить корзину</a>
+                                </div>
+                                <div class="cart-caption-desc product-price">2 товара на 48.50 с.</div>
+                            </div>
+
+                            @foreach (var basketItem in Model)
+                            {
+                                <div class="callout cart-product-item inline-block-container">
+                                    <div class="inline-block-item vertical-middle cart-product-item-preview">
+                                        <img src="@basketItem?.Product?.Image" alt="">
+                                    </div>
+                                    <div class="inline-block-item vertical-middle cart-product-item-info">
+                                        <div class="inline-block-container">
+                                            <div class="inline-block-item vertical-middle cart-product-item-desc">
+                                                <a href="/catalog/spetspredlozheniya/pomidory_1kg_.html" class="cart-product-item-name">
+                                                    @basketItem?.Product?.Name @basketItem?.Product?.Count кг
+                                                </a>
+                                                <a href="#" class="button transparent add2liked">
+                                                    <svg class="icon">
+                                                        <use xlink:href="#svg-icon-liked"></use>
+                                                    </svg>
+                                                    <span>В избранное</span>
+                                                </a>
+                                            </div>
+                                            <div class="inline-block-item vertical-middle cart-product-item-price medium-up-2 large-up-3">
+                                                <div class="column">
+                                                    <div class="product-count">
+                                                        <div class="product-info-caption">Количество</div>
+                                                        <div class="input-group">
+                                                            <div class="input-group-button">
+                                                                <button class="button decrement" type="button" onclick="setQuantity(27268, 1, 'down', false);">-</button>
+                                                            </div>
+                                                            <input class="input-group-field" type="number" name="QUANTITY_INPUT_27268" min="1" value="1">
+                                                            <div class="input-group-button">
+                                                                <button class="button increment" type="button">+</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="column float-right">
+                                                    <div class="product-price">
+                                                        <div class="product-info-caption">Итого:</div>
+                                                        <div class="main" id="total_price_27268">@(basketItem?.Product?.Price * @basketItem?.Product?.Count) р.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="column show-for-large">
+                                                    <div class="product-price">
+                                                        <div class="product-info-caption">Цена за штуку</div>
+                                                        <div class="main" id="current_price_27268">@basketItem?.Product?.Price р.</div>
+                                                        @*<div class="old" id="old_price_27268" data-old-price="0"></div>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="close-button" type="button" onclick="">
+                                        <span aria-hidden="true">+</span>
+                                    </button>
+                                </div>
+                            }
+
+                            <div class="cart-product-footer row large-up-2">
+                                <div class="column" id="coupons_block">
+                                    <div class="inline-block-container cart-product-footer-promo bx_ordercart_coupon ">
+                                        <input type="text" id="coupon" name="COUPON" value="" data-coupon="" placeholder="Промо-код" class="inline-block-item">
+                                        <button type="submit" class="button small secondary inline-block-item" onclick="enterCoupon(); return false;">Применить</button>
+                                    </div>
+                                </div>
+                                <div class="column cart-product-footer-amount price">Итого: 
+                                    <span class="footer-amount-price" id="itogo">48.50 с.</span> 
+                                    Без учета стоимости доставки / (минимальная сумма заказа: 250 рублей) </div>
+                            </div>
+                            <div class="cart-footer">
+                                <a href="javascript:;" onclick="checkOut();" class="button">Оформить заказ</a>
+                                <a href="#buy-to-click" class="button secondary go2buy">Купить в 1 клик</a>
+                                <input type="hidden" name="cart" value="Ilki" />
+                                <input type="hidden" name="props" value="W10=" />
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="BasketOrder" value="BasketOrder" />
+                    </form>
+                }
+                else
+                {
+                    <div id="empty_basket">
+                        <div class="text-center">
+                            <div class="cart-caption">Корзина</div>
+                        </div>
+                        <div class="cart-content cart-empty text-center inline-block-container">
+                            <div class="cart-empty-icon inline-block-item vertical-middle">
+                                <svg class="icon">
+                                    <use xlink:href="#svg-icon-cart" />
+                                </svg>
+                            </div>
+                            <div class="inline-block-item vertical-middle">Ваша корзина пуста</div>
+                        </div>
+                    </div>
+                }
+                
+            </article>
+        </div>
+    </div>
+</section>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(function () {
+        getTotal();
+    });
+
+    function getTotal() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetTotal", "ShoppingCart")',
+            success: function (data) {
+                document.getElementById('itogo').innerHTML = data + " р.";
+            }
+        });
+    }
+</script>

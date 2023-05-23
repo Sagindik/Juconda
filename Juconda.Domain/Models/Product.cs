@@ -2,7 +2,7 @@
 
 namespace Juconda.Domain.Models
 {
-    public class Product : CodeNameEntityBase
+    public class Product : NameEntityBase
     {
         public string? FullDescsription { get; set; }
         public string? Description { get; set; }
@@ -32,7 +32,7 @@ namespace Juconda.Domain.Models
         public int? CountryOfProductionId { get; set; }
         public virtual Country? CountryOfProduction { get; set; }
 
-        public virtual List<BasketItem> CartItems { get; set; } = new();
+        public virtual List<BasketItem> BasketItems { get; set; } = new();
 
         public virtual List<CategoryProduct> CategoryProducts { get; set; } = new();
     }
