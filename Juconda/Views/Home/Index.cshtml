@@ -479,11 +479,11 @@
                                         <div class="product-count">
                                             <div class="input-group">
                                                 <div class="input-group-button">
-                                                    <button class="button decrement" type="button">-</button>
+                                                    <button class="button decrement" onclick="decreaseCount(product_@product.Id)" type="button">-</button>
                                                 </div>
-                                                <input class="input-group-field" type="number" name="quantity" value="1" min="1">
+                                                <input class="input-group-field" type="number" id="product_@product.Id" value="1" min="1">
                                                 <div class="input-group-button">
-                                                    <button id="bx_1970176138_161270_quant_up" class="button increment" type="button">+</button>
+                                                    <button class="button increment" onclick="increaseCount(product_@product.Id)" type="button">+</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -621,3 +621,32 @@
         </div>
     </div>
 </section>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    function decreaseCount(elem) {
+        elem.value = Number(elem.value) - 1;
+        if (Number(elem.value) < 1)
+            elem.value = 1;
+    }
+
+    function increaseCount(elem) {
+        elem.value = Number(elem.value) + 1;
+        if (Number(elem.value) < 1)
+            elem.value = 1;
+    }
+
+    function addToCart(productId, elem) {
+        var count = Number(elem.value);
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddToCart", "ShoppingCart")',
+            data: { productId: Number(productId), productCount: count },
+            success: fucntion(data) {
+                $('#loader').fadeOut(250);
+                alert('Товар успешно добавлен в корзину!');
+            }
+        });
+    }
+</script>

@@ -1,6 +1,10 @@
 ﻿@using Juconda.ViewModels;
 @model List<BasketItemViewModel>;
 
+@{
+    var total = Model.Sum(_ => _.Count * _.Product.Price);
+}
+
 <section class="cart">
     <div class="inner-bg">
         <div class="advanced-container-medium">
@@ -13,16 +17,16 @@
             </nav>
             <article class="inner-container cart-container">
 
-                @if(Model.Any())
+                @if (Model.Any())
                 {
                     <form method="post" action="/personal/cart/" name="basket_form" id="basket_form" data-ajax="/personal/cart/?load=Y">
                         <div id="basket_items">
                             <div class="text-center">
                                 <div class="cart-caption">
                                     <p>Корзина</p>
-                                    <a class="clear_basket" href="javascript:void(0);">Очистить корзину</a>
+                                    <a class="clear_basket" onclick="removeAllItems()">Очистить корзину</a>
                                 </div>
-                                <div class="cart-caption-desc product-price">2 товара на 48.50 с.</div>
+                                <div class="cart-caption-desc product-price">2 товара на @total р.</div>
                             </div>
 
                             @foreach (var basketItem in Model)
@@ -50,11 +54,11 @@
                                                         <div class="product-info-caption">Количество</div>
                                                         <div class="input-group">
                                                             <div class="input-group-button">
-                                                                <button class="button decrement" type="button" onclick="setQuantity(27268, 1, 'down', false);">-</button>
+                                                                <button class="button decrement" type="button" onclick="decreaseCount(count_@basketItem.Id)">-</button>
                                                             </div>
-                                                            <input class="input-group-field" type="number" name="QUANTITY_INPUT_27268" min="1" value="1">
+                                                            <input class="input-group-field" type="number" name="count_@basketItem.Id" min="1" value="1">
                                                             <div class="input-group-button">
-                                                                <button class="button increment" type="button">+</button>
+                                                                <button class="button increment" onclick="increaseCount(count_@basketItem.Id)" type="button">+</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -75,7 +79,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="close-button" type="button" onclick="">
+                                    <button class="close-button" type="button" onclick="removeItem(@basketItem.Id)">
                                         <span aria-hidden="true">+</span>
                                     </button>
                                 </div>
@@ -88,9 +92,11 @@
                                         <button type="submit" class="button small secondary inline-block-item" onclick="enterCoupon(); return false;">Применить</button>
                                     </div>
                                 </div>
-                                <div class="column cart-product-footer-amount price">Итого: 
-                                    <span class="footer-amount-price" id="itogo">48.50 с.</span> 
-                                    Без учета стоимости доставки / (минимальная сумма заказа: 250 рублей) </div>
+                                <div class="column cart-product-footer-amount price">
+                                    Итого:
+                                    <span class="footer-amount-price">@total р.</span>
+                                    Без учета стоимости доставки / (минимальная сумма заказа: 250 рублей)
+                                </div>
                             </div>
                             <div class="cart-footer">
                                 <a href="javascript:;" onclick="checkOut();" class="button">Оформить заказ</a>
@@ -119,24 +125,64 @@
                         </div>
                     </div>
                 }
-                
+
             </article>
         </div>
     </div>
 </section>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-    $(function () {
-        getTotal();
-    });
+    //$(function () {
+    //    initPage();
+    //});
 
-    function getTotal() {
+    $('#loader').fadeIn(250);
+    function initPage() {
         $.ajax({
             type: "GET",
-            url: '@Url.Action("GetTotal", "ShoppingCart")',
+            url: '@Url.Action("Index", "ShoppingCart")',
             success: function (data) {
-                document.getElementById('itogo').innerHTML = data + " р.";
+                document.querySelector('html').innerHTML = data;
+                $('#loader').fadeOut(250);
             }
         });
+    }
+
+    function removeItem(basketItemId) {
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("RemoveFromCart", "ShoppingCart")',
+            data: { basketItemId: Number(basketItemId) },
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                getTotal();
+            }
+        });
+    }
+
+    function removeAllItems() {
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("RemoveAllBasketItems", "ShoppingCart")',
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                initPage();
+            }
+        });
+    }
+
+    function decreaseCount(elem) {
+        elem.value = Number(elem.value) - 1;
+        if (Number(elem.value) < 1)
+            elem.value = 1;
+    }
+
+    function increaseCount(elem) {
+        elem.value = Number(elem.value) + 1;
+        if (Number(elem.value) < 1)
+            elem.value = 1;
     }
 </script>

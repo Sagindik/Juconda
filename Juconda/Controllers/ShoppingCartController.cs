@@ -37,29 +37,29 @@ namespace Juconda.Controllers
             return View(models);
         }
 
-        public async Task<IActionResult> AddToCart(int id)
+        public async Task<IActionResult> AddToCart(int productId, int productCount)
         {
             var basket = await _shopService.GetCurrentBasket();
 
             if (basket == null)
                 return NotFound();
 
-            var basketItem = basket.BasketItems.FirstOrDefault(_ => _.Actual && _.ProductId == id);
+            var basketItem = basket.BasketItems.FirstOrDefault(_ => _.Actual && _.ProductId == productId);
 
             if (basketItem == null)
-            {               
+            {
                 basketItem = new BasketItem
                 {
-                    ProductId = id,
-                    Product = _context.Products.FirstOrDefault(p => p.Id == id),
-                    Count = 1
+                    ProductId = productId,
+                    Product = _context.Products.FirstOrDefault(p => p.Id == productId),
+                    Count = productCount
                 };
 
                 _context.BasketItems.Add(basketItem);
             }
             else
-            {                 
-                basketItem.Count++;
+            {
+                basketItem.Count = productCount;
                 _context.BasketItems.Update(basketItem);
             }
 
@@ -68,31 +68,39 @@ namespace Juconda.Controllers
             return Ok();
         }
 
-        //public int RemoveFromCart(int id)
-        //{
-        //    // Get the cart
-        //    var cartItem = _context.BasketItems.Single(
-        //        cart => cart.CartId == ShoppingCartId
-        //        && cart.ProductId == id);
+        [HttpPost]
+        public ActionResult RemoveFromCart(int basketItemId)
+        {
+            var basketItem = _context.BasketItems.FirstOrDefault(
+                cart => cart.Id == basketItemId);
 
-        //    int itemCount = 0;
+            if (basketItem == null)
+                return NotFound();
 
-        //    if (cartItem != null)
-        //    {
-        //        if (cartItem.Count > 1)
-        //        {
-        //            cartItem.Count--;
-        //            itemCount = cartItem.Count;
-        //        }
-        //        else
-        //        {
-        //            _context.BasketItems.Remove(cartItem);
-        //        }
-        //        // Save changes
-        //        _context.SaveChanges();
-        //    }
-        //    return itemCount;
-        //}
+            basketItem.Actual = false;
+
+            _context.Update(basketItem);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> RemoveAllBasketItems()
+        {
+            var basket = await _shopService.GetCurrentBasket();
+
+            if (basket == null)
+                return View(new List<BasketItemViewModel>());
+
+            var basketItems = _context.BasketItems.Where(_ => _.Actual && _.BasketId == basket.Id).ToList();
+            basketItems.ForEach(_ => _.Actual = false);
+
+            _context.UpdateRange(basketItems);
+            _context.SaveChanges();
+
+            return Ok();
+        }
 
         //public void EmptyCart()
         //{
