@@ -52,7 +52,8 @@ namespace Juconda.Controllers
                 {
                     ProductId = productId,
                     Product = _context.Products.FirstOrDefault(p => p.Id == productId),
-                    Count = productCount
+                    Count = productCount,
+                    Basket = basket
                 };
 
                 _context.BasketItems.Add(basketItem);

@@ -489,7 +489,7 @@
                                         </div>
                                     </div>
                                     <div class="small-6 columns">
-                                        <a href="javascript:;" class="button tiny add2cart"><span>В корзину</span></a>
+                                        <a onclick="addToCart(@product.Id, product_@product.Id)" class="button tiny add2cart"><span>В корзину</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -640,10 +640,10 @@
         var count = Number(elem.value);
         $('#loader').fadeIn(250);
         $.ajax({
-            type: 'POST',
+            type: "POST",
             url: '@Url.Action("AddToCart", "ShoppingCart")',
             data: { productId: Number(productId), productCount: count },
-            success: fucntion(data) {
+            success: function (data) {
                 $('#loader').fadeOut(250);
                 alert('Товар успешно добавлен в корзину!');
             }
