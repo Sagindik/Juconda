@@ -144,6 +144,19 @@ namespace Juconda.Controllers
             return total ?? decimal.Zero;
         }
 
+        public async Task<decimal> ChangeCountOfProduct(int count, int basketItemId)
+        {
+            var basket = await _shopService.GetCurrentBasket() ?? throw new Exception();
+
+            var basketItem = basket.BasketItems.FirstOrDefault(_ => _.BasketId == basketItemId && _.Product != null) ?? throw new Exception();
+
+            basketItem.Count = count;
+
+            var amountOfBasketItem = basketItem.Count * basketItem.Product.Price.Value;
+
+            return amountOfBasketItem;
+        }
+
         //public int CreateOrder(Order order)
         //{
         //    decimal orderTotal = 0;

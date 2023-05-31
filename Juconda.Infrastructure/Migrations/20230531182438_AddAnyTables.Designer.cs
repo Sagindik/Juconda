@@ -3,6 +3,7 @@ using System;
 using Juconda.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Juconda.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230531182438_AddAnyTables")]
+    partial class AddAnyTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +55,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Baskets", (string)null);
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.BasketItem", b =>
@@ -87,7 +90,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("BasketItems", (string)null);
+                    b.ToTable("BasketItems");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Category", b =>
@@ -135,7 +138,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.CategoryProduct", b =>
@@ -167,7 +170,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CategoryProducts", (string)null);
+                    b.ToTable("CategoryProducts");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.City", b =>
@@ -203,7 +206,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Cities", (string)null);
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Country", b =>
@@ -228,7 +231,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Identity.IdentityRole", b =>
@@ -316,7 +319,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("UserId1");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.OrderProduct", b =>
@@ -357,7 +360,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderProducts", (string)null);
+                    b.ToTable("OrderProducts");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Product", b =>
@@ -429,7 +432,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("CountryOfProductionId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Users.User", b =>

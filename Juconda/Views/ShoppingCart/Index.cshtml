@@ -1,5 +1,7 @@
-﻿@using Juconda.ViewModels;
+﻿@using Juconda.Core.Services;
+@using Juconda.ViewModels;
 @model List<BasketItemViewModel>;
+@inject ShopService ShopService
 
 @{
     var total = Model.Sum(_ => _.Count * _.Product.Price);
@@ -54,11 +56,11 @@
                                                         <div class="product-info-caption">Количество</div>
                                                         <div class="input-group">
                                                             <div class="input-group-button">
-                                                                <button class="button decrement" type="button" onclick="decreaseCount(count_@basketItem.Id)">-</button>
+                                                                <button class="button decrement" type="button" onclick="decreaseCount(@basketItem.Id, @basketItem.Product.Price)">-</button>
                                                             </div>
-                                                            <input class="input-group-field" type="number" name="count_@basketItem.Id" min="1" value="1">
+                                                            <input class="input-group-field" type="number" name="count_@basketItem.Id" id="count_@basketItem.Id" min="1" value="@await ShopService.GetBasketProductCount(basketItem?.Product?.Id)">
                                                             <div class="input-group-button">
-                                                                <button class="button increment" onclick="increaseCount(count_@basketItem.Id)" type="button">+</button>
+                                                                <button class="button increment" onclick="increaseCount(@basketItem.Id, @basketItem.Product.Price)" type="button">+</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -66,7 +68,7 @@
                                                 <div class="column float-right">
                                                     <div class="product-price">
                                                         <div class="product-info-caption">Итого:</div>
-                                                        <div class="main" id="total_price_27268">@(basketItem?.Product?.Price * @basketItem?.Product?.Count) р.</div>
+                                                        <div class="main"><span id="total_price_@basketItem.Id">@(basketItem?.Product?.Price * @basketItem?.Product?.Count)</span> р.</div>
                                                     </div>
                                                 </div>
                                                 <div class="column show-for-large">
@@ -94,7 +96,7 @@
                                 </div>
                                 <div class="column cart-product-footer-amount price">
                                     Итого:
-                                    <span class="footer-amount-price">@total р.</span>
+                                    <span class="footer-amount-price" id="amount-price">@total р.</span>
                                     Без учета стоимости доставки / (минимальная сумма заказа: 250 рублей)
                                 </div>
                             </div>
@@ -174,15 +176,53 @@
         });
     }
 
-    function decreaseCount(elem) {
+    //function decreaseCount(elem, basketItemId, price) {
+    //    elem.value = Number(elem.value) - 1;
+    //    if (Number(elem.value) < 1)
+    //        elem.value = 1;
+
+    //    //changeCountOfProduct(elem.value, basketItemId);
+    //}
+
+    //function increaseCount(basketItemId) {
+    //    console.log(basketItemId)
+    //    //let elem = document.getElementById('count_' + basketItemId);
+    //    //elem.value = Number(elem.value) + 1;
+    //    //if (Number(elem.value) < 1)
+    //    //    elem.value = 1;
+
+    //    //console.log(elem.value * price)
+    //    //console.log(document.getElementById('total_price_' + basketItemId));
+    //    //changeCountOfProduct(elem.value, basketItemId);
+    //}
+
+    function decreaseCount(basketItemId, productPrice) {
+        let elem = document.getElementById('count_' + basketItemId);
         elem.value = Number(elem.value) - 1;
         if (Number(elem.value) < 1)
             elem.value = 1;
+
+        document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
     }
 
-    function increaseCount(elem) {
+    function increaseCount(basketItemId, productPrice) {
+        let elem = document.getElementById('count_' + basketItemId);
         elem.value = Number(elem.value) + 1;
         if (Number(elem.value) < 1)
             elem.value = 1;
+
+        document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
     }
+
+    //function changeCountOfProduct(countOfProduct, basketItemId) {
+    //    $('#loader').fadeIn(250);
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: '@Url.Action("ChangeCountOfProduct", "ShoppingCart")',
+    //        data: { Number(countOfProduct), Number(basketItemId) }
+    //        success: function (data) {
+    //            $('#loader').fadeOut(250);
+    //        }
+    //    });
+    //}
 </script>

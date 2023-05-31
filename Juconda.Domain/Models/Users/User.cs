@@ -16,22 +16,22 @@ namespace Juconda.Domain.Models.Users
         /// <summary>
         /// Дата последнего входа в систему
         /// </summary>
-        public DateTime? LastLoginDate { get; set; }
+        public DateTimeOffset? LastLoginDate { get; set; }
 
         /// <summary>
         /// Uid
         /// </summary>
-        public virtual Guid? Uid { get; set; }
+        public Guid? Uid { get; set; }
 
         /// <summary>
         /// Создание
         /// </summary>
-        public virtual DateTime? CreateDate { get; set; }
+        public DateTimeOffset? CreateDate { get; set; }
 
         /// <summary>
         /// Обновление
         /// </summary>
-        public virtual DateTime? UpdateDate { get; set; }
+        public DateTimeOffset? UpdateDate { get; set; }
     }
 }
 

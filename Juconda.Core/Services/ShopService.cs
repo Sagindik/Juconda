@@ -48,5 +48,25 @@ namespace Juconda.Core.Services
 
             return basket;
         }
+
+        public async Task<int> GetBasketItemsCount()
+        {
+            var basket = await GetCurrentBasket();
+
+            if (basket == null) return 0;
+
+            return basket.BasketItems.Where(_ => _.Actual).Count();
+        }
+
+        public async Task<int> GetBasketProductCount(int? productId)
+        {
+            var basket = await GetCurrentBasket();
+
+            if (basket == null) return 1;
+
+            var count = basket.BasketItems.FirstOrDefault(_ => _.Actual && _.ProductId == productId)?.Count;
+
+            return count ?? 1;
+        }
     }
 }

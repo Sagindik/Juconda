@@ -9,6 +9,6 @@ public class BaseEntity
 
     public bool Actual { get; set; } = true;
 
-    public DateTimeOffset? CreateDate { get; set; } = DateTimeOffset.Now;
+    public DateTimeOffset? CreateDate { get; set; }
     public DateTimeOffset? UpdateDate { get; set; }
 }

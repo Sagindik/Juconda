@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Juconda.Core.Services;
+@inject ShopService ShopService
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -174,7 +177,7 @@
                             </svg>
                             <span class="inline-block-item vertical-middle">
                                 <span class="header-block-info-link">Корзина</span>
-                                <span class="header-block-info-desc price-block"></span>
+                                <span class="header-block-info-desc price-block">@await ShopService.GetBasketItemsCount() товаров в корзине</span>
                             </span>
                         </a>
                     </div>
@@ -190,7 +193,7 @@
                             </span>
                             <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
                                 <span class="header-block-info-link">Корзина</span>
-                                <span class="header-block-info-desc price-block" title="0 товаров в корзине">0 товаров в корзине</span>
+                                <span class="header-block-info-desc price-block">@await ShopService.GetBasketItemsCount() товаров в корзине</span>
                             </span>
                         </a>
                     </li>
