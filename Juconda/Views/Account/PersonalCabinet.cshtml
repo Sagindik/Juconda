@@ -5,6 +5,7 @@
     // This is setting the property to Hahaha
     ViewBag.Title = "Hahaha";
 }
+
 @*<body>
 	<div class="limiter">
 		<div class="container-login100">
@@ -44,17 +45,165 @@
 		</div>
 	</div>
 </body>*@
+<style>
 
-<div class="container-fluid">
+    .wrap-input100 {
+        width: 100%;
+        background-color: #fff;
+        border-radius: 27px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .validate-input {
+        position: relative;
+    }
+
+    .input100 {
+        font-family: Ubuntu-Bold;
+        font-size: 15px;
+        color: #1b3815;
+        line-height: 1.2;
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 55px;
+        background: #ebebeb;
+        border-radius: 27px;
+        padding: 0 35px 0 35px;
+    }
+
+    .focus-input100 {
+        display: block;
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+        border-radius: 31px;
+        /*background-color: #ebebeb;*/
+        pointer-events: none;
+        -webkit-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+        transition: all 0.4s;
+    }
+
+    [type=text]:focus, [type=password]:focus, [type=date]:focus, [type=datetime]:focus, [type=datetime-local]:focus, [type=month]:focus, [type=week]:focus, [type=email]:focus, [type=number]:focus, [type=search]:focus, [type=tel]:focus, [type=time]:focus, [type=url]:focus, [type=color]:focus, textarea:focus {
+        background-color: #ebebeb;
+       
+    }
+
+   /* .input100:focus + .focus-input100 {
+        width: calc(100% + 20px);
+    }*/
+
+    .container-custom-form {
+    }
+
+    .custom-flex{
+        display: flex;
+    }
+</style>
+
+<div class="container container-custom-form">
     <div class="row">
-        <div class="col-xs-12 main">
+        <div class="col-12">
+            <nav>
+                <ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="/" title="Джоконда" itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">Джоконда</span></a><meta itemprop="position" content="1"></li>
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">Личный кабинет</span></span><meta itemprop="position" content="2"></li>
+                </ul>
+            </nav>
+            <article class="inner-container d-flex">
+                <h1>Личный кабинет</h1>
+                <div class="custom-flex">
+                    <nav class="inner-menu show-for-xlarge">
+                        <ul class="menu vertical">
+                            <li class="active"><a href="">Личные данные</a></li>
+                            <li><a href="">Мои заказы</a></li>
+                        </ul>
+                    </nav>
+
+                    <div action="#" class="d-flex flex-column">
+                        <div class="wrap-input100 validate-input m-b-16" data-validate="Фамилия">
+                            <input asp-for="UserName" class="input100" type="text" placeholder="Фамилия" autocomplete="off">
+                            <span asp-validation-for="UserName" class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Имя">
+                            <input asp-for="UserName" class="input100" type="text" placeholder="Имя" autocomplete="off">
+                            <span asp-validation-for="UserName" class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Отчество">
+                            <input asp-for="UserName" class="input100" type="text" placeholder="Отчество" autocomplete="off">
+                            <span asp-validation-for="UserName" class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Введите почту">
+                            <input asp-for="UserName" class="input100" type="email" placeholder="Почта" autocomplete="off">
+                            <span asp-validation-for="UserName" class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Введите телефон">
+                            <input asp-for="UserName" class="input100" type="text" placeholder="Телефон" autocomplete="off">
+                            <span asp-validation-for="UserName" class="focus-input100"></span>
+                        </div>
+
+
+                        @*         <div class="">
+                        <label></label>
+                        <input disabled>
+                        </div>
+
+                        <div class="">
+                        <label>Имя:</label>
+                        <input disabled>
+                        </div>*@
+
+                    </div>
+                </div>
+               
+            </article>
+        </div>
+    </div>
+</div>
+@*<div class="container">
+    <div class="row">
+        <div class="col-12 main">
             <div class="row">
                 <div class="col-xs-4 indent">
                     <h1>Личный кабинет</h1>
                 </div>
             </div>
 
-            <div class="panel panel-default">
+
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" class="d-flex flex-column">
+                        <div class="">
+                            <label>Фамилия:</label>
+                            <input disabled>
+                        </div>
+
+                        <div class="">
+                            <label>Имя:</label>
+                            <input disabled>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+         @*   <div class="panel panel-default">
                 <div id="MainInfo" class="panel-collapse collapse in">
                     <div class="hold-form panel-body">
                         <div class="info-wrap">
@@ -66,7 +215,7 @@
                                         </div>
 
                                         <div class="col-xs-2">
-                                            <textarea disabled>@User?.Identity.Name</textarea>
+                                            <input disabled>
                                         </div>
 
 
@@ -75,7 +224,7 @@
                                         </div>
 
                                         <div class="col-xs-2">
-                                            <textarea disabled>@User?.Identity.IsAuthenticated</textarea>
+                                            <input disabled>
                                         </div>
 
 
@@ -84,7 +233,7 @@
                                         </div>
 
                                         <div class="col-xs-2">
-                                            <textarea disabled>@Model.RememberMe</textarea>
+                                            <input disabled>
                                         </div>
                                     </div>
 
@@ -94,11 +243,7 @@
                                         </div>
 
                                         <div class="col-xs-2">
-                                            <textarea class="iTooltip ittW4 ittH1" disabled ng-placeholder="validator.isInvalid('entity.mobilePhone')"></textarea>
-                                            <input value="@Model.Password" kendo-masked-text-box k-mask="'0-000-000-00-00'"
-                                                   style="width: 100%;" type="text"
-                                                   class="form-control valTool" ng-model="mobilePhoneBind"
-                                                   ng-readonly="isReadonly()">
+                                            <input class="iTooltip ittW4 ittH1" disabled ng-placeholder="validator.isInvalid('entity.mobilePhone')">
                                         </div>
 
 
@@ -107,9 +252,7 @@
                                         </div>
 
                                         <div class="col-xs-2">
-                                            <textarea class="iTooltip ittW4 ittH1" disabled ng-placeholder="validator.isInvalid('entity.email')"></textarea>
-                                            <input type="text" class="form-control valTool" ng-model="emailBind"
-                                                   ng-readonly="isReadonly()">
+                                            <input class="iTooltip ittW4 ittH1" disabled ng-placeholder="validator.isInvalid('entity.email')">
                                         </div>
 
 
@@ -118,9 +261,7 @@
                                         </div>
 
                                         <div class="col-xs-2">
-                                            <textarea class="iTooltip ittW4 ittH1" disabled ng-placeholder="validator.isInvalid('entity.position')"></textarea>
-                                            <input type="text" class="form-control valTool" ng-model="positionBind"
-                                                   ng-readonly="isReadonly()">
+                                            <input class="iTooltip ittW4 ittH1" disabled ng-placeholder="validator.isInvalid('entity.position')">
                                         </div>
                                     </div>
                                 </fieldset>
@@ -128,10 +269,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            @*</div>*@
+@* </div>
     </div>
-</div>
+</div>*@
 
 
 

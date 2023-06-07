@@ -3,7 +3,7 @@
         <nav>
             <ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="/" title="Джоконда" itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">Джоконда</span></a><meta itemprop="position" content="1"></li>
-                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="@Url.Action("Index", "AboutUs")" title="О компании" itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">О компании</span></a><meta itemprop="position" content="2"></li>
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="@Url.Action("Index", "AboutUs")" title="О нас" itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">О нас</span></a><meta itemprop="position" content="2"></li>
                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">Новости</span></span><meta itemprop="position" content="3"></li>
             </ul>
         </nav>
@@ -11,11 +11,11 @@
             <h1> Новости</h1>
             <nav class="inner-menu columns show-for-xlarge">
                 <ul class="menu vertical">
-                    <li><a href="@Url.Action("Index", "AboutUs")">О компании</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "News")">Новости</a></li>
+                    <li><a href="@Url.Action("Index", "Contact")">Контакты</a></li>
                     <li><a href="@Url.Action("Index", "Document")">Документы</a></li>
-                    <li><a href="/company/dogovor-oferty">Договор оферты</a></li>
-                    <li><a href="/company/politika-konfidentsialnosti/">Политика конфиденциальности</a></li>
-                    <li><a href="/company/brands/">Магазины</a></li>
+                    <li><a href="#">Договор оферты</a></li>
+                    <li><a href="@Url.Action("Index", "Privacy")">Политика конфиденциальности</a></li>
                 </ul>
             </nav>
             <div class="inner-content columns">
