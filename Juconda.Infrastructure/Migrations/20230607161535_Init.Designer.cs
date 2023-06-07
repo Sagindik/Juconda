@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Juconda.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230531182438_AddAnyTables")]
-    partial class AddAnyTables
+    [Migration("20230607161535_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,9 +21,6 @@ namespace Juconda.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.3")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -450,7 +447,7 @@ namespace Juconda.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTimeOffset?>("CreateDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
@@ -460,7 +457,7 @@ namespace Juconda.Infrastructure.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("LastLoginDate")
+                    b.Property<DateTimeOffset?>("LastLoginDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("LockoutEnabled")
@@ -495,7 +492,7 @@ namespace Juconda.Infrastructure.Migrations
                     b.Property<Guid?>("Uid")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTimeOffset?>("UpdateDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UserName")

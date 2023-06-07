@@ -78,9 +78,7 @@ namespace Juconda.Controllers
             if (basketItem == null)
                 return NotFound();
 
-            basketItem.Actual = false;
-
-            _context.Update(basketItem);
+            _context.Remove(basketItem);
             _context.SaveChanges();
 
             return Ok();
@@ -101,6 +99,16 @@ namespace Juconda.Controllers
             _context.SaveChanges();
 
             return Ok();
+        }
+
+        public async Task<int> GetBasketItemsCount()
+        {
+            return await _shopService.GetBasketItemsCount();
+        }
+
+        public async Task<decimal> GetBasketTotalPrice()
+        {
+            return await _shopService.GetBasketTotalPrice();
         }
 
         //public void EmptyCart()
@@ -133,28 +141,11 @@ namespace Juconda.Controllers
         ////    // Return 0 if all entries are null
         ////    return count ?? 0;
         ////}
+        
 
-        public async Task<decimal> GetTotal()
+        public async Task<int> ChangeCountOfProduct(int count, int basketItemId)
         {
-            var basket = await _shopService.GetCurrentBasket();
-
-            decimal? total = _context.BasketItems.Where(_ => _.BasketId == basket.Id && _.Product != null)
-                .Select(_ => _.Count * _.Product.Price).Sum();
-
-            return total ?? decimal.Zero;
-        }
-
-        public async Task<decimal> ChangeCountOfProduct(int count, int basketItemId)
-        {
-            var basket = await _shopService.GetCurrentBasket() ?? throw new Exception();
-
-            var basketItem = basket.BasketItems.FirstOrDefault(_ => _.BasketId == basketItemId && _.Product != null) ?? throw new Exception();
-
-            basketItem.Count = count;
-
-            var amountOfBasketItem = basketItem.Count * basketItem.Product.Price.Value;
-
-            return amountOfBasketItem;
+            return await _shopService.ChangeCountOfProduct(count, basketItemId);
         }
 
         //public int CreateOrder(Order order)

@@ -9,8 +9,6 @@
     <title>Онлайн-магазин продуктов питания Джоконда - быстрая доставка свежих продуктов</title>
     <link href="~/css/core.min.css" type="text/css" rel="stylesheet">
 
-    <script type="text/javascript" async src="~/js/ba.js"></script>
-
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,900,900italic&amp;subset=cyrillic-ext,cyrillic,latin" type="text/css" rel="stylesheet">
     <link href="~/css/ui.font.opensans.min.css" type="text/css" rel="stylesheet">
     <link href="~/css/main.popup.bundle.min.css" type="text/css" rel="stylesheet">
@@ -241,103 +239,103 @@
                         </div>
 
 
-                        <div class="header-phone inline-block-item">
-                            <div class="inline-block-container">
-                                <svg class="icon">
-                                    <use href="#svg-icon-phone" />
-                                </svg>
-                                <div class="inline-block-item">
-                                    <div class="header-phone-number"><a href="tel:+373 (777) 540-92">777-540-92</a></div>
-                                    <div class="header-phone-link"><a href="#request-callback" class="fancybox">Заказать обратный звонок</a></div>
-                                </div>
+                    <div class="header-phone inline-block-item">
+                        <div class="inline-block-container">
+                            <svg class="icon">
+                                <use href="#svg-icon-phone" />
+                            </svg>
+                            <div class="inline-block-item">
+                                <div class="header-phone-number"><a href="tel:+373 (777) 540-92">777-540-92</a></div>
+                                <div class="header-phone-link"><a href="#request-callback" class="fancybox">Заказать обратный звонок</a></div>
                             </div>
-                        </div>
-                        <div class="header-cart header-block-info inline-block-item">
-                            <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container" id="bx_cart_block">
-                                <svg class="icon vertical-middle">
-                                    <use href="#svg-icon-cart" />
-                                </svg>
-                                <span class="inline-block-item vertical-middle">
-                                    <span class="header-block-info-link">Корзина</span>
-                                    <span class="header-block-info-desc price-block">@await ShopService.GetBasketItemsCount() товаров в корзине</span>
-                                </span>
-                            </a>
                         </div>
                     </div>
-                    <ul class="header-fixed-block">
-                        <li class="header-cart header-block-info header-fixed-item">
-                            <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container vertical-middle" id="bx_cart_block_mini">
+                    <div class="header-cart header-block-info inline-block-item">
+                        <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container" id="bx_cart_block">
+                            <svg class="icon vertical-middle">
+                                <use href="#svg-icon-cart" />
+                            </svg>
+                            <span class="inline-block-item vertical-middle">
+                                <span class="header-block-info-link">Корзина</span>
+                                <span class="header-block-info-desc price-block"><span class="cart-content-counter">@await ShopService.GetBasketItemsCount()</span> товаров в корзине</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <ul class="header-fixed-block">
+                    <li class="header-cart header-block-info header-fixed-item">
+                        <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container vertical-middle" id="bx_cart_block_mini">
+                            <span class="inline-block-item relative">
+                                <svg class="icon">
+                                    <use href="#svg-icon-cart" />
+                                </svg>
+                                <span class="header-block-info-counter inline-block-item" title="0 позиций"></span>
+                            </span>
+                            <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
+                                <span class="header-block-info-link">Корзина</span>
+                                <span class="header-block-info-desc price-block"><span class="cart-content-counter">@await ShopService.GetBasketItemsCount()</span> товаров в корзине</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="header-liked header-block-info header-fixed-item">
+                        <div class="inline-block-item relative" id="bx_favorite_count_mini">
+                            <a href="javascript:;" class="inline-block-container fancybox">
                                 <span class="inline-block-item relative">
                                     <svg class="icon">
-                                        <use href="#svg-icon-cart" />
+                                        <use href="#svg-icon-liked" />
                                     </svg>
-                                    <span class="header-block-info-counter inline-block-item" title="0 позиций"></span>
+                                    <span class="header-block-info-counter inline-block-item" title="0 товаров"></span>
                                 </span>
                                 <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
-                                    <span class="header-block-info-link">Корзина</span>
-                                    <span class="header-block-info-desc price-block">@await ShopService.GetBasketItemsCount() товаров в корзине</span>
+                                    <span class="header-block-info-link">Избранное</span>
+                                    <span class="header-block-info-desc" title="0 товаров в избранном">0 товаров в избранном</span>
                                 </span>
                             </a>
-                        </li>
-                        <li class="header-liked header-block-info header-fixed-item">
-                            <div class="inline-block-item relative" id="bx_favorite_count_mini">
-                                <a href="javascript:;" class="inline-block-container fancybox">
-                                    <span class="inline-block-item relative">
-                                        <svg class="icon">
-                                            <use href="#svg-icon-liked" />
-                                        </svg>
-                                        <span class="header-block-info-counter inline-block-item" title="0 товаров"></span>
-                                    </span>
-                                    <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
-                                        <span class="header-block-info-link">Избранное</span>
-                                        <span class="header-block-info-desc" title="0 товаров в избранном">0 товаров в избранном</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="header-compare header-block-info header-fixed-item">
-                            <div id="comp_7a7289180f14bd5444af47f68533e92a">
-                                <a href="/catalog/compare/" id="bx_compare_count_mini" class="inline-block-container">
-                                    <span class="inline-block-item relative">
-                                        <svg class="icon">
-                                            <use href="#svg-icon-compare" />
-                                        </svg>
-                                        <span class="header-block-info-counter inline-block-item" title="0 товаров"></span>
-                                    </span>
-                                    <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
-                                        <span class="header-block-info-link">Сравнение</span>
-                                        <span class="header-block-info-desc" title="0 товаров в сравнении">0 товаров в сравнении</span>
-                                    </span>
-                                </a>
+                        </div>
+                    </li>
+                    <li class="header-compare header-block-info header-fixed-item">
+                        <div id="comp_7a7289180f14bd5444af47f68533e92a">
+                            <a href="/catalog/compare/" id="bx_compare_count_mini" class="inline-block-container">
+                                <span class="inline-block-item relative">
+                                    <svg class="icon">
+                                        <use href="#svg-icon-compare" />
+                                    </svg>
+                                    <span class="header-block-info-counter inline-block-item" title="0 товаров"></span>
+                                </span>
+                                <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
+                                    <span class="header-block-info-link">Сравнение</span>
+                                    <span class="header-block-info-desc" title="0 товаров в сравнении">0 товаров в сравнении</span>
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <nav class="header-main-menu header-menu-fixed hide-for-small-only hide-for-medium-only hide-for-large-only">
+                <div class="container row">
+                    <div class="header-main-menu-block float-left">
+                        <ul class="header-main-menu-base menu dropdown float-left" data-dropdown-menu>
+                            <li class="header-main-menu-category"><a href="/catalog/skidki/">Скидки</a></li>
+                            <li class="header-main-menu-category"><a href="/catalog/spetspredlozheniya/">Спецпредложения</a></li>
+                        </ul>
+                    </div>
+                    <ul class="header-main-menu-other menu float-right hide">
+                        <li class="header-main-menu-category">
+                            <a href="#" data-toggle="header-main-menu-full">
+                                <svg class="icon">
+                                    <use href="#svg-icon-menu-more" />
+                                </svg>
+                            </a>
+                            <div id="header-main-menu-full" class="dropdown-pane header-main-menu-dropdow-full" data-dropdown data-hover="true" data-hover-pane="true" data-v-offset="0">
+                                <span class="header-main-menu-dropdown-arrow"><span class="inner"></span></span>
+                                <ul class="container"></ul>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <nav class="header-main-menu header-menu-fixed hide-for-small-only hide-for-medium-only hide-for-large-only">
-                    <div class="container row">
-                        <div class="header-main-menu-block float-left">
-                            <ul class="header-main-menu-base menu dropdown float-left" data-dropdown-menu>
-                                <li class="header-main-menu-category"><a href="/catalog/skidki/">Скидки</a></li>
-                                <li class="header-main-menu-category"><a href="/catalog/spetspredlozheniya/">Спецпредложения</a></li>
-                            </ul>
-                        </div>
-                        <ul class="header-main-menu-other menu float-right hide">
-                            <li class="header-main-menu-category">
-                                <a href="#" data-toggle="header-main-menu-full">
-                                    <svg class="icon">
-                                        <use href="#svg-icon-menu-more" />
-                                    </svg>
-                                </a>
-                                <div id="header-main-menu-full" class="dropdown-pane header-main-menu-dropdow-full" data-dropdown data-hover="true" data-hover-pane="true" data-v-offset="0">
-                                    <span class="header-main-menu-dropdown-arrow"><span class="inner"></span></span>
-                                    <ul class="container"></ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-        </div>
+            </nav>
+        </header>
+    </div>
 
 
         <div class="test-b">
@@ -404,8 +402,6 @@
         <!-- endinject -->
     </div>
 
-
-
     <div id="loader" class="loader"></div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -413,29 +409,19 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script src="~/js/jquery-1.4.2.min.js"></script>
-    @*<script type="text/javascript">if (!window.BX) window.BX = {}; if (!window.BX.message) window.BX.message = function (mess) { if (typeof mess === 'object') { for (let i in mess) { BX.message[i] = mess[i]; } return true; } };</script>
-    <script type="text/javascript">(window.BX || top.BX).message({ 'JS_CORE_LOADING': 'Загрузка...', 'JS_CORE_NO_DATA': '- Нет данных -', 'JS_CORE_WINDOW_CLOSE': 'Закрыть', 'JS_CORE_WINDOW_EXPAND': 'Развернуть', 'JS_CORE_WINDOW_NARROW': 'Свернуть в окно', 'JS_CORE_WINDOW_SAVE': 'Сохранить', 'JS_CORE_WINDOW_CANCEL': 'Отменить', 'JS_CORE_WINDOW_CONTINUE': 'Продолжить', 'JS_CORE_H': 'ч', 'JS_CORE_M': 'м', 'JS_CORE_S': 'с', 'JSADM_AI_HIDE_EXTRA': 'Скрыть лишние', 'JSADM_AI_ALL_NOTIF': 'Показать все', 'JSADM_AUTH_REQ': 'Требуется авторизация!', 'JS_CORE_WINDOW_AUTH': 'Войти', 'JS_CORE_IMAGE_FULL': 'Полный размер' });</script>
-    <script type="text/javascript" src="~/js/core.min.js"></script>
-    <script>
-    BX.setJSList(['/bitrix/js/main/core/core_ajax.js', '/bitrix/js/main/core/core_promise.js', '/bitrix/js/main/polyfill/promise/js/promise.js', '/bitrix/js/main/loadext/loadext.js', '/bitrix/js/main/loadext/extension.js', '/bitrix/js/main/polyfill/promise/js/promise.js', '/bitrix/js/main/polyfill/find/js/find.js', '/bitrix/js/main/polyfill/includes/js/includes.js', '/bitrix/js/main/polyfill/matches/js/matches.js', '/bitrix/js/ui/polyfill/closest/js/closest.js', '/bitrix/js/main/polyfill/fill/main.polyfill.fill.js', '/bitrix/js/main/polyfill/find/js/find.js', '/bitrix/js/main/polyfill/matches/js/matches.js', '/bitrix/js/main/polyfill/core/dist/polyfill.bundle.js', '/bitrix/js/main/core/core.js', '/bitrix/js/main/polyfill/intersectionobserver/js/intersectionobserver.js', '/bitrix/js/main/lazyload/dist/lazyload.bundle.js', '/bitrix/js/main/polyfill/core/dist/polyfill.bundle.js', '/bitrix/js/main/parambag/dist/parambag.bundle.js']);
-    BX.setCSSList(['/bitrix/js/main/core/css/core.css', '/bitrix/js/main/lazyload/dist/lazyload.bundle.css', '/bitrix/js/main/parambag/dist/parambag.bundle.css']);</script>
-    <script type="text/javascript">(window.BX || top.BX).message({ 'LANGUAGE_ID': 'ru', 'FORMAT_DATE': 'DD.MM.YYYY', 'FORMAT_DATETIME': 'DD.MM.YYYY HH:MI:SS', 'COOKIE_PREFIX': 'BITRIX_SM', 'SERVER_TZ_OFFSET': '18000', 'SITE_ID': 's1', 'SITE_DIR': '/' });</script>
-    <script type="text/javascript" src="~/js/kernel_main_v1.js"></script>
-    <script type="text/javascript" src="~/js/kernel_main_polyfill_customevent_v1.js"></script>
-    <script type="text/javascript" src="~/js/dexie.bitrix.bundle.min.js"></script>
-    <script type="text/javascript" src="~/js/core_ls.min.js"></script>
-    <script type="text/javascript" src="~/js/core_frame_cache.min.js"></script>
-    <script type="text/javascript" src="~/js/main.popup.bundle.min.js"></script>
-    <script type="text/javascript" src="~/js/core_currency.min.js"></script>
-    <script type="text/javascript" src="~/js/settings_s1.min.js"></script>
-    <script type="text/javascript" src="~/js/script.min.js"></script>*@
-
     <script type="text/javascript" src="~/js/template_f8e63fff48629476330f3adc295f9bbe_v1.js"></script>
-    <script type="text/javascript" src="~/js/default_833a757bba77fa87ae690c0cfdc876b3_v1.js"></script>
 
     <script>
         function getCartCount() {
-
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetBasketItemsCount", "ShoppingCart")',
+                success: function (data) {
+                    $('#loader').fadeOut(250);
+                    document.querySelectorAll('.cart-content-counter').forEach(_ => _.innerHTML = data);
+                }
+            });
         }
     </script>
 

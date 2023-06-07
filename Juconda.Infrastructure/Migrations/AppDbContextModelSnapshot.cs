@@ -18,9 +18,6 @@ namespace Juconda.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.3")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -52,7 +49,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Baskets", (string)null);
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.BasketItem", b =>
@@ -87,7 +84,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("BasketItems", (string)null);
+                    b.ToTable("BasketItems");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Category", b =>
@@ -135,7 +132,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.CategoryProduct", b =>
@@ -167,7 +164,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CategoryProducts", (string)null);
+                    b.ToTable("CategoryProducts");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.City", b =>
@@ -203,7 +200,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Cities", (string)null);
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Country", b =>
@@ -228,7 +225,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Identity.IdentityRole", b =>
@@ -316,7 +313,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("UserId1");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.OrderProduct", b =>
@@ -357,7 +354,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderProducts", (string)null);
+                    b.ToTable("OrderProducts");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Product", b =>
@@ -429,7 +426,7 @@ namespace Juconda.Infrastructure.Migrations
 
                     b.HasIndex("CountryOfProductionId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Juconda.Domain.Models.Users.User", b =>
@@ -447,7 +444,7 @@ namespace Juconda.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTimeOffset?>("CreateDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
@@ -457,7 +454,7 @@ namespace Juconda.Infrastructure.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime?>("LastLoginDate")
+                    b.Property<DateTimeOffset?>("LastLoginDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("LockoutEnabled")
@@ -492,7 +489,7 @@ namespace Juconda.Infrastructure.Migrations
                     b.Property<Guid?>("Uid")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTimeOffset?>("UpdateDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UserName")

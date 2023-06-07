@@ -47,7 +47,7 @@ namespace Juconda.Controllers
 
 					if (result.Succeeded)
 					{
-						user.LastLoginDate = DateTime.UtcNow;
+						user.LastLoginDate = DateTimeOffset.UtcNow;
 						await _userManager.UpdateAsync(user);						
 
 						// проверяем, принадлежит ли URL приложению

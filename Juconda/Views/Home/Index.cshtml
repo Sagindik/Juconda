@@ -645,6 +645,7 @@
             data: { productId: Number(productId), productCount: count },
             success: function (data) {
                 $('#loader').fadeOut(250);
+                getCartCount();
                 alert('Товар успешно добавлен в корзину!');
             }
         });

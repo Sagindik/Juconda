@@ -12,7 +12,6 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddSession();
 
 var connection = builder.Configuration.GetConnectionString("Connection");
-//builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
 builder.Services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingProxies().UseNpgsql(connection));
 
 builder.Services.AddScoped<InitializeService>();

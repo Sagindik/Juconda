@@ -58,6 +58,18 @@ namespace Juconda.Core.Services
             return basket.BasketItems.Where(_ => _.Actual).Count();
         }
 
+        public async Task<decimal> GetBasketTotalPrice()
+        {
+            var basket = await GetCurrentBasket();
+
+            if (basket == null) return decimal.Zero;
+
+            decimal? total = _context.BasketItems.Where(_ => _.BasketId == basket.Id && _.Product != null && _.Actual)
+                .Select(_ => _.Count * _.Product.Price).Sum();
+
+            return Math.Round(total ?? decimal.Zero, 2);
+        }
+
         public async Task<int> GetBasketProductCount(int? productId)
         {
             var basket = await GetCurrentBasket();
@@ -67,6 +79,24 @@ namespace Juconda.Core.Services
             var count = basket.BasketItems.FirstOrDefault(_ => _.Actual && _.ProductId == productId)?.Count;
 
             return count ?? 1;
+        }
+
+        public async Task<int> ChangeCountOfProduct(int count, int basketItemId)
+        {
+            var basket = await GetCurrentBasket();
+
+            if (basket == null) return 1;
+
+            var basketItem = basket.BasketItems.FirstOrDefault(_ => _.Id == basketItemId && _.Product != null);
+
+            if (basketItem == null) return 1;
+
+            basketItem.Count = count;
+
+            _context.Update(basketItem);
+            await _context.SaveChangesAsync();
+
+            return count;
         }
     }
 }

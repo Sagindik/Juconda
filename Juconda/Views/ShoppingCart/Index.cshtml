@@ -3,10 +3,6 @@
 @model List<BasketItemViewModel>;
 @inject ShopService ShopService
 
-@{
-    var total = Model.Sum(_ => _.Count * _.Product.Price);
-}
-
 <section class="cart">
     <div class="inner-bg">
         <div class="advanced-container-medium">
@@ -17,7 +13,7 @@
                     <li><div class="float-right"><span>3</span> Оплата</div></li>
                 </ul>
             </nav>
-            <article class="inner-container cart-container">
+            <article id="cart-container" class="inner-container cart-container">
 
                 @if (Model.Any())
                 {
@@ -28,7 +24,7 @@
                                     <p>Корзина</p>
                                     <a class="clear_basket" onclick="removeAllItems()">Очистить корзину</a>
                                 </div>
-                                <div class="cart-caption-desc product-price">2 товара на @total р.</div>
+                                <div class="cart-caption-desc product-price"><span class="cart-content-counter">@await ShopService.GetBasketItemsCount()</span> товаров на <span class="cart-amount-price" id="amount-price">@await ShopService.GetBasketTotalPrice()</span> р.</div>
                             </div>
 
                             @foreach (var basketItem in Model)
@@ -56,11 +52,11 @@
                                                         <div class="product-info-caption">Количество</div>
                                                         <div class="input-group">
                                                             <div class="input-group-button">
-                                                                <button class="button decrement" type="button" onclick="decreaseCount(@basketItem.Id, @basketItem.Product.Price)">-</button>
+                                                                <button class="button decrement" type="button" onclick="decreaseCount(@basketItem?.Id, @basketItem?.Product?.Price)">-</button>
                                                             </div>
-                                                            <input class="input-group-field" type="number" name="count_@basketItem.Id" id="count_@basketItem.Id" min="1" value="@await ShopService.GetBasketProductCount(basketItem?.Product?.Id)">
+                                                            <input class="input-group-field" type="number" name="count_@basketItem?.Id" id="count_@basketItem?.Id" min="1" value="@await ShopService.GetBasketProductCount(basketItem?.Product?.Id)">
                                                             <div class="input-group-button">
-                                                                <button class="button increment" onclick="increaseCount(@basketItem.Id, @basketItem.Product.Price)" type="button">+</button>
+                                                                <button class="button increment" onclick="increaseCount(@basketItem?.Id, @basketItem?.Product?.Price)" type="button">+</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -68,7 +64,7 @@
                                                 <div class="column float-right">
                                                     <div class="product-price">
                                                         <div class="product-info-caption">Итого:</div>
-                                                        <div class="main"><span id="total_price_@basketItem.Id">@(basketItem?.Product?.Price * @basketItem?.Product?.Count)</span> р.</div>
+                                                        <div class="main"><span id="total_price_@basketItem?.Id">@(basketItem?.Product?.Price * @basketItem?.Product?.Count)</span> р.</div>
                                                     </div>
                                                 </div>
                                                 <div class="column show-for-large">
@@ -81,7 +77,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="close-button" type="button" onclick="removeItem(@basketItem.Id)">
+                                    <button class="close-button" type="button" onclick="removeItem(@basketItem?.Id, this)">
                                         <span aria-hidden="true">+</span>
                                     </button>
                                 </div>
@@ -96,7 +92,7 @@
                                 </div>
                                 <div class="column cart-product-footer-amount price">
                                     Итого:
-                                    <span class="footer-amount-price" id="amount-price">@total р.</span>
+                                    <span class="cart-amount-price" id="amount-price">@await ShopService.GetBasketTotalPrice()</span> <span>р.</span>
                                     Без учета стоимости доставки / (минимальная сумма заказа: 250 рублей)
                                 </div>
                             </div>
@@ -111,55 +107,53 @@
                         <input type="hidden" name="BasketOrder" value="BasketOrder" />
                     </form>
                 }
-                else
-                {
-                    <div id="empty_basket">
-                        <div class="text-center">
-                            <div class="cart-caption">Корзина</div>
-                        </div>
-                        <div class="cart-content cart-empty text-center inline-block-container">
-                            <div class="cart-empty-icon inline-block-item vertical-middle">
-                                <svg class="icon">
-                                    <use xlink:href="#svg-icon-cart" />
-                                </svg>
-                            </div>
-                            <div class="inline-block-item vertical-middle">Ваша корзина пуста</div>
-                        </div>
-                    </div>
-                }
 
             </article>
         </div>
     </div>
 </section>
 
+<template id="empty_basket_template">
+    <div id="empty_basket">
+        <div class="text-center">
+            <div class="cart-caption">Корзина</div>
+        </div>
+        <div class="cart-content cart-empty text-center inline-block-container">
+            <div class="cart-empty-icon inline-block-item vertical-middle">
+                <svg class="icon">
+                    <use xlink:href="#svg-icon-cart" />
+                </svg>
+            </div>
+            <div class="inline-block-item vertical-middle">Ваша корзина пуста</div>
+        </div>
+    </div>
+</template>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-    //$(function () {
-    //    initPage();
-    //});
 
-    $('#loader').fadeIn(250);
-    function initPage() {
-        $.ajax({
-            type: "GET",
-            url: '@Url.Action("Index", "ShoppingCart")',
-            success: function (data) {
-                document.querySelector('html').innerHTML = data;
-                $('#loader').fadeOut(250);
-            }
-        });
+    if(@Model.Count() == 0) {
+        setEmptyCart();
     }
 
-    function removeItem(basketItemId) {
+    function removeItem(basketItemId, elem) {
         $('#loader').fadeIn(250);
         $.ajax({
             type: "POST",
             url: '@Url.Action("RemoveFromCart", "ShoppingCart")',
             data: { basketItemId: Number(basketItemId) },
             success: function (data) {
-                $('#loader').fadeOut(250);
-                initPage();
+                $('#loader').fadeOut(250);                
+                elem.closest('.cart-product-item').remove();
+
+                const cartItems = document.querySelectorAll('.cart-product-item');
+                if (cartItems.length == 0) {
+                    setEmptyCart();
+                }
+                else {
+                    getCartCount();
+                    getCartTotalPrice();
+                }
             }
         });
     }
@@ -171,30 +165,40 @@
             url: '@Url.Action("RemoveAllBasketItems", "ShoppingCart")',
             success: function (data) {
                 $('#loader').fadeOut(250);
-                initPage();
+                setEmptyCart();
             }
         });
     }
 
-    //function decreaseCount(elem, basketItemId, price) {
-    //    elem.value = Number(elem.value) - 1;
-    //    if (Number(elem.value) < 1)
-    //        elem.value = 1;
+    function setEmptyCart() {
+        $('#cart-container').empty();
+        $('#cart-container').append(document.getElementById('empty_basket_template').innerHTML)
+    }
 
-    //    //changeCountOfProduct(elem.value, basketItemId);
-    //}
+    function getCartTotalPrice() {
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetBasketTotalPrice", "ShoppingCart")',
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                document.querySelectorAll('.cart-amount-price').forEach(_ => _.innerHTML = data);
+            }
+        });
+    }
 
-    //function increaseCount(basketItemId) {
-    //    console.log(basketItemId)
-    //    //let elem = document.getElementById('count_' + basketItemId);
-    //    //elem.value = Number(elem.value) + 1;
-    //    //if (Number(elem.value) < 1)
-    //    //    elem.value = 1;
-
-    //    //console.log(elem.value * price)
-    //    //console.log(document.getElementById('total_price_' + basketItemId));
-    //    //changeCountOfProduct(elem.value, basketItemId);
-    //}
+    function changeCountOfProduct(countOfProduct, basketItemId) {
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ChangeCountOfProduct", "ShoppingCart")',
+            data: { count: Number(countOfProduct), basketItemId: Number(basketItemId) },
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                getCartTotalPrice();
+            }
+        });
+    }
 
     function decreaseCount(basketItemId, productPrice) {
         let elem = document.getElementById('count_' + basketItemId);
@@ -203,6 +207,7 @@
             elem.value = 1;
 
         document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
+        changeCountOfProduct(elem.value, basketItemId);
     }
 
     function increaseCount(basketItemId, productPrice) {
@@ -212,17 +217,6 @@
             elem.value = 1;
 
         document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
+        changeCountOfProduct(elem.value, basketItemId);
     }
-
-    //function changeCountOfProduct(countOfProduct, basketItemId) {
-    //    $('#loader').fadeIn(250);
-    //    $.ajax({
-    //        type: 'POST',
-    //        url: '@Url.Action("ChangeCountOfProduct", "ShoppingCart")',
-    //        data: { Number(countOfProduct), Number(basketItemId) }
-    //        success: function (data) {
-    //            $('#loader').fadeOut(250);
-    //        }
-    //    });
-    //}
 </script>
