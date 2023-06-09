@@ -315,9 +315,9 @@
                     setEmptyCart();
                 }
                 else {
-                    getCartCount();
                     getCartTotalPrice();
                 }
+                getCartCount();
             }
         });
     }
@@ -329,6 +329,7 @@
             url: '@Url.Action("RemoveAllBasketItems", "ShoppingCart")',
             success: function (data) {
                 $('#loader').fadeOut(250);
+                getCartCount();
                 setEmptyCart();
             }
         });
