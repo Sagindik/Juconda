@@ -5,7 +5,6 @@ namespace Juconda.Domain.Models
 {
     public class Order : BaseEntity
     {
-        public int? UserId { get; set; }
         public virtual User? User { get; set; }
 
         public int? CityId { get; set; }
