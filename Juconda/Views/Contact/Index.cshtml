@@ -4,7 +4,7 @@
         <nav>
             <ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="/" title="Джоконда" itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">Джоконда</span></a><meta itemprop="position" content="1"></li>
-                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="@Url.Action("Index", "AboutUs")" title="О компании" itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">О компании</span></a><meta itemprop="position" content="2"></li>
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="@Url.Action("Index", "AboutUs")" title="О нас" itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">О нас</span></a><meta itemprop="position" content="2"></li>
                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">Контакты</span></span><meta itemprop="position" content="3"></li>
             </ul>
         </nav>
@@ -12,11 +12,11 @@
             <h1>Контакты</h1>
             <nav class="inner-menu columns show-for-xlarge">
                 <ul class="menu vertical">
-                    <li><a href="@Url.Action("Index", "AboutUs")">О компании</a></li>
+                    <li><a href="@Url.Action("Index", "News")">Новости</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "Contact")">Контакты</a></li>
                     <li><a href="@Url.Action("Index", "Document")">Документы</a></li>
-                    <li><a href="/company/dogovor-oferty">Договор оферты</a></li>
-                    <li><a href="/company/politika-konfidentsialnosti/">Политика конфиденциальности</a></li>
-                    <li><a href="/company/brands/">Магазины</a></li>
+                    <li><a href="#">Договор оферты</a></li>
+                    <li><a href="@Url.Action("Index", "Privacy")">Политика конфиденциальности</a></li>
                 </ul>
             </nav>
             <div class="inner-content columns">
@@ -32,20 +32,21 @@
 
                         <ul class="inner-content-list inner-content-contact-left" itemscope itemtype="http://schema.org/Organization">
                             <li>
-                                Телефон:                <div class="value phone" itemprop="telephone">+373 (777) 540-92</div>
+                                Телефон:                
+                                <div class="value phone" itemprop="telephone">+373 (777) 540-92</div>
                             </li>
                             <li itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                                Адрес:                <div class="value">г. Тирасполь, ул. Карла-Либкнехта 45, 1 этаж</div>
+                                Адрес:                
+                                <div class="value">г. Тирасполь, ул. Карла-Либкнехта 45, 1 этаж</div>
                             </li>
                             <li>
-                                Email:				<div class="value"><a href="mailto:Dzhokonda@mail.ru" itemprop="email">Dzhokonda@mail.ru</a></div>
+                                Email:			
+                                <div class="value"><a href="mailto:Dzhokonda@mail.ru" itemprop="email">Dzhokonda@mail.ru</a></div>
                             </li>
                         </ul>
                     </div>
                     <div class="inner-content-contact-right large-6 xxlarge-8 columns">
-                        <p>Информация о покупателе может храниться в базе данных магазина если бизнес-модель магазина рассчитана на повторные покупки, или же отправляться разово. Интернет-магазин — сайт, торгующий товарами в интернете.</p>
-                        <h2>Задать вопрос</h2>        <div id="bx_main_feedback">
-                        </div>
+                        <p>Информация о покупателе может храниться в базе данных магазина если бизнес-модель магазина рассчитана на повторные покупки, или же отправляться разово. Интернет-магазин — сайт, торгующий товарами в интернете.</p>                        
                     </div>
                 </div>
             </div>

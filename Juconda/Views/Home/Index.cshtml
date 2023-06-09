@@ -1,29 +1,13 @@
-﻿
+﻿@using Juconda.ViewModels;
+@model List<ProductViewModel>;
+
 <section>
     <div class="main-slider-banner">
     </div>
 
     <div class="owl-carousel main-slider">
-        <div class="item vertical-middle" id="bx_3218110189_1443">
-            <div class="background white" style="background-image:url(images/bda1d3f37fecefef7a4dfc61fcad91a6.jpg);">
-                <span class="container row">
-                    <span class="main-slider-caption">
-                    </span>
-                    <span class="main-slider-desc"></span>
-                </span>
-            </div>
-        </div>
         <div class="item vertical-middle" id="bx_3218110189_3567">
             <div class="background black" style="background-image:url(images/38878f31515991896c2ecdfa8bf7574c.jpg);">
-                <span class="container row">
-                    <span class="main-slider-caption">
-                    </span>
-                    <span class="main-slider-desc"></span>
-                </span>
-            </div>
-        </div>
-        <div class="item vertical-middle" id="bx_3218110189_3439">
-            <div class="background black" style="background-image:url(images/b58a64e0c4097eccb91e41a7904f96cc.jpg);">
                 <span class="container row">
                     <span class="main-slider-caption">
                     </span>
@@ -66,8 +50,6 @@
             <div class="owl-carousel product-carousel product-grid">
                 <div class="item column text-center hover-elements" id="bx_3966226736_161180">
                     
-                    
-                    
                     <div class="img-wrap">
                         <a href="/catalog/spetspredlozheniya/banan_1kg.html">
                             <img id="bx_3966226736_161180_pict" src="~/images/ebfe9403339a74e8d0b37bcc3bdbfca6.jpeg" data-src="/upload/resize_cache/iblock/ebf/170_150_0/ebfe9403339a74e8d0b37bcc3bdbfca6.jpeg" class="thumbnail lazy" alt="Банан 1кг">
@@ -86,12 +68,10 @@
                         </div>
                     </div>
 
-                    @*<div class="product-action-label time-buy left">Успей купить</div>*@
-
                     <div class="hover-show bx_catalog_item_controls">
                         <div class="hover-buttons">
                             <div class="float-right">
-                                <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="16118">
+                                <a href="#" class="button transparent add2liked" title="В избранное">
                                     <svg class="icon">
                                         <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
                                     </svg>
@@ -105,20 +85,6 @@
                             <div class="clearfix"></div>
                             <a href="#" data-href="/catalog/spetspredlozheniya/banan_1kg.html?load=Y" id="bx_3966226736_161180_preview_link" class="button secondary tiny preview-button">Быстрый просмотр</a>
                         </div>
-                        <div id="bx_3966226736_161180_price_hover_block">
-                        </div>
-                        @*<div class="product-action-banner timer text-center show-for-large">
-                            <div class="table-container float-center">
-                                <div class="info table-item">
-                                    <div class="table-container">
-                                        <div class="table-item time hour"><strong>00</strong> час</div>
-                                        <div class="table-item time min"><strong>00</strong> мин</div>
-                                        <div class="table-item time sec"><strong>00</strong> сек</div>
-                                    </div>
-                                </div>
-                                <div class="counter table-item"><strong>24</strong> кг</div>
-                            </div>
-                        </div>*@
                         <div class="row row-count-cart">
                             <div class="small-6 column">
                                 <div class="product-count">
@@ -166,11 +132,11 @@
                             25 р.
                         </div>
                     </div>
-                    @*<div class="product-action-label time-buy left">Успей купить</div>*@
+
                     <div class="hover-show bx_catalog_item_controls">
                         <div class="hover-buttons">
                             <div class="float-right">
-                                <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="16119">
+                                <a href="#" class="button transparent add2liked" title="В избранное">
                                     <svg class="icon">
                                         <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
                                     </svg>
@@ -186,18 +152,7 @@
                         </div>
                         <div id="bx_3966226736_161190_price_hover_block">
                         </div>
-                        @*<div class="product-action-banner timer text-center show-for-large">
-                            <div class="table-container float-center">
-                                <div class="info table-item">
-                                    <div class="table-container">
-                                        <div class="table-item time hour"><strong>00</strong> час</div>
-                                        <div class="table-item time min"><strong>00</strong> мин</div>
-                                        <div class="table-item time sec"><strong>00</strong> сек</div>
-                                    </div>
-                                </div>
-                                <div class="counter table-item"><strong>24</strong> шт</div>
-                            </div>
-                        </div>*@
+
                         <div class="row row-count-cart">
                             <div class="small-6 column">
                                 <div class="product-count">
@@ -245,11 +200,11 @@
                             23.50 р.
                         </div>
                     </div>
-                    @*<div class="product-action-label time-buy left">Успей купить</div>*@
+
                     <div class="hover-show bx_catalog_item_controls">
                         <div class="hover-buttons">
                             <div class="float-right">
-                                <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="16123">
+                                <a href="#" class="button transparent add2liked" title="В избранное">
                                     <svg class="icon">
                                         <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
                                     </svg>
@@ -265,18 +220,7 @@
                         </div>
                         <div id="bx_3966226736_161230_price_hover_block">
                         </div>
-                        @*<div class="product-action-banner timer text-center show-for-large">
-                            <div class="table-container float-center">
-                                <div class="info table-item">
-                                    <div class="table-container">
-                                        <div class="table-item time hour"><strong>00</strong> час</div>
-                                        <div class="table-item time min"><strong>00</strong> мин</div>
-                                        <div class="table-item time sec"><strong>00</strong> сек</div>
-                                    </div>
-                                </div>
-                                <div class="counter table-item"><strong>24</strong> шт</div>
-                            </div>
-                        </div>*@
+
                         <div class="row row-count-cart">
                             <div class="small-6 column">
                                 <div class="product-count">
@@ -324,11 +268,11 @@
                             30 р.
                         </div>
                     </div>
-                    @*<div class="product-action-label time-buy left">Успей купить</div>*@
+
                     <div class="hover-show bx_catalog_item_controls">
                         <div class="hover-buttons">
                             <div class="float-right">
-                                <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="16120">
+                                <a href="#" class="button transparent add2liked" title="В избранное">
                                     <svg class="icon">
                                         <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
                                     </svg>
@@ -344,18 +288,7 @@
                         </div>
                         <div id="bx_3966226736_161200_price_hover_block">
                         </div>
-                        @*<div class="product-action-banner timer text-center show-for-large">
-                            <div class="table-container float-center">
-                                <div class="info table-item">
-                                    <div class="table-container">
-                                        <div class="table-item time hour"><strong>00</strong> час</div>
-                                        <div class="table-item time min"><strong>00</strong> мин</div>
-                                        <div class="table-item time sec"><strong>00</strong> сек</div>
-                                    </div>
-                                </div>
-                                <div class="counter table-item"><strong>24</strong> шт</div>
-                            </div>
-                        </div>*@
+
                         <div class="row row-count-cart">
                             <div class="small-6 column">
                                 <div class="product-count">
@@ -403,11 +336,11 @@
                             15.50 р.
                         </div>
                     </div>
-                    @*<div class="product-action-label time-buy left">Успей купить</div>*@
+
                     <div class="hover-show bx_catalog_item_controls">
                         <div class="hover-buttons">
                             <div class="float-right">
-                                <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="16121">
+                                <a href="#" class="button transparent add2liked" title="В избранное">
                                     <svg class="icon">
                                         <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
                                     </svg>
@@ -423,18 +356,7 @@
                         </div>
                         <div id="bx_3966226736_161210_price_hover_block">
                         </div>
-                        @*<div class="product-action-banner timer text-center show-for-large">
-                            <div class="table-container float-center">
-                                <div class="info table-item">
-                                    <div class="table-container">
-                                        <div class="table-item time hour"><strong>00</strong> час</div>
-                                        <div class="table-item time min"><strong>00</strong> мин</div>
-                                        <div class="table-item time sec"><strong>00</strong> сек</div>
-                                    </div>
-                                </div>
-                                <div class="counter table-item"><strong>24</strong> шт</div>
-                            </div>
-                        </div>*@
+
                         <div class="row row-count-cart">
                             <div class="small-6 column">
                                 <div class="product-count">
@@ -482,11 +404,11 @@
                             23.90 р.
                         </div>
                     </div>
-                    @*<div class="product-action-label time-buy left">Успей купить</div>*@
+
                     <div class="hover-show bx_catalog_item_controls">
                         <div class="hover-buttons">
                             <div class="float-right">
-                                <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="21149">
+                                <a href="#" class="button transparent add2liked" title="В избранное">
                                     <svg class="icon">
                                         <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
                                     </svg>
@@ -502,18 +424,7 @@
                         </div>
                         <div id="bx_3966226736_211490_price_hover_block">
                         </div>
-                        @*<div class="product-action-banner timer text-center show-for-large">
-                            <div class="table-container float-center">
-                                <div class="info table-item">
-                                    <div class="table-container">
-                                        <div class="table-item time hour"><strong>00</strong> час</div>
-                                        <div class="table-item time min"><strong>00</strong> мин</div>
-                                        <div class="table-item time sec"><strong>00</strong> сек</div>
-                                    </div>
-                                </div>
-                                <div class="counter table-item"><strong>24</strong> шт</div>
-                            </div>
-                        </div>*@
+
                         <div class="row row-count-cart">
                             <div class="small-6 column">
                                 <div class="product-count">
@@ -532,18 +443,7 @@
                                 <a id="bx_3966226736_211490_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_3966226736_211490_pict" data-product-id="21149"><span>В корзину</span></a>
                             </div>
                         </div>
-                        <div id="bx_3966226736_211490_basket_prop" style="display: none;">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Мы рекомендуем</td>
-                                        <td>
-                                            <label><input type="radio" name="prop[RECOMEND]" value="10">да</label><br>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -557,549 +457,45 @@
             <div class="container row">
                 <div class="h2"></div>
                 <div class="owl-carousel product-carousel product-grid">
-                    <div class="item column text-center hover-elements" id="bx_1970176138_161270">
-                        <div class="img-wrap">
-                            <a href="/catalog/skidki/kofe_neskafe_classic_47_5gr.html">
-                                <img id="bx_1970176138_161270_pict" src="~/images/d1aff32b99aa360f7b7a2c7cbbb95c8d.webp" data-src="/upload/resize_cache/iblock/d1a/170_150_0/d1aff32b99aa360f7b7a2c7cbbb95c8d.webp" class="thumbnail lazy" alt="Конфеты Rafaello 240 гр">
-                            </a>
-                        </div>
-                        <img id="bx_1970176138_161270_secondpict" src="~/images/98b8c4ca71eeddbfbc8f5d88f011146d.webp" class="thumbnail" alt="Конфеты Rafaello 240 гр" style="display: none;">
-                        <div class="name">
-                            <a href="/catalog/skidki/kofe_neskafe_classic_47_5gr.html" class="name"><span>Конфеты Rafaello 240 гр</span></a>
-                        </div>
-                        <div id="bx_1970176138_161270_price_block">
-                            <div class="price" id="bx_1970176138_161270_price">
-                                107.91 р.
+                    @foreach(var product in Model)
+                    {
+                        <div class="item column text-center hover-elements">
+                            <div class="img-wrap">
+                                <a href="/catalog/skidki/kofe_neskafe_classic_47_5gr.html">
+                                    <img src="@product.Image" class="thumbnail lazy">
+                                </a>
                             </div>
-                        </div>
-                        <div class="hover-show bx_catalog_item_controls">
-                            <div class="hover-buttons">
-                                <div class="float-right">
-                                    <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="16127">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0);" id="bx_1970176138_161270_compare_link" class="button transparent add2compare" title="Сравнить" data-product-id="16127">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-compare-hover" />
-                                        </svg>
-                                    </a>
+                            <div class="name">
+                                <a href="/catalog/skidki/kofe_neskafe_classic_47_5gr.html" class="name"><span>@product.Name</span></a>
+                            </div>
+                            <div>
+                                <div class="price">
+                                    @product.Price р.
                                 </div>
-                                <div class="clearfix"></div>
-                                <a href="#" data-href="/catalog/skidki/kofe_neskafe_classic_47_5gr.html?load=Y" id="bx_1970176138_161270_preview_link" class="button secondary tiny preview-button">Быстрый просмотр</a>
                             </div>
-                            <div id="bx_1970176138_161270_price_hover_block">
-                            </div>
-                            <div class="row row-count-cart">
-                                <div class="small-6 column">
-                                    <div class="product-count">
-                                        <div class="input-group">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_161270_quant_down" class="button decrement" type="button">-</button>
-                                            </div>
-                                            <input class="input-group-field" type="number" id="bx_1970176138_161270_quantity" name="quantity" value="1" min="1">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_161270_quant_up" class="button increment" type="button">+</button>
+                            <div class="hover-show bx_catalog_item_controls">
+                                <div class="row row-count-cart">
+                                    <div class="small-6 column">
+                                        <div class="product-count">
+                                            <div class="input-group">
+                                                <div class="input-group-button">
+                                                    <button class="button decrement" onclick="decreaseCount(product_@product.Id)" type="button">-</button>
+                                                </div>
+                                                <input class="input-group-field" type="number" id="product_@product.Id" value="1" min="1">
+                                                <div class="input-group-button">
+                                                    <button class="button increment" onclick="increaseCount(product_@product.Id)" type="button">+</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="bx_1970176138_161270_basket_actions" class="small-6 columns">
-                                    <a id="bx_1970176138_161270_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_1970176138_161270_pict" data-product-id="16127"><span>В корзину</span></a>
-                                </div>
-                            </div>
-                            <div id="bx_1970176138_161270_basket_prop" style="display: none;">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Мы рекомендуем</td>
-                                            <td>
-                                                <label><input type="radio" name="prop[RECOMEND]" value="10">да</label><br>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item column text-center hover-elements" id="bx_1970176138_211440">
-                        <div class="label-block text-left">
-                            <div><span class="label warning">Новинка</span></div>
-                        </div>
-                        <div class="img-wrap">
-                            <a href="/catalog/skidki/kazy_qazi_markazi_500gr.html">
-                                <img id="bx_1970176138_211440_pict" src="~/images/537416aa9824eabbc2eef64d0772f535.JPG" data-src="/upload/resize_cache/iblock/537/170_150_0/537416aa9824eabbc2eef64d0772f535.JPG" class="thumbnail lazy" alt="Казы Qazi Markazi 500гр">
-                            </a>
-                        </div>
-                        <img id="bx_1970176138_211440_secondpict" src="~/images/e8da75938a168edd50f2f6bc0b2d6b59.JPG" class="thumbnail" alt="Казы Qazi Markazi 500гр" style="display: none;">
-                        <div class="name">
-                            <a href="/catalog/skidki/kazy_qazi_markazi_500gr.html" class="name"><span>Казы Qazi Markazi 500гр</span></a>
-                        </div>
-                        <div id="bx_1970176138_211440_price_block">
-                            <div class="price" id="bx_1970176138_211440_price">
-                                105 р.
-                            </div>
-                        </div>
-                        <div class="hover-show bx_catalog_item_controls">
-                            <div class="hover-buttons">
-                                <div class="float-right">
-                                    <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="21144">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0);" id="bx_1970176138_211440_compare_link" class="button transparent add2compare" title="Сравнить" data-product-id="21144">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-compare-hover" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="clearfix"></div>
-                                <a href="#" data-href="/catalog/skidki/kazy_qazi_markazi_500gr.html?load=Y" id="bx_1970176138_211440_preview_link" class="button secondary tiny preview-button">Быстрый просмотр</a>
-                            </div>
-                            <div id="bx_1970176138_211440_price_hover_block">
-                            </div>
-                            <div class="row row-count-cart">
-                                <div class="small-6 column">
-                                    <div class="product-count">
-                                        <div class="input-group">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211440_quant_down" class="button decrement" type="button">-</button>
-                                            </div>
-                                            <input class="input-group-field" type="number" id="bx_1970176138_211440_quantity" name="quantity" value="1" min="1">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211440_quant_up" class="button increment" type="button">+</button>
-                                            </div>
-                                        </div>
+                                    <div class="small-6 columns">
+                                        <a onclick="addToCart(@product.Id, product_@product.Id)" class="button tiny add2cart"><span>В корзину</span></a>
                                     </div>
                                 </div>
-                                <div id="bx_1970176138_211440_basket_actions" class="small-6 columns">
-                                    <a id="bx_1970176138_211440_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_1970176138_211440_pict" data-product-id="21144"><span>В корзину</span></a>
-                                </div>
-                            </div>
-                            <div id="bx_1970176138_211440_basket_prop" style="display: none;">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Мы рекомендуем</td>
-                                            <td>
-                                                <label><input type="radio" name="prop[RECOMEND]" value="10">да</label><br>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="item column text-center hover-elements" id="bx_1970176138_211470">
-                        <div class="label-block text-left">
-                            <div><span class="label warning">Новинка</span></div>
-                        </div>
-                        <div class="img-wrap">
-                            <a href="/catalog/skidki/syr_bonfesto_mozzarella_45_125g.html">
-                                <img id="bx_1970176138_211470_pict" src="~/images/60c9372be655432d3fddb8bc0900be23.webp" data-src="/upload/resize_cache/iblock/60c/170_150_0/60c9372be655432d3fddb8bc0900be23.webp" class="thumbnail lazy" alt="Сыр Bonfesto Mozzarella 45% 125г">
-                            </a>
-                        </div>
-                        <img id="bx_1970176138_211470_secondpict" src="~/images/08f1e4764f0e5383d5fb023c4bd9d944.webp" class="thumbnail" alt="Сыр Bonfesto Mozzarella 45% 125г" style="display: none;">
-                        <div class="name">
-                            <a href="/catalog/skidki/syr_bonfesto_mozzarella_45_125g.html" class="name"><span>Сыр Bonfesto Mozzarella 45% 125г</span></a>
-                        </div>
-                        <div id="bx_1970176138_211470_price_block">
-                            <div class="price" id="bx_1970176138_211470_price">
-                                22.90 р.
-                            </div>
-                        </div>
-                        <div class="hover-show bx_catalog_item_controls">
-                            <div class="hover-buttons">
-                                <div class="float-right">
-                                    <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="21147">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0);" id="bx_1970176138_211470_compare_link" class="button transparent add2compare" title="Сравнить" data-product-id="21147">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-compare-hover" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="clearfix"></div>
-                                <a href="#" data-href="/catalog/skidki/syr_bonfesto_mozzarella_45_125g.html?load=Y" id="bx_1970176138_211470_preview_link" class="button secondary tiny preview-button">Быстрый просмотр</a>
-                            </div>
-                            <div id="bx_1970176138_211470_price_hover_block">
-                            </div>
-                            <div class="row row-count-cart">
-                                <div class="small-6 column">
-                                    <div class="product-count">
-                                        <div class="input-group">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211470_quant_down" class="button decrement" type="button">-</button>
-                                            </div>
-                                            <input class="input-group-field" type="number" id="bx_1970176138_211470_quantity" name="quantity" value="1" min="1">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211470_quant_up" class="button increment" type="button">+</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="bx_1970176138_211470_basket_actions" class="small-6 columns">
-                                    <a id="bx_1970176138_211470_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_1970176138_211470_pict" data-product-id="21147"><span>В корзину</span></a>
-                                </div>
-                            </div>
-                            <div id="bx_1970176138_211470_basket_prop" style="display: none;">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Мы рекомендуем</td>
-                                            <td>
-                                                <label><input type="radio" name="prop[RECOMEND]" value="10">да</label><br>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item column text-center hover-elements" id="bx_1970176138_161280">
-                        <div class="img-wrap">
-                            <a href="/catalog/skidki/kofe_neskafe_classic_85.html">
-                                <img id="bx_1970176138_161280_pict" src="~/images/a54b24cfc0a8d3ffd6ca1aca60866707.webp" data-src="/upload/resize_cache/iblock/a54/170_150_0/a54b24cfc0a8d3ffd6ca1aca60866707.webp" class="thumbnail lazy" alt="Конфеты Rafaello 500 гр">
-                            </a>
-                        </div>
-                        <img id="bx_1970176138_161280_secondpict" src="~/images/d9dcbb5024e3b6a4b11de2fe3723dd1c.webp" class="thumbnail" alt="Конфеты Rafaello 500 гр" style="display: none;">
-                        <div class="name">
-                            <a href="/catalog/skidki/kofe_neskafe_classic_85.html" class="name"><span>Конфеты Rafaello 500 гр</span></a>
-                        </div>
-                        <div id="bx_1970176138_161280_price_block">
-                            <div class="price" id="bx_1970176138_161280_price">
-                                279.81 р.
-                            </div>
-                        </div>
-                        <div class="hover-show bx_catalog_item_controls">
-                            <div class="hover-buttons">
-                                <div class="float-right">
-                                    <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="16128">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0);" id="bx_1970176138_161280_compare_link" class="button transparent add2compare" title="Сравнить" data-product-id="16128">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-compare-hover" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="clearfix"></div>
-                                <a href="#" data-href="/catalog/skidki/kofe_neskafe_classic_85.html?load=Y" id="bx_1970176138_161280_preview_link" class="button secondary tiny preview-button">Быстрый просмотр</a>
-                            </div>
-                            <div id="bx_1970176138_161280_price_hover_block">
-                            </div>
-                            <div class="row row-count-cart">
-                                <div class="small-6 column">
-                                    <div class="product-count">
-                                        <div class="input-group">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_161280_quant_down" class="button decrement" type="button">-</button>
-                                            </div>
-                                            <input class="input-group-field" type="number" id="bx_1970176138_161280_quantity" name="quantity" value="1" min="1">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_161280_quant_up" class="button increment" type="button">+</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="bx_1970176138_161280_basket_actions" class="small-6 columns">
-                                    <a id="bx_1970176138_161280_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_1970176138_161280_pict" data-product-id="16128"><span>В корзину</span></a>
-                                </div>
-                            </div>
-                            <div id="bx_1970176138_161280_basket_prop" style="display: none;">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Мы рекомендуем</td>
-                                            <td>
-                                                <label><input type="radio" name="prop[RECOMEND]" value="10">да</label><br>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item column text-center hover-elements" id="bx_1970176138_211450">
-                        <div class="label-block text-left">
-                            <div><span class="label sale">Скидка</span></div>
-                        </div>
-                        <div class="img-wrap">
-                            <a href="/catalog/skidki/coffe_mate.html">
-                                <img id="bx_1970176138_211450_pict" src="~/images/3ccbd99c4fbe7b5d72312eecc32754e8.gif" data-src="/upload/resize_cache/iblock/3cc/170_150_0/3ccbd99c4fbe7b5d72312eecc32754e8.gif" class="thumbnail lazy" alt="Coffee mate">
-                            </a>
-                        </div>
-                        <img id="bx_1970176138_211450_secondpict" src="~/images/7a965d6753e79b65e3e4b9f3112a9513.gif" class="thumbnail" alt="Coffee mate" style="display: none;">
-                        <div class="name">
-                            <a href="/catalog/skidki/coffe_mate.html" class="name"><span>Coffee mate</span></a>
-                        </div>
-                        <div id="bx_1970176138_211450_price_block">
-                            <div class="price" id="bx_1970176138_211450_price">
-                                42.42 р.
-                            </div>
-                        </div>
-                        <div class="hover-show bx_catalog_item_controls">
-                            <div class="hover-buttons">
-                                <div class="float-right">
-                                    <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="21145">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0);" id="bx_1970176138_211450_compare_link" class="button transparent add2compare" title="Сравнить" data-product-id="21145">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-compare-hover" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="clearfix"></div>
-                                <a href="#" data-href="/catalog/skidki/coffe_mate.html?load=Y" id="bx_1970176138_211450_preview_link" class="button secondary tiny preview-button">Быстрый просмотр</a>
-                            </div>
-                            <div id="bx_1970176138_211450_price_hover_block">
-                            </div>
-                            <div class="row row-count-cart">
-                                <div class="small-6 column">
-                                    <div class="product-count">
-                                        <div class="input-group">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211450_quant_down" class="button decrement" type="button">-</button>
-                                            </div>
-                                            <input class="input-group-field" type="number" id="bx_1970176138_211450_quantity" name="quantity" value="1" min="1">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211450_quant_up" class="button increment" type="button">+</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="bx_1970176138_211450_basket_actions" class="small-6 columns">
-                                    <a id="bx_1970176138_211450_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_1970176138_211450_pict" data-product-id="21145"><span>В корзину</span></a>
-                                </div>
-                            </div>
-                            <div id="bx_1970176138_211450_basket_prop" style="display: none;">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Мы рекомендуем</td>
-                                            <td>
-                                                <label><input type="radio" name="prop[RECOMEND]" value="10">да</label><br>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item column text-center hover-elements" id="bx_1970176138_211480">
-                        <div class="label-block text-left">
-                            <div><span class="label warning">Новинка</span></div>
-                        </div>
-                        <div class="img-wrap">
-                            <a href="/catalog/skidki/napitok_my_aloe_v_assortimente_500ml.html">
-                                <img id="bx_1970176138_211480_pict" src="~/images/5a61ec526cbe5bc4d2fd69ab523a596a.jpg" data-src="/upload/resize_cache/iblock/5a6/170_150_0/5a61ec526cbe5bc4d2fd69ab523a596a.jpg" class="thumbnail lazy" alt="Напиток My Aloe в ассортименте 500мл">
-                            </a>
-                        </div>
-                        <img id="bx_1970176138_211480_secondpict" src="~/images/1fde0d7f30b2cf6f9a52547049f4d22e.jpg" class="thumbnail" alt="Напиток My Aloe в ассортименте 500мл" style="display: none;">
-                        <div class="name">
-                            <a href="/catalog/skidki/napitok_my_aloe_v_assortimente_500ml.html" class="name"><span>Напиток My Aloe в ассортименте 500мл</span></a>
-                        </div>
-                        <div id="bx_1970176138_211480_price_block">
-                            <div class="price" id="bx_1970176138_211480_price">
-                                18.90 р.
-                            </div>
-                        </div>
-                        <div class="hover-show bx_catalog_item_controls">
-                            <div class="hover-buttons">
-                                <div class="float-right">
-                                    <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="21148">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0);" id="bx_1970176138_211480_compare_link" class="button transparent add2compare" title="Сравнить" data-product-id="21148">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-compare-hover" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="clearfix"></div>
-                                <a href="#" data-href="/catalog/skidki/napitok_my_aloe_v_assortimente_500ml.html?load=Y" id="bx_1970176138_211480_preview_link" class="button secondary tiny preview-button">Быстрый просмотр</a>
-                            </div>
-                            <div id="bx_1970176138_211480_price_hover_block">
-                            </div>
-                            <div class="row row-count-cart">
-                                <div class="small-6 column">
-                                    <div class="product-count">
-                                        <div class="input-group">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211480_quant_down" class="button decrement" type="button">-</button>
-                                            </div>
-                                            <input class="input-group-field" type="number" id="bx_1970176138_211480_quantity" name="quantity" value="1" min="1">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211480_quant_up" class="button increment" type="button">+</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="bx_1970176138_211480_basket_actions" class="small-6 columns">
-                                    <a id="bx_1970176138_211480_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_1970176138_211480_pict" data-product-id="21148"><span>В корзину</span></a>
-                                </div>
-                            </div>
-                            <div id="bx_1970176138_211480_basket_prop" style="display: none;">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Мы рекомендуем</td>
-                                            <td>
-                                                <label><input type="radio" name="prop[RECOMEND]" value="10">да</label><br>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item column text-center hover-elements" id="bx_1970176138_161320">
-                        <div class="img-wrap">
-                            <a href="/catalog/skidki/khlebtsy_baker_house_250gr.html">
-                                <img id="bx_1970176138_161320_pict" src="~/images/d40d15e49874a75c548392d29454eb21.jpg" data-src="/upload/resize_cache/iblock/d40/170_150_0/d40d15e49874a75c548392d29454eb21.jpg" class="thumbnail lazy" alt="Конфеты Ferrero Raffaello с цельн миндалем 100г">
-                            </a>
-                        </div>
-                        <img id="bx_1970176138_161320_secondpict" src="~/images/151ae178391bcabe15284dc782f2583a.jpg" class="thumbnail" alt="Конфеты Ferrero Raffaello с цельн миндалем 100г" style="display: none;">
-                        <div class="name">
-                            <a href="/catalog/skidki/khlebtsy_baker_house_250gr.html" class="name"><span>Конфеты Ferrero Raffaello с цельн миндалем 100г</span></a>
-                        </div>
-                        <div id="bx_1970176138_161320_price_block">
-                            <div class="price" id="bx_1970176138_161320_price">
-                                50.90 р.
-                            </div>
-                        </div>
-                        <div class="hover-show bx_catalog_item_controls">
-                            <div class="hover-buttons">
-                                <div class="float-right">
-                                    <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="16132">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0);" id="bx_1970176138_161320_compare_link" class="button transparent add2compare" title="Сравнить" data-product-id="16132">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-compare-hover" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="clearfix"></div>
-                                <a href="#" data-href="/catalog/skidki/khlebtsy_baker_house_250gr.html?load=Y" id="bx_1970176138_161320_preview_link" class="button secondary tiny preview-button">Быстрый просмотр</a>
-                            </div>
-                            <div id="bx_1970176138_161320_price_hover_block">
-                            </div>
-                            <div class="row row-count-cart">
-                                <div class="small-6 column">
-                                    <div class="product-count">
-                                        <div class="input-group">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_161320_quant_down" class="button decrement" type="button">-</button>
-                                            </div>
-                                            <input class="input-group-field" type="number" id="bx_1970176138_161320_quantity" name="quantity" value="1" min="1">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_161320_quant_up" class="button increment" type="button">+</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="bx_1970176138_161320_basket_actions" class="small-6 columns">
-                                    <a id="bx_1970176138_161320_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_1970176138_161320_pict" data-product-id="16132"><span>В корзину</span></a>
-                                </div>
-                            </div>
-                            <div id="bx_1970176138_161320_basket_prop" style="display: none;">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Мы рекомендуем</td>
-                                            <td>
-                                                <label><input type="radio" name="prop[RECOMEND]" value="10">да</label><br>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item column text-center hover-elements" id="bx_1970176138_211460">
-                        <div class="label-block text-left">
-                            <div><span class="label sale">Скидка</span></div>
-                        </div>
-                        <div class="img-wrap">
-                            <a href="/catalog/skidki/det_kasha_fruto_nyanya_200g_grechnevaya_4_m_u.html">
-                                <img id="bx_1970176138_211460_pict" src="~/images/f70b74e15610a86ad36fa28940cf21a7.jpg" data-src="/upload/resize_cache/iblock/f70/170_150_0/f70b74e15610a86ad36fa28940cf21a7.jpg" class="thumbnail lazy" alt="Дет/каша Фруто няня 200г гречневая 4+ м/у">
-                            </a>
-                        </div>
-                        <img id="bx_1970176138_211460_secondpict" src="~/images/e3269793cdc4949b046d53829c94081c.jpg" class="thumbnail" alt="Дет/каша Фруто няня 200г гречневая 4+ м/у" style="display: none;">
-                        <div class="name">
-                            <a href="/catalog/skidki/det_kasha_fruto_nyanya_200g_grechnevaya_4_m_u.html" class="name"><span>Дет/каша Фруто няня 200г гречневая 4+ м/у</span></a>
-                        </div>
-                        <div id="bx_1970176138_211460_price_block">
-                            <div class="price" id="bx_1970176138_211460_price">
-                                27.97 р.
-                            </div>
-                        </div>
-                        <div class="hover-show bx_catalog_item_controls">
-                            <div class="hover-buttons">
-                                <div class="float-right">
-                                    <a href="#" class="button transparent add2liked" title="В избранное" data-ajax="/nl_ajax/favorite.php" data-product-id="21146">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-liked-hover" />
-                                        </svg>
-                                    </a>
-                                    <a href="javascript:void(0);" id="bx_1970176138_211460_compare_link" class="button transparent add2compare" title="Сравнить" data-product-id="21146">
-                                        <svg class="icon">
-                                            <use xlink="http://www.w3.org/1999/xlink" href="#svg-icon-compare-hover" />
-                                        </svg>
-                                    </a>
-                                </div>
-                                <div class="clearfix"></div>
-                                <a href="#" data-href="/catalog/skidki/det_kasha_fruto_nyanya_200g_grechnevaya_4_m_u.html?load=Y" id="bx_1970176138_211460_preview_link" class="button secondary tiny preview-button">Быстрый просмотр</a>
-                            </div>
-                            <div id="bx_1970176138_211460_price_hover_block">
-                            </div>
-                            <div class="row row-count-cart">
-                                <div class="small-6 column">
-                                    <div class="product-count">
-                                        <div class="input-group">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211460_quant_down" class="button decrement" type="button">-</button>
-                                            </div>
-                                            <input class="input-group-field" type="number" id="bx_1970176138_211460_quantity" name="quantity" value="1" min="1">
-                                            <div class="input-group-button">
-                                                <button id="bx_1970176138_211460_quant_up" class="button increment" type="button">+</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="bx_1970176138_211460_basket_actions" class="small-6 columns">
-                                    <a id="bx_1970176138_211460_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_1970176138_211460_pict" data-product-id="21146"><span>В корзину</span></a>
-                                </div>
-                            </div>
-                            <div id="bx_1970176138_211460_basket_prop" style="display: none;">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Мы рекомендуем</td>
-                                            <td>
-                                                <label><input type="radio" name="prop[RECOMEND]" value="10">да</label><br>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    }
+
                 </div>
             </div>
 
@@ -1225,3 +621,33 @@
         </div>
     </div>
 </section>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    function decreaseCount(elem) {
+        elem.value = Number(elem.value) - 1;
+        if (Number(elem.value) < 1)
+            elem.value = 1;
+    }
+
+    function increaseCount(elem) {
+        elem.value = Number(elem.value) + 1;
+        if (Number(elem.value) < 1)
+            elem.value = 1;
+    }
+
+    function addToCart(productId, elem) {
+        var count = Number(elem.value);
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddToCart", "ShoppingCart")',
+            data: { productId: Number(productId), productCount: count },
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                getCartCount();
+                alert('Товар успешно добавлен в корзину!');
+            }
+        });
+    }
+</script>

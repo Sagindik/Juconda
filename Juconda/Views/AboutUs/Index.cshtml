@@ -3,17 +3,19 @@
         <nav>
             <ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
                 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a href="/" title="Джоконда" itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">Джоконда</span></a><meta itemprop="position" content="1"></li>
-                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">О компании</span></span><meta itemprop="position" content="2"></li>
+                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span itemprop="item" itemscope itemtype="http://schema.org/Thing"><span itemprop="name">О нас</span></span><meta itemprop="position" content="2"></li>
             </ul>
         </nav>
         <article class="inner-container">
-            <h1>О компании</h1>
+            <h1>О нас</h1>
             <nav class="inner-menu columns show-for-xlarge">
                 <ul class="menu vertical">
                     <li class="active"><a href="@Url.Action("Index", "AboutUs")">О Нас</a></li>
+                    <li><a href="@Url.Action("Index", "News")">Новости</a></li>
+                    <li><a href="@Url.Action("Index", "Contact")">Контакты</a></li>
                     <li><a href="@Url.Action("Index", "Document")">Документы</a></li>
-                    <li><a href="/documents/dogovor/">Договор оферты</a></li>
-                    <li><a href="/documents/confident/">Политика конфиденциальности</a></li>
+                    <li><a href="#">Договор оферты</a></li>
+                    <li><a href="@Url.Action("Index", "Privacy")">Политика конфиденциальности</a></li>
                 </ul>
             </nav>
             <div class="inner-content columns">

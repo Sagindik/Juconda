@@ -5,11 +5,11 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Juconda", "Juconda\Juconda.csproj", "{C915F93C-10FA-441C-B463-B1A46D9D70FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juconda.Infrastructure", "Juconda.Infrastructure\Juconda.Infrastructure.csproj", "{EB7755EE-5664-481E-88B5-880FA356AACA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Juconda.Infrastructure", "Juconda.Infrastructure\Juconda.Infrastructure.csproj", "{EB7755EE-5664-481E-88B5-880FA356AACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juconda.Core", "Juconda.Core\Juconda.Core.csproj", "{5C779F05-98AA-4DFE-9E9D-3E1E82486C87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Juconda.Core", "Juconda.Core\Juconda.Core.csproj", "{5C779F05-98AA-4DFE-9E9D-3E1E82486C87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juconda.Domain", "Juconda.Domain\Juconda.Domain.csproj", "{0B286DA0-AABA-4C36-BD4F-AD62B92FA412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Juconda.Domain", "Juconda.Domain\Juconda.Domain.csproj", "{0B286DA0-AABA-4C36-BD4F-AD62B92FA412}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

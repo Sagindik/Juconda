@@ -1,23 +1,26 @@
 using Juconda.Core.Mappings;
+using Juconda.Core.Services;
+using Juconda.Domain.Models.Users;
 using Juconda.Infrastructure;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMvc().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSession();
 
 var connection = builder.Configuration.GetConnectionString("Connection");
-builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingProxies().UseNpgsql(connection));
+
+builder.Services.AddScoped<InitializeService>();
+builder.Services.AddScoped<ShopService>();
 
 builder.Services.AddAutoMapper(c => c.AddProfile(new MappingProfile()));
 
 // добавление сервисов Idenity
-builder.Services.AddDefaultIdentity<IdentityUser>()
-.AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>();
-
-builder.Services.Configure<IdentityOptions>(options =>
+builder.Services.AddIdentity<User, Juconda.Domain.Models.Identity.IdentityRole>(options =>
 {
     options.Password.RequiredLength = 5;
     options.Password.RequireNonAlphanumeric = false;
@@ -34,7 +37,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(24);
     options.Lockout.MaxFailedAccessAttempts = 10;
     options.Lockout.AllowedForNewUsers = true;
-});
+})
+.AddEntityFrameworkStores<AppDbContext>();
 
 //builder.Services.ConfigureApplicationCookie(options =>
 //{
@@ -50,6 +54,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
+app.Services.CreateScope().ServiceProvider.GetRequiredService<InitializeService>();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -58,8 +65,14 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseSession();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "Cart",
+    pattern: "{controller=Cart}/{action=Index}/{id?}");
 
 app.Run();

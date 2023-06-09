@@ -1,0 +1,386 @@
+﻿@using Juconda.Core.Services;
+@using Juconda.ViewModels;
+@model List<BasketItemViewModel>;
+@inject ShopService ShopService
+
+<section class="cart">
+    <div class="inner-bg">
+        <div class="advanced-container-medium">
+            @* <nav class="show-for-large">
+            <ul class="breadcrumbs cart">
+            <li class="active"><div class="float-right"><span>1</span> Корзина</div></li>
+            <li><div class="float-right"><span>2</span> Контакты и доставка</div></li>
+            <li><div class="float-right"><span>3</span> Оплата</div></li>
+            </ul>
+            </nav>*@
+            <article id="cart-container" class="inner-container cart-container">
+
+                @if (Model.Any())
+                {
+                    <form method="post" name="basket_form" id="basket_form">
+                        <div id="basket_items">
+                            <div class="text-center">
+                                <div class="cart-caption">
+                                    <p>Корзина</p>
+                                    <a class="clear_basket" onclick="removeAllItems()">Очистить корзину</a>
+                                </div>
+                                <div class="cart-caption-desc product-price"><span class="cart-content-counter">@await ShopService.GetBasketItemsCount()</span> товаров на <span class="cart-amount-price" id="amount-price">@await ShopService.GetBasketTotalPrice()</span> р.</div>
+                            </div>
+
+                            @foreach (var basketItem in Model)
+                            {
+                                <div class="callout cart-product-item inline-block-container">
+                                    <div class="inline-block-item vertical-middle cart-product-item-preview">
+                                        <img src="@basketItem?.Product?.Image" alt="">
+                                    </div>
+                                    <div class="inline-block-item vertical-middle cart-product-item-info">
+                                        <div class="inline-block-container">
+                                            <div class="inline-block-item vertical-middle cart-product-item-desc">
+                                                <a href="/catalog/spetspredlozheniya/pomidory_1kg_.html" class="cart-product-item-name">
+                                                    @basketItem?.Product?.Name @basketItem?.Product?.Count кг
+                                                </a>
+                                                <a href="#" class="button transparent add2liked">
+                                                    <svg class="icon">
+                                                        <use xlink:href="#svg-icon-liked"></use>
+                                                    </svg>
+                                                    <span>В избранное</span>
+                                                </a>
+                                            </div>
+                                            <div class="inline-block-item vertical-middle cart-product-item-price medium-up-2 large-up-3">
+                                                <div class="column">
+                                                    <div class="product-count">
+                                                        <div class="product-info-caption">Количество</div>
+                                                        <div class="input-group">
+                                                            <div class="input-group-button">
+                                                                <button class="button decrement" type="button" onclick="decreaseCount(@basketItem?.Id, @basketItem?.Product?.Price)">-</button>
+                                                            </div>
+                                                            <input class="input-group-field" type="number" name="count_@basketItem?.Id" id="count_@basketItem?.Id" min="1" value="@await ShopService.GetBasketProductCount(basketItem?.Product?.Id)">
+                                                            <div class="input-group-button">
+                                                                <button class="button increment" onclick="increaseCount(@basketItem?.Id, @basketItem?.Product?.Price)" type="button">+</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="column float-right">
+                                                    <div class="product-price">
+                                                        <div class="product-info-caption">Итого:</div>
+                                                        <div class="main"><span id="total_price_@basketItem?.Id">@(basketItem?.Product?.Price * @basketItem?.Product?.Count)</span> р.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="column show-for-large">
+                                                    <div class="product-price">
+                                                        <div class="product-info-caption">Цена за штуку</div>
+                                                        <div class="main" id="current_price_27268">@basketItem?.Product?.Price р.</div>
+                                                        @*<div class="old" id="old_price_27268" data-old-price="0"></div>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="close-button" type="button" onclick="removeItem(@basketItem?.Id, this)">
+                                        <span aria-hidden="true">+</span>
+                                    </button>
+                                </div>
+                            }
+
+                            <div class="cart-product-footer row large-up-2">
+                                <div class="column" id="coupons_block">
+                                    <div class="inline-block-container cart-product-footer-promo bx_ordercart_coupon ">
+                                        <input type="text" id="coupon" name="COUPON" value="" data-coupon="" placeholder="Промо-код" class="inline-block-item">
+                                        <button type="submit" class="button small secondary inline-block-item" onclick="enterCoupon(); return false;">Применить</button>
+                                    </div>
+                                </div>
+                                <div class="column cart-product-footer-amount price">
+                                    Итого:
+                                    <span class="cart-amount-price" id="amount-price">@await ShopService.GetBasketTotalPrice()</span> <span>р.</span>
+                                    Без учета стоимости доставки / (минимальная сумма заказа: 250 рублей)
+                                </div>
+                            </div>
+                            @*<div class="cart-footer">
+                        <a class="button">Оформить заказ</a>
+                        <a href="#buy-to-click" class="button secondary go2buy">Купить в 1 клик</a>
+                        <div class="clearfix"></div>
+                        </div>*@
+                        </div>
+                        <input type="hidden" name="BasketOrder" value="BasketOrder" />
+
+
+                        <div class="row order-info">
+                            <div id="fn-ajax_deliveries" class="col-lg-7 m-b-2">
+                                <div class="bg-info-old border-a-1-info p-a-1 m-b-2 block-delivery">
+                                    <div class="h5 i-delivery m-b-1"><span class="text-title">Способ доставки</span></div>
+                                    <div class="m-l-2">
+                                        <label class="font-weight-bold active">
+                                            <input onclick="change_payment_method(2)" type="radio" name="delivery_id" value="2" checked="" id="deliveries_2">
+                                            <img src="https://edapmr.com/files/deliveries_resized/i-trolley-50.50x50.png">
+                                            Самовывоз
+                                            <span>(бесплатно)</span>
+                                        </label>
+                                        <div class="m-l-2 delivery-description">
+                                            @*<p>Адрес получения: г.Тирасполь, ул. К. Либкнехта 1/2, СК «Шериф», буфет <strong>«Вкусномир»</strong>, вход со стороны «Медин».</p>*@
+                                            <p><em>Если вам нужна доставка - выбирайте соответствующий пункт.</em></p>
+                                        </div>
+                                    </div>
+                                    <div class="m-l-2">
+                                        <label class="font-weight-bold">
+                                            <input onclick="change_payment_method(1)" type="radio" name="delivery_id" value="1" id="deliveries_1">
+                                            <img src="https://edapmr.com/files/deliveries_resized/i-delivery-50.50x50.png">
+                                            Курьерская по г. Тирасполь
+                                            (70&nbsp;руб.)
+                                        </label>
+                                        <div class="m-l-2 delivery-description">
+                                            <p>Служба доставки ваших заказов работает с 9:00 до 19:00, включая выходые дни. Стоимость доставки <strong>70 руб. ПМР</strong> в Тирасполь.</p>
+                                            <p><em>Иные адреса (Бендеры и близлежащие села к г.Тирасполь) выбирайте другую доставку.<br></em></p>
+                                        </div>
+                                    </div>
+                                    <div class="m-l-2">
+                                        <label class="font-weight-bold">
+                                            <input onclick="change_payment_method(4)" type="radio" name="delivery_id" value="4" id="deliveries_4">
+                                            <img src="https://edapmr.com/files/deliveries_resized/i-delivery.50x50.png">
+                                            Близлежащие села к Тирасполю и Бендеры
+                                            (85&nbsp;руб.)
+                                        </label>
+                                        <div class="m-l-2 delivery-description">
+                                            <p>Служба доставки ваших заказов работает с 9:00 до 19:00, включая выходые дни. Стоимость доставки <strong>85 руб. ПМР</strong> в близлежащие села к г.Тирасполь и Бендеры.</p>
+                                            <p><em>Иные адреса (г.Тирасполь) выбирайте другую доставку.</em></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-info-old fn-delivery_payment border-a-1-info p-a-1 block-delivery" id="fn-delivery_payment_2">
+                                    <div class="h5 i-payment m-b-1"><span class="text-title">Способ оплаты</span></div>
+                                    <div class="m-l-2">
+                                        <label class="font-weight-bold">
+                                            <input type="radio" name="payment_method_id" value="14" checked="" id="payment_2_14">
+                                            <img src="https://edapmr.com/files/payments_resized/i-wallet-50.50x50.png">
+                                            Наличными , к оплате 145&nbsp;руб.
+                                        </label>
+                                        <div class="m-l-2 payment-description">
+                                            <p><span style="color: #011a3b; font-family: 'Open Sans', sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none;">Оплата наличными в рублях ПМР, при получении заказа.</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="m-l-2">
+                                        <label class="font-weight-bold">
+                                            <input type="radio" name="payment_method_id" value="17" id="payment_2_17">
+                                            <img src="https://edapmr.com/files/payments_resized/raduga5.50x50.png">
+                                            Карта «Клевер» , к оплате 145&nbsp;руб.
+                                        </label>
+                                        <div class="m-l-2 payment-description">
+                                            <p><span style="color: #011a3b; font-family: 'Open Sans', sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none;">Оплата в рублях ПМР через карту «Клевер» , при получении заказа (в рабочие часы при самовывозе).</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="m-l-2">
+                                        <label class="font-weight-bold active">
+                                            <input type="radio" name="payment_method_id" value="10" id="payment_2_10">
+                                            <img src="https://edapmr.com/files/payments_resized/mobile-apb5.50x50.png">
+                                            «Мобильный платеж» АПБ , к оплате 145&nbsp;руб.
+                                        </label>
+                                        <div class="m-l-2 payment-description">
+                                            <p><span style="color: #011a3b; font-family: 'Open Sans', sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none;">Оплата в рублях ПМР через «Мобильный платеж» Агропромбанка, при получении заказа (в рабочие часы при самовывозе).</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5 m-b-2 block-contact">
+                                <div class="bg-info p-a-1">
+                                    <div class="h1 m-b-1 text-xs-center text-title">Контактные данные</div>
+
+                                    <div class="form-group">
+                                        <input class="form-control contact-input" name="name" type="text" data-format=".+" data-notice="Введите имя" placeholder="Имя, Фамилия*">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input class="form-control contact-input" name="phone" type="text" data-format=".+" data-notice="<strong>Ошибка!</strong> Номер телефона некорректен" placeholder="Номер телефона, 0 777 12345*">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input class="form-control contact-input" name="email" type="text" placeholder="E-mail, для уведомлений">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input class="form-control contact-input" name="address" type="text" placeholder="Адрес доставки заказа: город, улица, дом">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <textarea class="form-control contact-input" name="comment" data-format=".+" data-notice="Введите дату и время получения заказа или комментарий" data-language="182" placeholder="Дата, время выдачи (получения) заказа и ваши комментарии*"></textarea>
+                                    </div>
+
+                                    <div class="form-group m-b-1 w3-panel w3-note">
+                                        Перед оформлением заказа, <strong>проверьте</strong> выбранные вами способы доставки и оплаты.
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="cart-footer">
+                                            <a href="#" type="button" class="button">Оформить заказ</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                }
+
+            </article>
+        </div>
+    </div>
+</section>
+
+<template id="empty_basket_template">
+    <div id="empty_basket">
+        <div class="text-center">
+            <div class="cart-caption">Корзина</div>
+        </div>
+        <div class="cart-content cart-empty text-center inline-block-container">
+            <div class="cart-empty-icon inline-block-item vertical-middle">
+                <svg class="icon">
+                    <use xlink:href="#svg-icon-cart" />
+                </svg>
+            </div>
+            <div class="inline-block-item vertical-middle">Ваша корзина пуста</div>
+        </div>
+    </div>
+</template>
+
+<style>
+    #fn-ajax_deliveries {
+        float: left;
+        width: 58.33333%;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .block-delivery {
+        margin: 0 0 1rem;
+        padding: 1.875rem;
+        border: 0.0625rem solid #e1e1e1;
+        background-color: #fff !important;
+        border-radius: 4px;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .block-contact {
+        padding: 1.875rem;
+        border: 0.0625rem solid #e1e1e1;
+        background-color: #fff !important;
+        border-radius: 4px;
+        margin-bottom: 1.5rem !important;
+        width: 37.66667%;
+        float: right;
+    }
+
+    .order-info {
+        margin-top: 40px;
+    }
+
+    .contact-input {
+        line-height: 1.125rem;
+        border: 0.0625rem solid #d0d0d0;
+        color: #333;
+    }
+
+        .contact-input:focus {
+            line-height: 1.125rem;
+            border: 0.0625rem solid #d0d0d0;
+            color: #333;
+        }
+
+    .text-title {
+        font-size: .875rem;
+        font-weight: 700;
+        color: #000;
+        line-height: 1.375rem;
+        margin-bottom: 1.25rem;
+    }
+</style>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+
+    if (@Model.Count() == 0) {
+        setEmptyCart();
+    }
+
+    function removeItem(basketItemId, elem) {
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("RemoveFromCart", "ShoppingCart")',
+            data: { basketItemId: Number(basketItemId) },
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                elem.closest('.cart-product-item').remove();
+
+                const cartItems = document.querySelectorAll('.cart-product-item');
+                if (cartItems.length == 0) {
+                    setEmptyCart();
+                }
+                else {
+                    getCartCount();
+                    getCartTotalPrice();
+                }
+            }
+        });
+    }
+
+    function removeAllItems() {
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("RemoveAllBasketItems", "ShoppingCart")',
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                setEmptyCart();
+            }
+        });
+    }
+
+    function setEmptyCart() {
+        $('#cart-container').empty();
+        $('#cart-container').append(document.getElementById('empty_basket_template').innerHTML)
+    }
+
+    function getCartTotalPrice() {
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetBasketTotalPrice", "ShoppingCart")',
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                document.querySelectorAll('.cart-amount-price').forEach(_ => _.innerHTML = data);
+            }
+        });
+    }
+
+    function changeCountOfProduct(countOfProduct, basketItemId) {
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ChangeCountOfProduct", "ShoppingCart")',
+            data: { count: Number(countOfProduct), basketItemId: Number(basketItemId) },
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                getCartTotalPrice();
+            }
+        });
+    }
+
+    function decreaseCount(basketItemId, productPrice) {
+        let elem = document.getElementById('count_' + basketItemId);
+        elem.value = Number(elem.value) - 1;
+        if (Number(elem.value) < 1)
+            elem.value = 1;
+
+        document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
+        changeCountOfProduct(elem.value, basketItemId);
+    }
+
+    function increaseCount(basketItemId, productPrice) {
+        let elem = document.getElementById('count_' + basketItemId);
+        elem.value = Number(elem.value) + 1;
+        if (Number(elem.value) < 1)
+            elem.value = 1;
+
+        document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
+        changeCountOfProduct(elem.value, basketItemId);
+    }
+</script>

@@ -6,4 +6,9 @@ public class BaseEntity
     /// Id
     /// </summary>
     public int Id { get; set; }
+
+    public bool Actual { get; set; } = true;
+
+    public DateTimeOffset? CreateDate { get; set; }
+    public DateTimeOffset? UpdateDate { get; set; }
 }

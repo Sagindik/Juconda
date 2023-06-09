@@ -1,4 +1,7 @@
-﻿using Juconda.Models;
+﻿using AutoMapper;
+using Juconda.Infrastructure;
+using Juconda.Models;
+using Juconda.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,13 +9,22 @@ namespace Juconda.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private AppDbContext _context;
+        private IMapper _mapper;
+
+        public HomeController(AppDbContext context, IMapper mapper)
         {
+            _context = context;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var bestProducts = _context.Products.Where(_ => _.Actual && _.IsBestseller).ToList();
+
+            var models = _mapper.Map<List<ProductViewModel>>(bestProducts);
+
+            return View(models);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

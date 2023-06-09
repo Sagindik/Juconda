@@ -19,6 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -35,6 +36,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Juconda.Core\Juconda.Core.csproj" />
+    <ProjectReference Include="..\Juconda.Domain\Juconda.Domain.csproj" />
     <ProjectReference Include="..\Juconda.Infrastructure\Juconda.Infrastructure.csproj" />
   </ItemGroup>
 

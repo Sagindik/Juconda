@@ -8,6 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="7.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Juconda.Domain\Juconda.Domain.csproj" />
+    <ProjectReference Include="..\Juconda.Infrastructure\Juconda.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
