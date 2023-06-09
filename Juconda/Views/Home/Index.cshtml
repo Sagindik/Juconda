@@ -34,13 +34,13 @@
             </div>
         </div>
     </div>
-    
+
     <br>
 
-    <div id="bxdynamic_jmonnO_end" style="display:none"></div>                       
-    
+    <div id="bxdynamic_jmonnO_end" style="display:none"></div>
+
     <br>
-    
+
     @*<h1 align="center">Успей купить</h1>*@
     <h1 align="center">Наши Спецпредложения</h1>
 
@@ -49,7 +49,7 @@
             <div class="h2"></div>
             <div class="owl-carousel product-carousel product-grid">
                 <div class="item column text-center hover-elements" id="bx_3966226736_161180">
-                    
+
                     <div class="img-wrap">
                         <a href="/catalog/spetspredlozheniya/banan_1kg.html">
                             <img id="bx_3966226736_161180_pict" src="~/images/ebfe9403339a74e8d0b37bcc3bdbfca6.jpeg" data-src="/upload/resize_cache/iblock/ebf/170_150_0/ebfe9403339a74e8d0b37bcc3bdbfca6.jpeg" class="thumbnail lazy" alt="Банан 1кг">
@@ -57,7 +57,7 @@
                     </div>
 
                     <img id="bx_3966226736_161180_secondpict" src="~/images/3a6f7773bcf7de237a3863264f6717f6.jpeg" class="thumbnail" alt="Банан 1кг" style="display: none;">
-                    
+
                     <div class="name">
                         <a href="/catalog/spetspredlozheniya/banan_1kg.html" class="name"><span>Банан 1кг</span></a>
                     </div>
@@ -440,7 +440,7 @@
                                 </div>
                             </div>
                             <div id="bx_3966226736_211490_basket_actions" class="small-6 columns">
-                                <a id="bx_3966226736_211490_buy_link" href="javascript:;" class="button tiny add2cart" data-preview="#bx_3966226736_211490_pict" data-product-id="21149"><span>В корзину</span></a>
+                                <a id="bx_3966226736_211490_buy_link" class="button tiny add2cart" data-preview="#bx_3966226736_211490_pict" data-product-id="21149"><span>В корзину</span></a>
                             </div>
                         </div>
 
@@ -457,16 +457,16 @@
             <div class="container row">
                 <div class="h2"></div>
                 <div class="owl-carousel product-carousel product-grid">
-                    @foreach(var product in Model)
+                    @foreach (var product in Model)
                     {
                         <div class="item column text-center hover-elements">
                             <div class="img-wrap">
-                                <a href="/catalog/skidki/kofe_neskafe_classic_47_5gr.html">
+                                <a href="@Url.Action("Details", "Products", new { productId = product.Id })">
                                     <img src="@product.Image" class="thumbnail lazy">
                                 </a>
                             </div>
                             <div class="name">
-                                <a href="/catalog/skidki/kofe_neskafe_classic_47_5gr.html" class="name"><span>@product.Name</span></a>
+                                <a href="@Url.Action("Details", "Products", new { productId = product.Id })" class="name"><span>@product.Name</span></a>
                             </div>
                             <div>
                                 <div class="price">
