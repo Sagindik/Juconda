@@ -1,0 +1,237 @@
+﻿ .SmartCaptcha-Overlay {
+    position: fixed;
+    z-index: 9999999;
+    top: -10000px;
+    left: -10000px;
+    width: 100%;
+    width: var(--smart-captcha-doc-width, 100%);
+    height: 100%;
+    height: var(--smart-captcha-doc-height, 100%);
+    margin: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.SmartCaptcha-Overlay.SmartCaptcha-Overlay_visible {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.SmartCaptcha-Overlay .SmartCaptcha-Spin {
+    position: absolute;
+    top: 50%;
+    /* stylelint-disable */
+    left: 0;
+    right: 0;
+    /* stylelint-enable */
+
+    margin: auto;
+    transform: translateY(-50%);
+}
+
+  .SmartCaptcha-Spin {
+    display: none;
+    visibility: hidden;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+}
+
+/* Для правильного позиционирования блока относительно baseline */
+.Spin::after {
+    visibility: hidden;
+    content: '\00A0'; /* &nbsp; */
+}
+
+/*
+(1) https://st.yandex-team.ru/ISL-6342
+    Добавлена задержка начала анимации, что заставляет её нормально работать в iOS 12-
+    Решение взято отсюда:
+    https://stackoverflow.com/questions/29219534/css-animation-not-always-starting-in-ios-8-safari
+*/
+.SmartCaptcha-Overlay_visible.SmartCaptcha-Overlay_show_spinner .SmartCaptcha-Spin {
+    display: inline-block;
+    visibility: visible;
+    width: 50px;
+    height: 50px;
+    border-top-color: #5282FF;
+    border-left-color: #5282FF;
+    animation: islands-spin 1s .21s infinite linear; /* (1) */
+
+    backface-visibility: hidden; /* Для ускорения анимации */
+}
+
+.SmartCaptcha-Overlay_visible.SmartCaptcha-Overlay_show_spinner .SmartCaptcha-Spin {
+    border-top-color: var(--spin-view-default-border-color, #5282FF);
+    border-left-color: var(--spin-view-default-border-color, #5282FF);
+}
+
+@keyframes islands-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+ @font-face {
+    font-family: 'YS Text';
+    src: url(//yastatic.net/s3/home/fonts/ys/1/text-light.woff2) format('woff2'),url(//yastatic.net/s3/home/fonts/ys/1/text-light.woff) format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal
+}
+
+@font-face {
+    font-family: 'YS Text';
+    src: url(//yastatic.net/s3/home/fonts/ys/1/text-regular.woff2) format('woff2'),url(//yastatic.net/s3/home/fonts/ys/1/text-regular.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal
+}
+
+@font-face {
+    font-family: 'YS Text';
+    src: url(//yastatic.net/s3/home/fonts/ys/1/text-medium.woff2) format('woff2'),url(//yastatic.net/s3/home/fonts/ys/1/text-medium.woff) format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal
+}
+
+@font-face {
+    font-family: 'YS Text';
+    src: url(//yastatic.net/s3/home/fonts/ys/1/text-bold.woff2) format('woff2'),url(//yastatic.net/s3/home/fonts/ys/1/text-bold.woff) format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal
+}
+
+.font_loaded body {
+    font-family: 'YS Text','Helvetica Neue',Arial,sans-serif;
+    -webkit-font-feature-settings: 'liga','kern';
+    -moz-font-feature-settings: 'liga','kern';
+    font-feature-settings: 'liga','kern'
+}
+
+  .SmartCaptcha-Shield {
+    position: fixed;
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    width: 120px;
+    padding: 6px;
+    user-select: none;
+    color: #000;
+    border: 1px solid #d9d9d9;
+    border-radius: 11px;
+    background: #ffffffb2;
+    transition-timing-function: ease-in;
+    transition-duration: 0.5s;
+    transition-property: transform;
+}
+
+.SmartCaptcha-Shield {
+    color: var(--color-typo-primary, #000);
+    color: var(--color-typo-primary, #000);
+}
+
+.SmartCaptcha-Shield-Anchor {
+    display: flex;
+    align-items: center;
+}
+
+.SmartCaptcha-Shield_position_left .SmartCaptcha-Shield-Anchor {
+    margin-left: 10px;
+}
+
+.SmartCaptcha-Shield:not(.SmartCaptcha-Shield_visible) {
+    cursor: pointer;
+}
+
+.SmartCaptcha-Shield > :focus-visible {
+    position: relative;
+    outline: none;
+}
+
+    .SmartCaptcha-Shield > :focus-visible::after {
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        content: '';
+        border: 2px solid rgb(250, 192, 0);
+        border-radius: 4px;
+    }
+
+.SmartCaptcha-Shield-PrivacyLink {
+    width: 63px;
+    font-family: 'YS Text';
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 11px;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgba(38, 38, 38, 0.8);
+}
+
+.SmartCaptcha-Shield_position_right .SmartCaptcha-Shield-PrivacyLink {
+    margin: 0 10px;
+}
+
+.SmartCaptcha-Shield .SmartCaptcha-Shield-CloseButton {
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.SmartCaptcha-Shield_position_left .SmartCaptcha-Shield-CloseButton {
+    margin-right: 9px;
+}
+
+.SmartCaptcha-Shield.SmartCaptcha-Shield_position_top {
+    top: 25%;
+}
+
+.SmartCaptcha-Shield.SmartCaptcha-Shield_position_center {
+    top: 50%;
+}
+
+.SmartCaptcha-Shield.SmartCaptcha-Shield_position_bottom {
+    bottom: 25%;
+}
+
+.SmartCaptcha-Shield.SmartCaptcha-Shield_position_left {
+    left: -100px;
+    flex-direction: row-reverse;
+}
+
+.SmartCaptcha-Shield.SmartCaptcha-Shield_position_right {
+    right: -100px;
+    flex-direction: row;
+}
+
+.SmartCaptcha-Shield.SmartCaptcha-Shield_visible.SmartCaptcha-Shield_position_left {
+    transform: translateX(90px);
+}
+
+.SmartCaptcha-Shield.SmartCaptcha-Shield_visible.SmartCaptcha-Shield_position_right {
+    transform: translateX(-90px);
+}
+
+  .smart-captcha {
+    min-width: 300px;
+    height: 102px;
+}
+
+.smart-captcha_invisible {
+    height: 0;
+}
+
+

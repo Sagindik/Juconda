@@ -186,28 +186,28 @@
                         <div class="inline-block-item" id="title-search">
                             <div class="custom-flex">
                                 @*<button class="btn-test">
-                                    Каталог
+                                Каталог
                                 </button>*@
 
                                 <div class="btn-test">
                                     @*<button type="button">
-                                        <svg class="svg-icon"
-                                             role="img"
-                                             height="10"
-                                             width="10"
-                                             viewBox="0 0 10 10"
-                                             aria-hidden="true"
-                                             focusable="false">
-                                            <path d="M10-10-H-90-V-90-H-10Z" />
-                                        </svg>
-                                        Каталог
+                                    <svg class="svg-icon"
+                                    role="img"
+                                    height="10"
+                                    width="10"
+                                    viewBox="0 0 10 10"
+                                    aria-hidden="true"
+                                    focusable="false">
+                                    <path d="M10-10-H-90-V-90-H-10Z" />
+                                    </svg>
+                                    Каталог
                                     </button>*@
 
                                     @*<div class="m-catalog-button__inner">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="m-icon m-icon-icons m-icon--catalog" style="width:20px;height:20px;">
-                                            <use xlink:href="/images/icon-catalog.svg" />
-                                        </svg>
-                                        <span class="m-catalog-button__inner-label" >Каталог</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="m-icon m-icon-icons m-icon--catalog" style="width:20px;height:20px;">
+                                    <use xlink:href="/images/icon-catalog.svg" />
+                                    </svg>
+                                    <span class="m-catalog-button__inner-label" >Каталог</span>
                                     </div>*@
 
                                     <div class="inline-block-item relative">
@@ -220,10 +220,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>    
-                                
-
-                                
+                                </div>
 
                                 <form action="/catalog/search/" method="get" class="search-from search-from-header relative">
                                     <button type="submit">
@@ -235,113 +232,109 @@
                                     <div class="dropdown-pane dropdown-custom" id="search-dropdown"></div>
                                 </form>
                             </div>
-
                         </div>
 
-
-                    <div class="header-phone inline-block-item">
-                        <div class="inline-block-container">
-                            <svg class="icon">
-                                <use href="#svg-icon-phone" />
-                            </svg>
-                            <div class="inline-block-item">
-                                <div class="header-phone-number"><a href="tel:+373 (777) 540-92">777-540-92</a></div>
-                                <div class="header-phone-link"><a href="#request-callback" class="fancybox">Заказать обратный звонок</a></div>
+                        <div class="header-phone inline-block-item">
+                            <div class="inline-block-container">
+                                <svg class="icon">
+                                    <use href="#svg-icon-phone" />
+                                </svg>
+                                <div class="inline-block-item">
+                                    <div class="header-phone-number"><a href="tel:+373 (777) 540-92">777-540-92</a></div>
+                                    <div class="header-phone-link"><a href="#request-callback" class="fancybox">Заказать обратный звонок</a></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="header-cart header-block-info inline-block-item">
-                        <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container" id="bx_cart_block">
-                            <svg class="icon vertical-middle">
-                                <use href="#svg-icon-cart" />
-                            </svg>
-                            <span class="inline-block-item vertical-middle">
-                                <span class="header-block-info-link">Корзина</span>
-                                <span class="header-block-info-desc price-block"><span class="cart-content-counter">@await ShopService.GetBasketItemsCount()</span> товаров в корзине</span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <ul class="header-fixed-block">
-                    <li class="header-cart header-block-info header-fixed-item">
-                        <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container vertical-middle" id="bx_cart_block_mini">
-                            <span class="inline-block-item relative">
-                                <svg class="icon">
+                        <div class="header-cart header-block-info inline-block-item">
+                            <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container" id="bx_cart_block">
+                                <svg class="icon vertical-middle">
                                     <use href="#svg-icon-cart" />
                                 </svg>
-                                <span class="header-block-info-counter inline-block-item" title="0 позиций"></span>
-                            </span>
-                            <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
-                                <span class="header-block-info-link">Корзина</span>
-                                <span class="header-block-info-desc price-block"><span class="cart-content-counter">@await ShopService.GetBasketItemsCount()</span> товаров в корзине</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="header-liked header-block-info header-fixed-item">
-                        <div class="inline-block-item relative" id="bx_favorite_count_mini">
-                            <a href="javascript:;" class="inline-block-container fancybox">
-                                <span class="inline-block-item relative">
-                                    <svg class="icon">
-                                        <use href="#svg-icon-liked" />
-                                    </svg>
-                                    <span class="header-block-info-counter inline-block-item" title="0 товаров"></span>
-                                </span>
-                                <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
-                                    <span class="header-block-info-link">Избранное</span>
-                                    <span class="header-block-info-desc" title="0 товаров в избранном">0 товаров в избранном</span>
+                                <span class="inline-block-item vertical-middle">
+                                    <span class="header-block-info-link">Корзина</span>
+                                    <span class="header-block-info-desc price-block"><span class="cart-content-counter">@await ShopService.GetBasketItemsCount()</span> товаров в корзине</span>
                                 </span>
                             </a>
                         </div>
-                    </li>
-                    <li class="header-compare header-block-info header-fixed-item">
-                        <div id="comp_7a7289180f14bd5444af47f68533e92a">
-                            <a href="/catalog/compare/" id="bx_compare_count_mini" class="inline-block-container">
-                                <span class="inline-block-item relative">
-                                    <svg class="icon">
-                                        <use href="#svg-icon-compare" />
-                                    </svg>
-                                    <span class="header-block-info-counter inline-block-item" title="0 товаров"></span>
-                                </span>
-                                <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
-                                    <span class="header-block-info-link">Сравнение</span>
-                                    <span class="header-block-info-desc" title="0 товаров в сравнении">0 товаров в сравнении</span>
-                                </span>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <nav class="header-main-menu header-menu-fixed hide-for-small-only hide-for-medium-only hide-for-large-only">
-                <div class="container row">
-                    <div class="header-main-menu-block float-left">
-                        <ul class="header-main-menu-base menu dropdown float-left" data-dropdown-menu>
-                            <li class="header-main-menu-category"><a href="/catalog/skidki/">Скидки</a></li>
-                            <li class="header-main-menu-category"><a href="/catalog/spetspredlozheniya/">Спецпредложения</a></li>
-                        </ul>
                     </div>
-                    <ul class="header-main-menu-other menu float-right hide">
-                        <li class="header-main-menu-category">
-                            <a href="#" data-toggle="header-main-menu-full">
-                                <svg class="icon">
-                                    <use href="#svg-icon-menu-more" />
-                                </svg>
+                    <ul class="header-fixed-block">
+                        <li class="header-cart header-block-info header-fixed-item">
+                            <a href="@Url.Action("Index", "ShoppingCart")" class="inline-block-container vertical-middle" id="bx_cart_block_mini">
+                                <span class="inline-block-item relative">
+                                    <svg class="icon">
+                                        <use href="#svg-icon-cart" />
+                                    </svg>
+                                    <span class="header-block-info-counter inline-block-item" title="0 позиций"></span>
+                                </span>
+                                <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
+                                    <span class="header-block-info-link">Корзина</span>
+                                    <span class="header-block-info-desc price-block"><span class="cart-content-counter">@await ShopService.GetBasketItemsCount()</span> товаров в корзине</span>
+                                </span>
                             </a>
-                            <div id="header-main-menu-full" class="dropdown-pane header-main-menu-dropdow-full" data-dropdown data-hover="true" data-hover-pane="true" data-v-offset="0">
-                                <span class="header-main-menu-dropdown-arrow"><span class="inner"></span></span>
-                                <ul class="container"></ul>
+                        </li>
+                        <li class="header-liked header-block-info header-fixed-item">
+                            <div class="inline-block-item relative" id="bx_favorite_count_mini">
+                                <a href="javascript:;" class="inline-block-container fancybox">
+                                    <span class="inline-block-item relative">
+                                        <svg class="icon">
+                                            <use href="#svg-icon-liked" />
+                                        </svg>
+                                        <span class="header-block-info-counter inline-block-item" title="0 товаров"></span>
+                                    </span>
+                                    <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
+                                        <span class="header-block-info-link">Избранное</span>
+                                        <span class="header-block-info-desc" title="0 товаров в избранном">0 товаров в избранном</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="header-compare header-block-info header-fixed-item">
+                            <div id="comp_7a7289180f14bd5444af47f68533e92a">
+                                <a href="/catalog/compare/" id="bx_compare_count_mini" class="inline-block-container">
+                                    <span class="inline-block-item relative">
+                                        <svg class="icon">
+                                            <use href="#svg-icon-compare" />
+                                        </svg>
+                                        <span class="header-block-info-counter inline-block-item" title="0 товаров"></span>
+                                    </span>
+                                    <span class="inline-block-item hide-for-small-only hide-for-medium-only hide-for-large-only">
+                                        <span class="header-block-info-link">Сравнение</span>
+                                        <span class="header-block-info-desc" title="0 товаров в сравнении">0 товаров в сравнении</span>
+                                    </span>
+                                </a>
                             </div>
                         </li>
                     </ul>
                 </div>
-            </nav>
-        </header>
-    </div>
-
+                <nav class="header-main-menu header-menu-fixed hide-for-small-only hide-for-medium-only hide-for-large-only">
+                    <div class="container row">
+                        <div class="header-main-menu-block float-left">
+                            <ul class="header-main-menu-base menu dropdown float-left" data-dropdown-menu>
+                                <li class="header-main-menu-category"><a href="/catalog/skidki/">Скидки</a></li>
+                                <li class="header-main-menu-category"><a href="/catalog/spetspredlozheniya/">Спецпредложения</a></li>
+                            </ul>
+                        </div>
+                        <ul class="header-main-menu-other menu float-right hide">
+                            <li class="header-main-menu-category">
+                                <a href="#" data-toggle="header-main-menu-full">
+                                    <svg class="icon">
+                                        <use href="#svg-icon-menu-more" />
+                                    </svg>
+                                </a>
+                                <div id="header-main-menu-full" class="dropdown-pane header-main-menu-dropdow-full" data-dropdown data-hover="true" data-hover-pane="true" data-v-offset="0">
+                                    <span class="header-main-menu-dropdown-arrow"><span class="inner"></span></span>
+                                    <ul class="container"></ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+        </div>
 
         <div class="test-b">
             @RenderBody()
         </div>
-
 
         <footer class="test-2">
             <div class="footer-main">
@@ -410,14 +403,6 @@
 
     <script src="~/js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="~/js/template_f8e63fff48629476330f3adc295f9bbe_v1.js"></script>
-    <!-- Latest compiled and minified CSS -->
-@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
-
-<!-- jQuery library -->
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
     <script>
         function getCartCount() {
             $('#loader').fadeIn(250);
