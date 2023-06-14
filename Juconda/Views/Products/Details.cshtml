@@ -390,7 +390,7 @@
                                                 </div> <!---->
                                             </div>
                                             <div>
-                                                <button data-test-id="product-buy-btn" class="m-button m-button-type--large m-button-color--black">
+                                                <button onclick="addToCart(@Model.Id)" data-test-id="product-buy-btn" class="m-button m-button-type--large m-button-color--black">
                                                     <div class="m-button__inner">
                                                         <span class="m-button__label">Добавить в корзину</span>
                                                     </div>  <!---->
@@ -442,16 +442,12 @@
 
     <script src="~/js/captcha.js.Без названия" defer=""></script>
 
-
-
     <script type="text/javascript" id="">var _tmr = window._tmr || (window._tmr = []); _tmr.push({ id: "3258251", type: "pageView", start: (new Date).getTime(), pid: "USER_ID" }); (function (c, e, a) { if (!c.getElementById(a)) { var b = c.createElement("script"); b.type = "text/javascript"; b.async = !0; b.id = a; b.src = "https://top-fwz1.mail.ru/js/code.js"; a = function () { var d = c.getElementsByTagName("script")[0]; d.parentNode.insertBefore(b, d) }; "[object Opera]" == e.opera ? c.addEventListener("DOMContentLoaded", a, !1) : a() } })(document, window, "topmailru-code");</script>
     <noscript>
         <div>
             <img src="https://top-fwz1.mail.ru/counter?id=3258251;js=na" style="border:0;position:absolute;left:-9999px;" alt="Top.Mail.Ru">
         </div>
     </noscript>
-
-
 
     <script type="text/javascript" id="">var _tmr = _tmr || []; _tmr.push({ type: "itemView", productid: "VALUE", pagetype: "VALUE", list: "VALUE", totalvalue: "VALUE" });</script>
 
@@ -463,5 +459,21 @@
     <link href="~/css/ea57ac8.css" rel="stylesheet" type="text/css">
     <link href="~/css/6281024.css" rel="stylesheet" type="text/css">
     <link href="~/css/045b9cb.css" rel="stylesheet" type="text/css">
+
+    <script>
+        function addToCart(productId) {
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "ShoppingCart")',
+                data: { productId: Number(productId) },
+                success: function (data) {
+                    $('#loader').fadeOut(250);
+                    getCartCount();
+                    alert('Товар успешно добавлен в корзину!');
+                }
+            });
+        }
+    </script>
 </body>
 </html>

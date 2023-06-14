@@ -37,7 +37,7 @@ namespace Juconda.Controllers
             return View(models);
         }
 
-        public async Task<IActionResult> AddToCart(int productId, int productCount)
+        public async Task<IActionResult> AddToCart(int productId, int? productCount)
         {
             var basket = await _shopService.GetCurrentBasket();
 
@@ -52,7 +52,7 @@ namespace Juconda.Controllers
                 {
                     ProductId = productId,
                     Product = _context.Products.FirstOrDefault(p => p.Id == productId),
-                    Count = productCount,
+                    Count = productCount ?? 1,
                     Basket = basket
                 };
 
@@ -60,7 +60,7 @@ namespace Juconda.Controllers
             }
             else
             {
-                basketItem.Count = productCount;
+                basketItem.Count = productCount ?? ++basketItem.Count;
                 _context.BasketItems.Update(basketItem);
             }
 

@@ -67,12 +67,13 @@ app.UseAuthorization();
 
 app.UseSession();
 
+app.MapAreaControllerRoute(
+    "admin",
+    "admin",
+    "admin/{controller=Home}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.MapControllerRoute(
-    name: "Cart",
-    pattern: "{controller=Cart}/{action=Index}/{id?}");
 
 app.Run();
