@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Juconda.Models.Account
+namespace Juconda.ViewModels.Account
 {
-    public class LogInViewModel
+    public class PersonalCabinetViewModel
     {
         [Required(ErrorMessage = "Логин обязателен для заполнения")]
         public string UserName { get; set; }
@@ -17,3 +17,4 @@ namespace Juconda.Models.Account
         public string? ReturnUrl { get; set; }
     }
 }
+

@@ -1,4 +1,4 @@
-namespace Juconda.Models
+namespace Juconda.ViewModels
 {
     public class ErrorViewModel
     {

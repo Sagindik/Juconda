@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Juconda.Infrastructure;
-using Juconda.Models;
 using Juconda.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;

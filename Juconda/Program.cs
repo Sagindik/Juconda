@@ -2,6 +2,7 @@ using Juconda.Core.Mappings;
 using Juconda.Core.Services;
 using Juconda.Domain.Models.Users;
 using Juconda.Infrastructure;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,22 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingPro
 
 builder.Services.AddScoped<InitializeService>();
 builder.Services.AddScoped<ShopService>();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie("admin", options =>
+    {
+        options.Cookie.Name = "admin";
+        options.LoginPath = "/admin/Account/Login";
+        options.LogoutPath = "/admin/Account/Logout";
+        options.AccessDeniedPath = "/admin/Account/AccessDenied";
+    })
+    .AddCookie("", options =>
+    {
+        options.Cookie.Name = "";
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+    });
 
 builder.Services.AddAutoMapper(c => c.AddProfile(new MappingProfile()));
 
@@ -42,8 +59,8 @@ builder.Services.AddIdentity<User, Juconda.Domain.Models.Identity.IdentityRole>(
 
 //builder.Services.ConfigureApplicationCookie(options =>
 //{
-//    options.AccessDeniedPath = "/Auth/Account/AccessDenied";
-//    options.LoginPath = "/Auth/Account/Login";
+//    options.AccessDeniedPath = "/admin/Account/AccessDenied";
+//    options.LoginPath = "/admin/Account/Login";
 //});
 
 var app = builder.Build();
