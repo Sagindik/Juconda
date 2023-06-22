@@ -1,5 +1,5 @@
-﻿@using Juconda.ViewModels.Account;
-@model LoginViewModel
+﻿@using Juconda.Areas.admin.ViewModels.Account;
+@model LoginViewModel;
 
 @{
 	Layout = "~/Views/Shared/_LayoutLogin.cshtml";
@@ -9,24 +9,24 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" asp-controller="Account" asp-action="LogIn">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" asp-controller="Account" asp-action="Login">
 					<span class="login100-form-title">
 						Авторизация
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Введите логин">
-						<input asp-for="UserName" class="input100" type="text" placeholder="Логин">
-						<span asp-validation-for="UserName" class="focus-input100"></span>
+						@Html.TextBoxFor(_ => _.UserName, new { @class="input100", placeholder="Логин" })
+						@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "focus-input100" })
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Введите пароль">
-						<input asp-for="Password" class="input100" type="password" placeholder="Пароль">
-						<span asp-validation-for="Password" class="focus-input100"></span>
+						@Html.PasswordFor(_ => _.Password, new { @class="input100", placeholder="Пароль" })
+						@Html.ValidationMessageFor(model => model.Password, "", new { @class = "focus-input100" })
 					</div>
 
 					<div>
 						<p>
-							<input type="checkbox" name="RememberMe" value="true" /> Запомнить меня
+							@Html.CheckBoxFor(_ => _.RememberMe, new { value=true }) Запомнить меня
 						</p>
 					</div>
 

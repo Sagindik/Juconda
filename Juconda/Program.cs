@@ -2,14 +2,13 @@ using Juconda.Core.Mappings;
 using Juconda.Core.Services;
 using Juconda.Domain.Models.Users;
 using Juconda.Infrastructure;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMvc().AddRazorRuntimeCompilation();
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 
 var connection = builder.Configuration.GetConnectionString("Connection");
@@ -18,21 +17,21 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingPro
 builder.Services.AddScoped<InitializeService>();
 builder.Services.AddScoped<ShopService>();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie("admin", options =>
-    {
-        options.Cookie.Name = "admin";
-        options.LoginPath = "/admin/Account/Login";
-        options.LogoutPath = "/admin/Account/Logout";
-        options.AccessDeniedPath = "/admin/Account/AccessDenied";
-    })
-    .AddCookie("", options =>
-    {
-        options.Cookie.Name = "";
-        options.LoginPath = "/Account/Login";
-        options.LogoutPath = "/Account/Logout";
-        options.AccessDeniedPath = "/Account/AccessDenied";
-    });
+builder.Services.AddAuthentication();
+    //.AddCookie("admin", options =>
+    //{
+    //    options.Cookie.Name = "admin";
+    //    options.LoginPath = "/admin/Account/Login";
+    //    options.LogoutPath = "/admin/Account/Logout";
+    //    options.AccessDeniedPath = "/admin/Account/AccessDenied";
+    //})
+    //.AddCookie("", options =>
+    //{
+    //    options.Cookie.Name = "";
+    //    options.LoginPath = "/Account/Login";
+    //    options.LogoutPath = "/Account/Logout";
+    //    options.AccessDeniedPath = "/Account/AccessDenied";
+    //});
 
 builder.Services.AddAutoMapper(c => c.AddProfile(new MappingProfile()));
 
@@ -84,13 +83,23 @@ app.UseAuthorization();
 
 app.UseSession();
 
+
 app.MapAreaControllerRoute(
     "admin",
     "admin",
     "admin/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
+    "AdminLogin",
+    "admin/Account/Login",
+    "admin/{controller=Account}/{action=Login}/{id?}");
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "UserLogin",
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

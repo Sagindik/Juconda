@@ -1,6 +1,6 @@
-﻿using Juconda.Core.Common;
+﻿using Juconda.Areas.admin.ViewModels.Account;
+using Juconda.Core.Common;
 using Juconda.Domain.Models.Users;
-using Juconda.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +30,7 @@ namespace Juconda.Areas.admin.Controllers
 		}
 
         [HttpPost]
-		[ValidateAntiForgeryToken]
+		//[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Login(LoginViewModel model)
 		{
 			if (ModelState.IsValid)
