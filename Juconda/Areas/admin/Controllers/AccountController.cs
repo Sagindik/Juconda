@@ -72,5 +72,27 @@ namespace Juconda.Areas.admin.Controllers
 			}
 			return View(model);
 		}
-	}
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            if (User?.Identity?.IsAuthenticated == true)
+            {
+                var user = await _userManager.GetUserAsync(_signInManager.Context.User);
+
+                await _signInManager.SignOutAsync();
+                var cookieKeys = Request.Cookies.Keys;
+                foreach (var key in cookieKeys)
+                {
+                    HttpContext.Response.Cookies.Delete(key);
+                }
+
+                //await _logService.LogInformation((int?)user?.Id ?? 0,
+                //    EntityTypeEnum.User, "Выход из системы " + user?.Email);
+            }
+
+            return RedirectToAction("Login");
+        }
+    }
 }

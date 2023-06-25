@@ -1,0 +1,16 @@
+﻿@using Juconda.Domain.Models.Users;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form method="post" asp-controller="Account" asp-action="Logout">
+        <div class="logout-button-wrap">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.54167 7.79163H9.20833V9.20829H3.54167V11.3333L0 8.49996L3.54167 5.66663V7.79163ZM2.83333 12.75H4.7515C5.5694 13.4713 6.57807 13.9413 7.65647 14.1035C8.73486 14.2658 9.83717 14.1135 10.8311 13.6648C11.8251 13.2161 12.6685 12.4901 13.26 11.574C13.8516 10.6579 14.1663 9.5905 14.1663 8.49996C14.1663 7.40943 13.8516 6.34205 13.26 5.42593C12.6685 4.5098 11.8251 3.78383 10.8311 3.33515C9.83717 2.88646 8.73486 2.73411 7.65647 2.89638C6.57807 3.05865 5.5694 3.52864 4.7515 4.24996H2.83333C3.49255 3.36963 4.34799 2.65516 5.33168 2.16331C6.31537 1.67147 7.4002 1.4158 8.5 1.41663C12.4121 1.41663 15.5833 4.58784 15.5833 8.49996C15.5833 12.4121 12.4121 15.5833 8.5 15.5833C7.4002 15.5841 6.31537 15.3285 5.33168 14.8366C4.34799 14.3448 3.49255 13.6303 2.83333 12.75Z" fill="white"/>
+            </svg>
+            <input type="submit" value="Выход" class="btn logout-btn"/>
+        </div>
+    </form>
+}

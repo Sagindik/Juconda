@@ -18,7 +18,7 @@ namespace Juconda.Domain.Models
 
         public int Count { get; set; }
 
-        public string? Image { get; set; }
+        public byte[]? Image { get; set; }
 
         public string? Measure { get; set; }
 

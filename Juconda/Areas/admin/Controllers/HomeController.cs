@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Juconda.Areas.admin.Attributes;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Juconda.Areas.admin.Controllers
 {

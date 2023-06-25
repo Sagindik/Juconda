@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Juconda.Areas.admin
+namespace Juconda.Areas.admin.Attributes
 {
 
     public sealed class CustomAuthorizeFilter : IAuthorizationFilter
