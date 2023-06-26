@@ -18,6 +18,10 @@ namespace Juconda.Areas.admin.ViewModels.Categories
 
         public int? ParentId { get; set; }
 
+        [Required(ErrorMessage = "Please select an image file.")]
+        [DataType(DataType.Upload)]
+        public IFormFile? ImageFile { get;set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<CreateCategoryViewModel, Category>()

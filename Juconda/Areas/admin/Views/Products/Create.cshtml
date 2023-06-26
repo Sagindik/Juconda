@@ -1,8 +1,8 @@
-﻿@using Juconda.Areas.admin.ViewModels.Categories;
-@model CreateCategoryViewModel
+﻿@using Juconda.Areas.admin.ViewModels.Products;
+@model CreateProductViewModel
 
 @{
-    ViewData["Title"] = "Добавить категорию";
+    ViewData["Title"] = "Добавить продукт";
 }
 
 <h1>Добавить</h1>
@@ -12,15 +12,20 @@
         <div asp-validation-summary="ModelOnly" class="text-danger error-messages"></div>
 
         <div class="form-item">
-            <label asp-for="Name">Наименование категории</label>
+            <label asp-for="Name">Наименование продукта</label>
             <input asp-for="Name" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
-        <div class="form-item">
-            <label asp-for="ParentId">Родитель</label>
-            @Html.DropDownListFor(_ => _.ParentId, ViewBag.Categories as SelectList, "Выбрать родителя...", new { @class = "form-control select-list-standart" })
+        @*<div class="form-item">
+            <label asp-for="ParentId">Категория</label>
+            @Html.DropDownListFor(_ => _.ParentId, ViewBag.Categories as SelectList, "Выбрать категорию...", new { @class = "form-control select-list-standart" })
             <span asp-validation-for="ParentId" class="text-danger"></span>
+        </div>*@
+
+        <div class="form-item">
+            <label asp-for="CategoryIds">Категории</label>
+            <select data-placeholder="Выберите категории..." asp-for="CategoryIds" id="CategoryIds" class="form-control chosen-select" multiple="multiple" asp-items="ViewBag.Categories"></select>
         </div>
 
         <div class="form-item">
@@ -38,7 +43,9 @@
 </div>
 @section Scripts{
     <script>
-        const menuItem = document.getElementById('menuItem1').closest('li');
+        const menuItem = document.getElementById('menuItem2').closest('li');
         menuItem.classList.add('active');
+
+        $(".chosen-select").chosen({ width: "100%" });
     </script>
 }

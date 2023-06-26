@@ -2,6 +2,7 @@
 using Juconda.Areas.admin.Attributes;
 using Juconda.Areas.admin.ViewModels.Categories;
 using Juconda.Areas.admin.ViewModels.Pagination;
+using Juconda.Areas.admin.ViewModels.Products;
 using Juconda.Domain.Models;
 using Juconda.Framework.Queryable.FilterExtension;
 using Juconda.Infrastructure;
@@ -13,32 +14,32 @@ namespace Juconda.Areas.admin.Controllers
 {
     [Area("admin")]
     [CustomAuthorize]
-    public class CategoriesController : Controller
+    public class ProductsController : Controller
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
-        public CategoriesController(AppDbContext context, IMapper mapper) 
+        public ProductsController(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public IActionResult Index(CategoryRequest request)
+        public IActionResult Index(ProductRequest request)
         {
-            return View(GetCategoriesBasePage(request));
+            return View(GetProductsBasePage(request));
         }
 
-        public BasePage<CategoryModel> GetCategoriesBasePage(CategoryRequest request)
+        public BasePage<ProductModel> GetProductsBasePage(ProductRequest request)
         {
-            var categories = _context.Categories.Where(_ => _.Actual).AsQueryable();
+            var products = _context.Products.Where(_ => _.Actual).AsQueryable();
 
             if (!request.NameContains.IsNullOrEmpty())
-                categories = categories.Where(_ => !string.IsNullOrEmpty(_.Name) && _.Name.ToLower().Contains(request.NameContains.ToLower()));
+                products = products.Where(_ => !string.IsNullOrEmpty(_.Name) && _.Name.ToLower().Contains(request.NameContains.ToLower()));
 
-            var models = _mapper.Map<List<CategoryModel>>(categories.ToList());
+            var models = _mapper.Map<List<ProductModel>>(products.ToList());
 
-            var result = new BasePage<CategoryModel>
+            var result = new BasePage<ProductModel>
             {
                 Objects = models.ExecutePageFilter(request.Page, request.Take),
                 Pagination = new PageViewModel(request, models.Count)
@@ -48,10 +49,10 @@ namespace Juconda.Areas.admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetCategoriesPage(CategoryRequest request)
+        public IActionResult GetProductsPage(ProductRequest request)
         {
-            var model = GetCategoriesBasePage(request);
-            return PartialView("Categories", model);
+            var model = GetProductsBasePage(request);
+            return PartialView("Products", model);
         }
 
         public IActionResult Create()
@@ -64,14 +65,14 @@ namespace Juconda.Areas.admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(CreateCategoryViewModel model)
+        public async Task<IActionResult> Create(CreateProductViewModel model)
         {
             var categories = _context.Categories.Where(_ => _.Actual).ToList();
             ViewData["Categories"] = new SelectList(categories.Select(_ => new { _.Id, _.Name }), "Id", "Name");
 
             if (ModelState.IsValid)
             {
-                var entity = _mapper.Map<Category>(model);
+                var entity = _mapper.Map<Product>(model);
 
                 if (model.ImageFile != null && model.ImageFile.Length > 0)
                 {
@@ -91,7 +92,7 @@ namespace Juconda.Areas.admin.Controllers
                     }
                 }
 
-                _context.Categories.Add(entity);
+                _context.Products.Add(entity);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index");

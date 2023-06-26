@@ -16,7 +16,7 @@ namespace Juconda.ViewModels
         /// Количество на складе
         /// </summary>
         public int Count { get; set; }
-        public string? Image { get; set; }
+        public byte[]? Image { get; set; }
 
         public string? SeoTitle { get; set; }
         public string? SeoDescription { get; set; }

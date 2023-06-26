@@ -1,0 +1,56 @@
+﻿@using Juconda.Areas.admin.ViewModels.Products;
+@using Juconda.ViewModels;
+@model Juconda.Areas.admin.ViewModels.Pagination.BasePage<ProductModel>
+
+@{
+    ViewData["Title"] = "Список продуктов";
+}
+
+<h2>Список категорий</h2>
+
+<div class="controls-panel">
+    <div class="search-block">
+        <div class="form">
+            <form>
+                <div class="form-item-group ">
+                    <div class="form-item">
+                        <input type="text" id="nameContains" name="nameContains" placeholder="Наименование" />
+                        <input class="search-button" type="button" onclick="GetPage()" value=" " />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="controls-panel-right">
+        <a type="button" class="btn button transparent-button" asp-action="Create">Добавить продукт</a>
+    </div>
+</div>
+
+<div id="partial">
+    @await Html.PartialAsync("Products", Model)
+</div>
+
+<script>
+    const menuItem = document.getElementById('menuItem2').closest('li');
+    menuItem.classList.add('active');
+
+    function GetPage(page = 1) {
+        let request = {
+            NameContains: document.getElementById('nameContains').value,
+            Page: page
+        };
+
+        $('#loader').fadeIn(250);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetProductsPage", "Products")',
+            data: { request },
+            success: function (data) {
+                $('#loader').fadeOut(250);
+                $("#partial").empty();
+                $('#partial').append(data);
+            }
+        });
+    }
+</script>

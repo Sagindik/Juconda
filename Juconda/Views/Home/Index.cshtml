@@ -462,7 +462,7 @@
                         <div class="item column text-center hover-elements">
                             <div class="img-wrap">
                                 <a href="@Url.Action("Details", "Products", new { productId = product.Id })">
-                                    <img src="@product.Image" class="thumbnail lazy">
+                                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(product.Image)" class="thumbnail lazy">
                                 </a>
                             </div>
                             <div class="name">
