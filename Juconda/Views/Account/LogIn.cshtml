@@ -1,15 +1,15 @@
-﻿@using Juconda.Models.Account;
-@model LogInViewModel
+﻿@using Juconda.ViewModels.Account;
+@model LoginViewModel
 
 @{
-	Layout = "~/Views/Shared/_LayoutLogIn.cshtml";
+	Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
 <body>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" asp-controller="Account" asp-action="LogIn">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" asp-controller="Account" asp-action="Login">
 					<span class="login100-form-title">
 						Авторизация
 					</span>

@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using Juconda.Core.Common;
 using Juconda.Core.Services;
 using Juconda.Domain.Models;
+using Juconda.Domain.Models.Users;
 using Juconda.Infrastructure;
-using Juconda.ViewModels;
+using Juconda.ViewModels.ShoppingCart;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Juconda.Controllers
@@ -12,15 +15,25 @@ namespace Juconda.Controllers
         private AppDbContext _context;
         private IMapper _mapper;
         private ShopService _shopService;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
         public string ShoppingCartId { get; set; }
         public const string CartSessionKey = "CartId";
 
-        public ShoppingCartController(AppDbContext context, IMapper mapper, ShopService shopService)
+        public ShoppingCartController(
+            AppDbContext context,
+            IMapper mapper, 
+            ShopService shopService,
+            UserManager<User> userManager,
+            SignInManager<User> signInManager)
         {
             _context = context;
             _mapper = mapper;
             _shopService = shopService;
+            _userManager = userManager;
+            _userManager.PasswordHasher = new CustomPasswordHasher();
+            _signInManager = signInManager;
         }
 
         public async Task<IActionResult> Index()
@@ -28,16 +41,19 @@ namespace Juconda.Controllers
             var basket = await _shopService.GetCurrentBasket();
 
             if (basket == null)
-                return View(new List<BasketItemViewModel>());
+                return View();
 
             var basketItems = _context.BasketItems.Where(_ => _.Actual && _.BasketId == basket.Id).ToList();
 
-            var models = _mapper.Map<List<BasketItemViewModel>>(basketItems);
+            var model = _mapper.Map<BasketViewModel>(basket);
 
-            return View(models);
+            var user = await _userManager.GetUserAsync(_signInManager.Context.User);
+            ViewData["User"] = user;
+
+            return View(model);
         }
 
-        public async Task<IActionResult> AddToCart(int productId, int productCount)
+        public async Task<IActionResult> AddToCart(int productId, int? productCount)
         {
             var basket = await _shopService.GetCurrentBasket();
 
@@ -52,7 +68,7 @@ namespace Juconda.Controllers
                 {
                     ProductId = productId,
                     Product = _context.Products.FirstOrDefault(p => p.Id == productId),
-                    Count = productCount,
+                    Count = productCount ?? 1,
                     Basket = basket
                 };
 
@@ -60,7 +76,7 @@ namespace Juconda.Controllers
             }
             else
             {
-                basketItem.Count = productCount;
+                basketItem.Count = productCount ?? ++basketItem.Count;
                 _context.BasketItems.Update(basketItem);
             }
 
@@ -90,7 +106,7 @@ namespace Juconda.Controllers
             var basket = await _shopService.GetCurrentBasket();
 
             if (basket == null)
-                return View(new List<BasketItemViewModel>());
+                return NotFound();
 
             var basketItems = _context.BasketItems.Where(_ => _.Actual && _.BasketId == basket.Id).ToList();
             basketItems.ForEach(_ => _.Actual = false);
@@ -99,6 +115,66 @@ namespace Juconda.Controllers
             _context.SaveChanges();
 
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateOrder(CreateOrderViewModel model)
+        {
+            var basket = await _shopService.GetCurrentBasket();
+
+            if (basket == null)
+                return NotFound();
+
+            User? user = await _userManager.GetUserAsync(_signInManager.Context.User);
+            if (user == null)
+            {
+                user = _context.Users.FirstOrDefault(_ => _.Email == model.Email);
+                if (user == null)
+                {
+                    user = new User
+                    {
+                        Email = model.Email,
+                        UserName = model.Email,
+                        PhoneNumber = model.PhoneNumber,
+                        UserProfile = new() { }
+                    };
+                }
+            }
+
+            // добавляем пользователя
+            var result = await _userManager.CreateAsync(user);
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, false);
+            }
+
+            var order = new Order() 
+            {
+                Address = model.Address ?? string.Empty,
+                Phone = model.PhoneNumber,
+                CommentInOrder = model.Comment,
+                User = user,
+                Sum = basket.BasketItems.Sum(_ => _.Count * (_?.Product?.Price ?? 0)),
+                Total = basket.BasketItems.Count
+            };
+
+            foreach(var item in basket.BasketItems)
+            {
+                var orderProduct = new OrderProduct()
+                {
+                    Count = item.Count,
+                    PriceUnit = item?.Product?.Price ?? 0,
+                    PriceTotal = (item?.Count ?? 0) * (item?.Product?.Price ?? 0),
+                    Order = order,
+                    ProductId = item?.ProductId,
+                };
+                _context.Add(orderProduct);
+            }
+
+            _context.Add(order);
+            _context.SaveChanges();
+
+            return Ok(order.Id);
         }
 
         public async Task<int> GetBasketItemsCount()

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Juconda.Infrastructure;
-using Juconda.Models;
 using Juconda.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -24,7 +23,7 @@ namespace Juconda.Controllers
 
             var models = _mapper.Map<List<ProductViewModel>>(bestProducts);
 
-            return View(models);
+            return View("Index", models);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

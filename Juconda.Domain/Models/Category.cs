@@ -4,7 +4,7 @@ namespace Juconda.Domain.Models
 {
     public class Category : NameEntityBase
     {
-        public string? Image { get; set; }
+        public byte[]? Image { get; set; }
 
         public string? FullDescsription { get; set; }
         public string? Description { get; set; }

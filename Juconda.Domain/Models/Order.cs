@@ -10,7 +10,7 @@ namespace Juconda.Domain.Models
         public int? CityId { get; set; }
         public virtual City? City { get; set; }
 
-        public string CommentInOrder { get; set; }
+        public string? CommentInOrder { get; set; }
 
         public bool IsPaid { get; set; }
         public decimal PriceDelivery { get; set; }

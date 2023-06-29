@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Онлайн-магазин продуктов питания Джоконда - быстрая доставка свежих продуктов</title>
+    <title>@ViewData["Title"] - Онлайн-магазин продуктов питания Джоконда - быстрая доставка свежих продуктов</title>
     <link href="~/css/core.min.css" type="text/css" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,900,900italic&amp;subset=cyrillic-ext,cyrillic,latin" type="text/css" rel="stylesheet">
@@ -158,10 +158,13 @@
                                         </svg>
                                         @User?.Identity.Name
                                     </a>
+                                    <a style="padding: 0.53125rem 0;margin-right: 2.5rem;color: #ffffff;background-color: transparent;" onclick="logout()" class="button transparent inline-block-item">
+                                        Выход
+                                    </a>
                                 }
                                 else
                                 {
-                                    <a asp-controller="Account" asp-action="LogIn" class="button transparent header-line-top-profile">
+                                    <a asp-controller="Account" asp-action="Login" class="button transparent header-line-top-profile">
                                         <svg class="icon">
                                             <use href="#svg-icon-profile" />
                                         </svg>
@@ -412,6 +415,18 @@
                 success: function (data) {
                     $('#loader').fadeOut(250);
                     document.querySelectorAll('.cart-content-counter').forEach(_ => _.innerHTML = data);
+                }
+            });
+        }
+
+        function logout() {
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Logout", "Account")',
+                success: function (data) {
+                    $('#loader').fadeOut(250);
+                    window.location.reload();
                 }
             });
         }

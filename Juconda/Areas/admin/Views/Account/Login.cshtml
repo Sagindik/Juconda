@@ -1,0 +1,42 @@
+﻿@using Juconda.Areas.admin.ViewModels.Account;
+@model LoginViewModel;
+
+@{
+	Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post" asp-controller="Account" asp-action="Login">
+					<span class="login100-form-title">
+						Авторизация
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Введите логин">
+						@Html.TextBoxFor(_ => _.UserName, new { @class="input100", placeholder="Логин" })
+						@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "focus-input100" })
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Введите пароль">
+						@Html.PasswordFor(_ => _.Password, new { @class="input100", placeholder="Пароль" })
+						@Html.ValidationMessageFor(model => model.Password, "", new { @class = "focus-input100" })
+					</div>
+
+					<div>
+						<p>
+							@Html.CheckBoxFor(_ => _.RememberMe, new { value=true }) Запомнить меня
+						</p>
+					</div>
+
+					<div class="container-login100-form-btn p-b-40">
+						<button class="login100-form-btn" type="submit">
+							Войти
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>

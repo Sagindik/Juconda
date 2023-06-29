@@ -13,19 +13,19 @@ namespace Juconda.Domain.Models.Users
         /// <summary>
         /// Фамилия
         /// </summary>
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         /// <summary>
         /// Имя
         /// </summary>
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
         /// <summary>
         /// Отчество
         /// </summary>
-        public string MiddleName { get; set; }
+        public string MiddleName { get; set; } = string.Empty;
 
-        public string Address { get; set; }
+        public string Address { get; set; } = string.Empty;
 
         public int? CityId { get; set; }
         public virtual City? City { get; set; }

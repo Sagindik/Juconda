@@ -1,0 +1,77 @@
+﻿@using Juconda.Areas.admin.ViewModels.Products;
+@model CreateProductViewModel
+
+@{
+    ViewData["Title"] = "Добавить продукт";
+}
+
+<h1>Добавить</h1>
+
+<div class="form">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger error-messages"></div>
+
+        <div class="form-item">
+            <label asp-for="Name">Наименование продукта</label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-item">
+            <label asp-for="Price">Цена</label>
+            <input type="number" oninput="limitDecimalPlaces(this, 2);" step="0.01" asp-for="Price" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-item">
+            <label asp-for="CategoryIds">Категории</label>
+            <select data-placeholder="Выберите категории..." asp-for="CategoryIds" id="CategoryIds" class="form-control chosen-select" multiple="multiple" asp-items="ViewBag.Categories"></select>
+        </div>
+
+        <div class="form-item">
+            <label asp-for="Description">Короткое описание</label>
+            <textarea asp-for="Description" class="editor"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-item">
+            <label asp-for="FullDescsription">Полное описание</label>
+            <textarea asp-for="FullDescsription" class="editor"></textarea>
+            <span asp-validation-for="FullDescsription" class="text-danger"></span>
+        </div>
+
+        <div class="form-item">
+            @Html.LabelFor(model => model.ImageFile)
+            @Html.TextBoxFor(model => model.ImageFile, new { type = "file", accept=".jpeg, .jpg, .png" })
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-item form-item-submit bottom-form-buttons">
+            @*<button asp-action="ReturnToBack" asp-route-returnUrl="@Model.ReturnUrl" class="button transparent-button">Вернуться назад</button>*@
+            <button type="submit" class="button btn btn-primary">Сохранить</button>
+        </div>
+    </form>
+
+</div>
+@section Scripts{
+    <script>
+        const menuItem = document.getElementById('menuItem2').closest('li');
+        menuItem.classList.add('active');
+
+        $(".chosen-select").chosen({ width: "100%" });
+
+        function limitDecimalPlaces(input, decimalPlaces) {
+            let value = input.value;
+            let decimalIndex = value.indexOf('.');
+
+            if (decimalIndex !== -1) {
+                let decimalPart = value.substr(decimalIndex + 1);
+                if (decimalPart.length > decimalPlaces) {
+                    decimalPart = decimalPart.substr(0, decimalPlaces);
+                    value = value.substr(0, decimalIndex + 1) + decimalPart;
+                    input.value = value;
+                }
+            }
+        }
+    </script>
+}

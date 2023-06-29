@@ -19,109 +19,109 @@ namespace Juconda.Core.Services
             {
                 var products = new List<Product>()
                 {
-                    new()
-                    {
-                        Name = "Помидор",
-                        Price = 99,
-                        Description = "Самый лучший помидор",
-                        IsBestseller = true,
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "Огурец",
-                        Price = 23,
-                        Description = "Самий не лучший помидор",
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "памела",
-                        Price = 99,
-                        Description = "Самый лучший помидор",
-                        IsBestseller = true,
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "амела",
-                        Price = 23,
-                        Description = "Самий не лучший помидор",
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "мама я поела",
-                        Price = 99,
-                        Description = "Самый лучший помидор",
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "Огурец",
-                        Price = 23,
-                        Description = "Самий не лучший помидор",
-                        IsBestseller = true,
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "Помидор",
-                        Price = 99,
-                        Description = "Самый лучший помидор",
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "Огурец",
-                        Price = 23,
-                        Description = "Самий не лучший помидор",
-                        IsBestseller = true,
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "Помидор",
-                        Price = 99,
-                        Description = "Самый лучший помидор",
-                        IsBestseller = true,
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "Огурец",
-                        Price = 23,
-                        Description = "Самий не лучший помидор",
-                        IsBestseller = true,
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "Помидор",
-                        Price = 99,
-                        Description = "Самый лучший помидор",
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
-                    new()
-                    {
-                        Name = "Огурец",
-                        Price = 23,
-                        Description = "Самий не лучший помидор",
-                        IsBestseller = true,
-                        Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
-                        Count = 1,
-                    },
+                    //new()
+                    //{
+                    //    Name = "Помидор",
+                    //    Price = 99,
+                    //    Description = "Самый лучший помидор",
+                    //    IsBestseller = true,
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "Огурец",
+                    //    Price = 23,
+                    //    Description = "Самий не лучший помидор",
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "памела",
+                    //    Price = 99,
+                    //    Description = "Самый лучший помидор",
+                    //    IsBestseller = true,
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "амела",
+                    //    Price = 23,
+                    //    Description = "Самий не лучший помидор",
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "мама я поела",
+                    //    Price = 99,
+                    //    Description = "Самый лучший помидор",
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "Огурец",
+                    //    Price = 23,
+                    //    Description = "Самий не лучший помидор",
+                    //    IsBestseller = true,
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "Помидор",
+                    //    Price = 99,
+                    //    Description = "Самый лучший помидор",
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "Огурец",
+                    //    Price = 23,
+                    //    Description = "Самий не лучший помидор",
+                    //    IsBestseller = true,
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "Помидор",
+                    //    Price = 99,
+                    //    Description = "Самый лучший помидор",
+                    //    IsBestseller = true,
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "Огурец",
+                    //    Price = 23,
+                    //    Description = "Самий не лучший помидор",
+                    //    IsBestseller = true,
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "Помидор",
+                    //    Price = 99,
+                    //    Description = "Самый лучший помидор",
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
+                    //new()
+                    //{
+                    //    Name = "Огурец",
+                    //    Price = 23,
+                    //    Description = "Самий не лучший помидор",
+                    //    IsBestseller = true,
+                    //    Image = "images/2fc5fa6cac7a778c15f7b1b61a15cb77.jpg",
+                    //    Count = 1,
+                    //},
                 };
 
                 _context.Products.AddRange(products);

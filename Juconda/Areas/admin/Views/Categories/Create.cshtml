@@ -1,0 +1,44 @@
+﻿@using Juconda.Areas.admin.ViewModels.Categories;
+@model CreateCategoryViewModel
+
+@{
+    ViewData["Title"] = "Добавить категорию";
+}
+
+<h1>Добавить</h1>
+
+<div class="form">
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger error-messages"></div>
+
+        <div class="form-item">
+            <label asp-for="Name">Наименование категории</label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-item">
+            <label asp-for="ParentId">Родитель</label>
+            @Html.DropDownListFor(_ => _.ParentId, ViewBag.Categories as SelectList, "Выбрать родителя...", new { @class = "form-control select-list-standart" })
+            <span asp-validation-for="ParentId" class="text-danger"></span>
+        </div>
+
+        <div class="form-item">
+            @Html.LabelFor(model => model.ImageFile)
+            @Html.TextBoxFor(model => model.ImageFile, new { type = "file", accept=".jpeg, .jpg, .png" })
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="form-item form-item-submit bottom-form-buttons">
+            @*<button asp-action="ReturnToBack" asp-route-returnUrl="@Model.ReturnUrl" class="button transparent-button">Вернуться назад</button>*@
+            <button type="submit" class="button btn btn-primary">Сохранить</button>
+        </div>
+    </form>
+
+</div>
+@section Scripts{
+    <script>
+        const menuItem = document.getElementById('menuItem1').closest('li');
+        menuItem.classList.add('active');
+    </script>
+}

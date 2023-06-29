@@ -110,8 +110,8 @@ namespace Juconda.Infrastructure.Migrations
                     b.Property<string>("FullDescsription")
                         .HasColumnType("text");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("bytea");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -386,8 +386,8 @@ namespace Juconda.Infrastructure.Migrations
                     b.Property<string>("FullDescsription")
                         .HasColumnType("text");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("bytea");
 
                     b.Property<bool>("IsBestseller")
                         .HasColumnType("boolean");

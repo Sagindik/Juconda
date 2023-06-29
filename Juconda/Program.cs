@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMvc().AddRazorRuntimeCompilation();
-builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddMvc();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 
 var connection = builder.Configuration.GetConnectionString("Connection");
@@ -16,6 +16,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingPro
 
 builder.Services.AddScoped<InitializeService>();
 builder.Services.AddScoped<ShopService>();
+
+builder.Services.AddAuthentication();
 
 builder.Services.AddAutoMapper(c => c.AddProfile(new MappingProfile()));
 
@@ -42,8 +44,8 @@ builder.Services.AddIdentity<User, Juconda.Domain.Models.Identity.IdentityRole>(
 
 //builder.Services.ConfigureApplicationCookie(options =>
 //{
-//    options.AccessDeniedPath = "/Auth/Account/AccessDenied";
-//    options.LoginPath = "/Auth/Account/Login";
+//    options.AccessDeniedPath = "/admin/Account/AccessDenied";
+//    options.LoginPath = "/admin/Account/Login";
 //});
 
 var app = builder.Build();
@@ -58,6 +60,8 @@ app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
 app.Services.CreateScope().ServiceProvider.GetRequiredService<InitializeService>();
 
 app.UseHttpsRedirection();
+
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -67,12 +71,22 @@ app.UseAuthorization();
 
 app.UseSession();
 
+app.MapAreaControllerRoute(
+    "admin",
+    "admin",
+    "admin/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    "AdminLogin",
+    "admin/Account/Login",
+    "admin/{controller=Account}/{action=Login}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
-    name: "Cart",
-    pattern: "{controller=Cart}/{action=Index}/{id?}");
+    name: "UserLogin",
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

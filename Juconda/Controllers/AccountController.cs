@@ -1,6 +1,7 @@
-﻿using Juconda.Core.Common;
+﻿using AutoMapper;
+using Juconda.Core.Common;
 using Juconda.Domain.Models.Users;
-using Juconda.Models.Account;
+using Juconda.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,71 +11,81 @@ namespace Juconda.Controllers
 	{
 		private readonly UserManager<User> _userManager;
 		private readonly SignInManager<User> _signInManager;
+        private IMapper _mapper;
 
-		public AccountController(
+        public AccountController(
 			UserManager<User> userManager,
-			SignInManager<User> signInManager)
+            IMapper mapper,
+            SignInManager<User> signInManager)
 		{
 			_userManager = userManager;
 			_userManager.PasswordHasher = new CustomPasswordHasher();			
 			_signInManager = signInManager;
+            _mapper = mapper;
 		}
 
 		[HttpGet]
-		public IActionResult LogIn(string returnUrl = null)
+		public IActionResult Login(string returnUrl = null)
 		{
-			return View(new LogInViewModel { ReturnUrl = returnUrl });
+			return View(new LoginViewModel { ReturnUrl = returnUrl });
 		}
-
-        [HttpGet]
-        public IActionResult PersonalCabinet(string returnUrl = null)
-        {
-            return View(new PersonalCabinetViewModel { ReturnUrl = returnUrl });
-        }
 
         [HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> LogIn(LogInViewModel model)
-		{
-			if (ModelState.IsValid)
-			{
-				var user = await _userManager.FindByNameAsync(model.UserName);
-				
-				if (user != null)
-				{
-					var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password,
-								model.RememberMe, lockoutOnFailure: true);
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByNameAsync(model.UserName);
 
-					if (result.Succeeded)
-					{
-						user.LastLoginDate = DateTimeOffset.UtcNow;
-						await _userManager.UpdateAsync(user);						
+                if (user != null)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password,
+                                model.RememberMe, lockoutOnFailure: true);
 
-						// проверяем, принадлежит ли URL приложению
-						if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-							return Redirect(model.ReturnUrl);
+                    if (result.Succeeded)
+                    {
+                        user.LastLoginDate = DateTimeOffset.UtcNow;
+                        await _userManager.UpdateAsync(user);
 
-						await _userManager.ResetAccessFailedCountAsync(user);
+                        // проверяем, принадлежит ли URL приложению
+                        if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                            return Redirect(model.ReturnUrl);
 
-						return RedirectToAction("Index", "Home");
-					}
+                        await _userManager.ResetAccessFailedCountAsync(user);
 
-					if (result.IsLockedOut)
-					{
-						var lockoutEnd = user.LockoutEnd != null && DateTime.Now.AddDays(1) > user.LockoutEnd.Value ?
-							"Срок блокировки - " + user.LockoutEnd.Value.ToString("dd.MM.yyyy") : "";
-						ModelState.AddModelError("IsBlocked", $"Пользователь заблокирован. {lockoutEnd}");
-					}
-					else
-						ModelState.AddModelError("PasswordIsNotValid", "Неверный пароль");
-				}
-				else
-				{
-					ModelState.AddModelError("NotFound", $"Пользователь с логином '{model.UserName}' не найден");
-				}
-			}
-			return View(model);
-		}
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    if (result.IsLockedOut)
+                    {
+                        var lockoutEnd = user.LockoutEnd != null && DateTime.Now.AddDays(1) > user.LockoutEnd.Value ?
+                            "Срок блокировки - " + user.LockoutEnd.Value.ToString("dd.MM.yyyy") : "";
+                        ModelState.AddModelError("IsBlocked", $"Пользователь заблокирован. {lockoutEnd}");
+                    }
+                    else
+                        ModelState.AddModelError("PasswordIsNotValid", "Неверный пароль");
+                }
+                else
+                {
+                    ModelState.AddModelError("NotFound", $"Пользователь с логином '{model.UserName}' не найден");
+                }
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> PersonalCabinet(string returnUrl = null)
+        {
+            User? user = await _userManager.GetUserAsync(_signInManager.Context.User);
+            if (user == null)
+                return NotFound();
+
+            var model = _mapper.Map<PersonalCabinetViewModel>(user);
+            model.ReturnUrl = returnUrl;
+
+            return View(model);
+        }
 
 		[HttpGet]
 		public IActionResult Register()
@@ -105,5 +116,22 @@ namespace Juconda.Controllers
 			}
 			return View(model);
 		}
-	}
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            if (User?.Identity?.IsAuthenticated == true)
+            {
+                await _signInManager.SignOutAsync();
+                var cookieKeys = Request.Cookies.Keys;
+                foreach (var key in cookieKeys)
+                {
+                    HttpContext.Response.Cookies.Delete(key);
+                }
+            }
+
+            return RedirectToAction("Login");
+        }
+    }
 }
