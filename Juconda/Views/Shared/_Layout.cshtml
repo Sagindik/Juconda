@@ -158,6 +158,9 @@
                                         </svg>
                                         @User?.Identity.Name
                                     </a>
+                                    <a style="padding: 0.53125rem 0;margin-right: 2.5rem;color: #ffffff;background-color: transparent;" onclick="logout()" class="button transparent inline-block-item">
+                                        Выход
+                                    </a>
                                 }
                                 else
                                 {
@@ -412,6 +415,18 @@
                 success: function (data) {
                     $('#loader').fadeOut(250);
                     document.querySelectorAll('.cart-content-counter').forEach(_ => _.innerHTML = data);
+                }
+            });
+        }
+
+        function logout() {
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Logout", "Account")',
+                success: function (data) {
+                    $('#loader').fadeOut(250);
+                    window.location.reload();
                 }
             });
         }

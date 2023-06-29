@@ -1,6 +1,10 @@
 ﻿@using Juconda.ViewModels;
 @model List<ProductViewModel>;
 
+@{
+    ViewData["Title"] = "Главная";
+}
+
 <section>
     <div class="main-slider-banner">
     </div>
@@ -532,6 +536,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="main-news">
                 <h2 class="main-news-caption">Новости</h2>
                 <div class="owl-carousel main-news-carousel is-lazy" data-slideout-ignore>
@@ -621,32 +626,33 @@
     </div>
 </section>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script>
-    function decreaseCount(elem) {
-        elem.value = Number(elem.value) - 1;
-        if (Number(elem.value) < 1)
-            elem.value = 1;
-    }
+@section Scripts {
+    <script>
+        function decreaseCount(elem) {
+            elem.value = Number(elem.value) - 1;
+            if (Number(elem.value) < 1)
+                elem.value = 1;
+        }
 
-    function increaseCount(elem) {
-        elem.value = Number(elem.value) + 1;
-        if (Number(elem.value) < 1)
-            elem.value = 1;
-    }
+        function increaseCount(elem) {
+            elem.value = Number(elem.value) + 1;
+            if (Number(elem.value) < 1)
+                elem.value = 1;
+        }
 
-    function addToCart(productId, elem) {
-        var count = Number(elem.value);
-        $('#loader').fadeIn(250);
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("AddToCart", "ShoppingCart")',
-            data: { productId: Number(productId), productCount: count },
-            success: function (data) {
-                $('#loader').fadeOut(250);
-                getCartCount();
-                alert('Товар успешно добавлен в корзину!');
-            }
-        });
-    }
-</script>
+        function addToCart(productId, elem) {
+            var count = Number(elem.value);
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddToCart", "ShoppingCart")',
+                data: { productId: Number(productId), productCount: count },
+                success: function (data) {
+                    $('#loader').fadeOut(250);
+                    getCartCount();
+                    alert('Товар успешно добавлен в корзину!');
+                }
+            });
+        }
+    </script>
+}

@@ -60,6 +60,7 @@ app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
 app.Services.CreateScope().ServiceProvider.GetRequiredService<InitializeService>();
 
 app.UseHttpsRedirection();
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 

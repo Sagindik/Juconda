@@ -2,6 +2,10 @@
 @using Juconda.ViewModels.ShoppingCart;
 @model BasketViewModel;
 
+@{
+    ViewData["Title"] = "Корзина";
+}
+
 <section class="cart">
     <div class="inner-bg">
         <div class="advanced-container-medium">
@@ -183,24 +187,28 @@
                                 <div class="bg-info p-a-1">
                                     <div class="h1 m-b-1 text-xs-center text-title">Контактные данные</div>
 
-                                    <div class="form-group">
-                                        <input class="form-control contact-input" name="name" type="text" data-format=".+" data-notice="Введите имя" placeholder="Имя, Фамилия*">
+                                    <div class="form-group ">
+                                        <input class="form-control contact-input" name="name" id="name" type="text" data-format=".+" data-notice="Введите имя" placeholder="Имя, Фамилия*">
+                                        <span class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
-                                        <input class="form-control contact-input" name="phone" type="text" data-format=".+" data-notice="<strong>Ошибка!</strong> Номер телефона некорректен" placeholder="Номер телефона, 0 777 12345*">
+                                        <input value="@ViewBag.User.PhoneNumber" class="form-control contact-input" name="phone" id="phoneNumber" type="text" data-format=".+" data-notice="<strong>Ошибка!</strong> Номер телефона некорректен" placeholder="Номер телефона, 0 777 12345*">
+                                        <span class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
-                                        <input class="form-control contact-input" name="email" type="text" placeholder="E-mail, для уведомлений">
+                                        <input value="@ViewBag.User.Email" class="form-control contact-input" name="email" id="email" type="text" placeholder="E-mail, для уведомлений">
+                                        <span class="text-danger"></span>
+                                    </div>
+
+                                    <div style="display: none;" class="form-group">
+                                        <input class="form-control contact-input" name="address" id="addressOfDelivery" type="text" placeholder="Адрес доставки заказа: город, улица, дом">
+                                        <span class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
-                                        <input style="display: none;" class="form-control contact-input" name="address" id="addressOfDelivery" type="text" placeholder="Адрес доставки заказа: город, улица, дом">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <textarea class="form-control contact-input" name="comment" data-format=".+" data-notice="Введите дату и время получения заказа или комментарий" data-language="182" placeholder="Дата, время выдачи (получения) заказа и ваши комментарии*"></textarea>
+                                        <textarea class="form-control contact-input" name="comment" id="comment" data-format=".+" data-notice="Введите дату и время получения заказа или комментарий" data-language="182" placeholder="Дата, время выдачи (получения) заказа и ваши комментарии*"></textarea>
                                     </div>
 
                                     <div class="form-group m-b-1 w3-panel w3-note">
@@ -209,7 +217,7 @@
 
                                     <div class="row">
                                         <div class="cart-footer">
-                                            <a href="#" type="button" class="button">Оформить заказ</a>
+                                            <a onclick="validateForm()" class="button">Оформить заказ</a>
                                         </div>
                                     </div>
                                 </div>
@@ -240,6 +248,18 @@
 </template>
 
 <style>
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    input.contact-input{
+        margin-bottom: 3px;
+    }
+
+    .text-danger{
+        color: red;
+    }
+
     #fn-ajax_deliveries {
         float: left;
         width: 58.33333%;
@@ -292,8 +312,70 @@
 
 @section Scripts {
     <script>
+        let inputElements = document.querySelectorAll("input.contact-input");
+        let validationMessageElements = document.querySelectorAll("validationMessage");
+
+        inputElements.forEach(elem => {
+            elem.addEventListener("keyup", function() {
+              let inputValue = elem.value;
+
+              let validationMessageElement = elem.parentNode.querySelector(".text-danger");
+              if (inputValue.trim() === "") {
+                validationMessageElement.textContent = "Поле не должно быть пустым.";
+                elem.classList.add("error");
+              } else {
+                validationMessageElement.textContent = "";
+                elem.classList.remove("error");
+              }
+            });
+        })
+
+        function validateForm() {
+          let inputs = document.querySelectorAll("input.contact-input");
+          var emptyFields = [];
+
+          // Проверка всех полей ввода на пустоту
+          for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.trim() === "" && window.getComputedStyle(inputs[i].closest('.form-group')).display !== 'none') {
+              emptyFields.push(inputs[i]);
+            }
+          }
+
+          // Вывод сообщения об ошибке для пустых полей
+          for (var j = 0; j < emptyFields.length; j++) {
+            emptyFields[j].classList.add("error");
+            emptyFields[j].parentNode.querySelector(".text-danger").textContent = "Поле не должно быть пустым.";
+          }
+
+          if (emptyFields.length === 0){
+              createOrder();
+          }
+        }
+
+        function createOrder() {
+            let model = {
+                FullName: document.getElementById('name').value,
+                PhoneNumber: document.getElementById('phoneNumber').value,
+                Email: document.getElementById('email').value,
+                Address: document.getElementById('addressOfDelivery').value,
+                Comment: document.getElementById('comment').value,
+            };
+
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CreateOrder", "ShoppingCart")',
+                data: { model },
+                success: function (data) {
+                    $('#loader').fadeOut(250);
+                    alert('Заказ успешно создан и отправлен на обработку. Ваш номер заказа ' + data)
+                    removeAllItems();
+                }
+            });
+        }
+
         function change_payment_method(value) {
-            var element = document.getElementById("addressOfDelivery");
+            let element = document.getElementById("addressOfDelivery").closest('.form-group');
             if (Number(value == 1)) {
                 element.style.display = "none";
             }

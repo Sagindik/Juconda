@@ -1,4 +1,5 @@
-﻿using Juconda.Core.Common;
+﻿using AutoMapper;
+using Juconda.Core.Common;
 using Juconda.Domain.Models.Users;
 using Juconda.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
@@ -10,14 +11,17 @@ namespace Juconda.Controllers
 	{
 		private readonly UserManager<User> _userManager;
 		private readonly SignInManager<User> _signInManager;
+        private IMapper _mapper;
 
-		public AccountController(
+        public AccountController(
 			UserManager<User> userManager,
-			SignInManager<User> signInManager)
+            IMapper mapper,
+            SignInManager<User> signInManager)
 		{
 			_userManager = userManager;
 			_userManager.PasswordHasher = new CustomPasswordHasher();			
 			_signInManager = signInManager;
+            _mapper = mapper;
 		}
 
 		[HttpGet]
@@ -71,9 +75,16 @@ namespace Juconda.Controllers
         }
 
         [HttpGet]
-        public IActionResult PersonalCabinet(string returnUrl = null)
+        public async Task<IActionResult> PersonalCabinet(string returnUrl = null)
         {
-            return View(new PersonalCabinetViewModel { ReturnUrl = returnUrl });
+            User? user = await _userManager.GetUserAsync(_signInManager.Context.User);
+            if (user == null)
+                return NotFound();
+
+            var model = _mapper.Map<PersonalCabinetViewModel>(user);
+            model.ReturnUrl = returnUrl;
+
+            return View(model);
         }
 
 		[HttpGet]
@@ -105,5 +116,22 @@ namespace Juconda.Controllers
 			}
 			return View(model);
 		}
-	}
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            if (User?.Identity?.IsAuthenticated == true)
+            {
+                await _signInManager.SignOutAsync();
+                var cookieKeys = Request.Cookies.Keys;
+                foreach (var key in cookieKeys)
+                {
+                    HttpContext.Response.Cookies.Delete(key);
+                }
+            }
+
+            return RedirectToAction("Login");
+        }
+    }
 }
