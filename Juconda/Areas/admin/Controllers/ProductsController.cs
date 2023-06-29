@@ -131,6 +131,8 @@ namespace Juconda.Areas.admin.Controllers
 
                 entity.Name = model.Name;
                 entity.Price = model.Price;
+                entity.Description = model.Description;
+                entity.FullDescsription = model.FullDescsription;
 
                 if (model.ImageFile != null && model.ImageFile.Length > 0)
                 {

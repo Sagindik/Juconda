@@ -5,7 +5,7 @@
     ViewData["Title"] = "Изменить продукт";
 }
 
-<h1>Добавить</h1>
+<h1>Редактирование</h1>
 
 <div class="form">
     <form asp-action="Update" method="post" enctype="multipart/form-data">
@@ -26,6 +26,18 @@
         <div class="form-item">
             <label asp-for="CategoryIds">Категории</label>
             <select data-placeholder="Выберите категории..." asp-for="CategoryIds" id="CategoryIds" class="form-control chosen-select" multiple="multiple" asp-items="ViewBag.Categories"></select>
+        </div>
+
+        <div class="form-item">
+            <label asp-for="Description">Короткое описание</label>
+            <textarea asp-for="Description" class="editor"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-item">
+            <label asp-for="FullDescsription">Полное описание</label>
+            <textarea asp-for="FullDescsription" class="editor"></textarea>
+            <span asp-validation-for="FullDescsription" class="text-danger"></span>
         </div>
 
         <div class="form-item">

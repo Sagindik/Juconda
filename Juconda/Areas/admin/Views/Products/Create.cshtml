@@ -29,6 +29,18 @@
         </div>
 
         <div class="form-item">
+            <label asp-for="Description">Короткое описание</label>
+            <textarea asp-for="Description" class="editor"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-item">
+            <label asp-for="FullDescsription">Полное описание</label>
+            <textarea asp-for="FullDescsription" class="editor"></textarea>
+            <span asp-validation-for="FullDescsription" class="text-danger"></span>
+        </div>
+
+        <div class="form-item">
             @Html.LabelFor(model => model.ImageFile)
             @Html.TextBoxFor(model => model.ImageFile, new { type = "file", accept=".jpeg, .jpg, .png" })
             <span asp-validation-for="ImageFile" class="text-danger"></span>

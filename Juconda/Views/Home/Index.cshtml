@@ -463,15 +463,14 @@
                             <div class="img-wrap">
                                 <a href="@Url.Action("Details", "Products", new { productId = product.Id })">
                                     <img src="data:image/jpeg;base64,@Convert.ToBase64String(product.Image)" class="thumbnail lazy">
-                                </a>
+                                </a>                                
                             </div>
                             <div class="name">
                                 <a href="@Url.Action("Details", "Products", new { productId = product.Id })" class="name"><span>@product.Name</span></a>
                             </div>
                             <div>
-                                <div class="price">
-                                    @product.Price р.
-                                </div>
+                                <div><span>@product.Description</span></div>
+                                <div class="price">@product.Price р.</div>
                             </div>
                             <div class="hover-show bx_catalog_item_controls">
                                 <div class="row row-count-cart">

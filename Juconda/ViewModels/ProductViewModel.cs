@@ -21,6 +21,8 @@ namespace Juconda.ViewModels
         public string? SeoTitle { get; set; }
         public string? SeoDescription { get; set; }
         public string? SeoKeywords { get; set; }
+        public string? FullDescsription { get; set; }
+        public string? Description { get; set; }
 
         public void Mapping(Profile profile)
         {
