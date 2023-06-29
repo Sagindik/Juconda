@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Juconda.Areas.admin.Attributes;
-using Juconda.Areas.admin.ViewModels.Categories;
 using Juconda.Areas.admin.ViewModels.Pagination;
 using Juconda.Areas.admin.ViewModels.Products;
 using Juconda.Domain.Models;
@@ -93,6 +92,65 @@ namespace Juconda.Areas.admin.Controllers
                 }
 
                 _context.Products.Add(entity);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
+        }
+
+        public IActionResult Update(int id)
+        {
+            var entity = _context.Products.FirstOrDefault(_ => _.Id == id);
+
+            if (entity == null)
+                return NotFound();
+
+            var model = _mapper.Map<UpdateProductViewModel>(entity);
+
+            var categories = _context.Categories.Where(_ => _.Actual).ToList();
+            ViewData["Categories"] = new SelectList(categories.Select(_ => new { _.Id, _.Name }), "Id", "Name");
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(UpdateProductViewModel model)
+        {
+            var categories = _context.Categories.Where(_ => _.Actual).ToList();
+            ViewData["Categories"] = new SelectList(categories.Select(_ => new { _.Id, _.Name }), "Id", "Name");
+
+            if (ModelState.IsValid)
+            {
+                var entity = _context.Products.FirstOrDefault(_ => _.Id == model.Id);
+
+                if (entity == null)
+                    return NotFound();
+
+                entity.Name = model.Name;
+                entity.Price = model.Price;
+
+                if (model.ImageFile != null && model.ImageFile.Length > 0)
+                {
+                    string contentType = model.ImageFile.ContentType;
+
+                    // Проверка MIME-типа файла
+                    if (contentType != "image/jpeg" && contentType != "image/png" && contentType != "image/jpg")
+                    {
+                        ModelState.AddModelError("ImageFile", "Only JPG, JPEG and PNG files are allowed.");
+                        return View(model);
+                    }
+
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        model.ImageFile.CopyTo(memoryStream);
+                        entity.Image = memoryStream.ToArray();
+                    }
+                }
+
+                _context.Update(entity);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index");

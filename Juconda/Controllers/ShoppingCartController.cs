@@ -2,7 +2,7 @@
 using Juconda.Core.Services;
 using Juconda.Domain.Models;
 using Juconda.Infrastructure;
-using Juconda.ViewModels;
+using Juconda.ViewModels.ShoppingCart;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Juconda.Controllers
@@ -28,13 +28,13 @@ namespace Juconda.Controllers
             var basket = await _shopService.GetCurrentBasket();
 
             if (basket == null)
-                return View(new List<BasketItemViewModel>());
+                return View();
 
             var basketItems = _context.BasketItems.Where(_ => _.Actual && _.BasketId == basket.Id).ToList();
 
-            var models = _mapper.Map<List<BasketItemViewModel>>(basketItems);
+            var model = _mapper.Map<BasketViewModel>(basket);
 
-            return View(models);
+            return View(model);
         }
 
         public async Task<IActionResult> AddToCart(int productId, int? productCount)

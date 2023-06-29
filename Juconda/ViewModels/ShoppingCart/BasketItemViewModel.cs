@@ -2,7 +2,7 @@
 using Juconda.Core.Mappings;
 using Juconda.Domain.Models;
 
-namespace Juconda.ViewModels
+namespace Juconda.ViewModels.ShoppingCart
 {
     public class BasketItemViewModel : IMapFrom<BasketItem>
     {
@@ -14,6 +14,11 @@ namespace Juconda.ViewModels
         public int Count { get; set; }
 
         /// <summary>
+        /// Сумма
+        /// </summary>
+        public int TotalPrice { get; set; }
+
+        /// <summary>
         /// Продукт
         /// </summary>
         public int? ProductId { get; set; }
@@ -21,7 +26,8 @@ namespace Juconda.ViewModels
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<BasketItem, BasketItemViewModel>().ReverseMap();
+            profile.CreateMap<BasketItem, BasketItemViewModel>()
+                .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => src.Count * src.Product.Price));
         }
     }
 }

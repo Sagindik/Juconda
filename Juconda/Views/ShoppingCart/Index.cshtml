@@ -1,7 +1,6 @@
 ﻿@using Juconda.Core.Services;
-@using Juconda.ViewModels;
-@model List<BasketItemViewModel>;
-@inject ShopService ShopService
+@using Juconda.ViewModels.ShoppingCart;
+@model BasketViewModel;
 
 <section class="cart">
     <div class="inner-bg">
@@ -15,7 +14,7 @@
             </nav>*@
             <article id="cart-container" class="inner-container cart-container">
 
-                @if (Model.Any())
+                @if (Model.BasketItems.Any())
                 {
                     <form method="post" name="basket_form" id="basket_form">
                         <div id="basket_items">
@@ -24,14 +23,14 @@
                                     <p>Корзина</p>
                                     <a class="clear_basket" onclick="removeAllItems()">Очистить корзину</a>
                                 </div>
-                                <div class="cart-caption-desc product-price"><span class="cart-content-counter">@await ShopService.GetBasketItemsCount()</span> товаров на <span class="cart-amount-price" id="amount-price">@await ShopService.GetBasketTotalPrice()</span> р.</div>
+                                <div class="cart-caption-desc product-price"><span class="cart-content-counter">@Model.Count</span> товаров на <span class="cart-amount-price" id="amount-price">@Model.TotalPrice</span> р.</div>
                             </div>
 
-                            @foreach (var basketItem in Model)
+                            @foreach (var basketItem in Model.BasketItems)
                             {
                                 <div class="callout cart-product-item inline-block-container">
                                     <div class="inline-block-item vertical-middle cart-product-item-preview">
-                                        <img src="@basketItem?.Product?.Image" alt="">
+                                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(@basketItem?.Product?.Image)" alt="">
                                     </div>
                                     <div class="inline-block-item vertical-middle cart-product-item-info">
                                         <div class="inline-block-container">
@@ -54,7 +53,7 @@
                                                             <div class="input-group-button">
                                                                 <button class="button decrement" type="button" onclick="decreaseCount(@basketItem?.Id, @basketItem?.Product?.Price)">-</button>
                                                             </div>
-                                                            <input class="input-group-field" type="number" name="count_@basketItem?.Id" id="count_@basketItem?.Id" min="1" value="@await ShopService.GetBasketProductCount(basketItem?.Product?.Id)">
+                                                            <input class="input-group-field" type="number" name="count_@basketItem?.Id" id="count_@basketItem?.Id" min="1" value="@basketItem.Count">
                                                             <div class="input-group-button">
                                                                 <button class="button increment" onclick="increaseCount(@basketItem?.Id, @basketItem?.Product?.Price)" type="button">+</button>
                                                             </div>
@@ -64,7 +63,7 @@
                                                 <div class="column float-right">
                                                     <div class="product-price">
                                                         <div class="product-info-caption">Итого:</div>
-                                                        <div class="main"><span id="total_price_@basketItem?.Id">@(basketItem?.Product?.Price * basketItem?.Count)</span> р.</div>
+                                                        <div class="main"><span id="total_price_@basketItem?.Id">@basketItem?.TotalPrice</span> р.</div>
                                                     </div>
                                                 </div>
                                                 <div class="column show-for-large">
@@ -92,7 +91,7 @@
                                 </div>
                                 <div class="column cart-product-footer-amount price">
                                     Итого:
-                                    <span class="cart-amount-price" id="amount-price">@await ShopService.GetBasketTotalPrice()</span> <span>р.</span>
+                                    <span class="cart-amount-price" id="amount-price">@Model.TotalPrice</span> <span>р.</span>
                                     Без учета стоимости доставки / (минимальная сумма заказа: 250 рублей)
                                 </div>
                             </div>
@@ -102,8 +101,6 @@
                         <div class="clearfix"></div>
                         </div>*@
                         </div>
-                        <input type="hidden" name="BasketOrder" value="BasketOrder" />
-
 
                         <div class="row order-info">
                             <div id="fn-ajax_deliveries" class="col-lg-7 m-b-2">
@@ -111,7 +108,7 @@
                                     <div class="h5 i-delivery m-b-1"><span class="text-title">Способ доставки</span></div>
                                     <div class="m-l-2">
                                         <label class="font-weight-bold active">
-                                            <input onclick="change_payment_method(2)" type="radio" name="delivery_id" value="2" checked="" id="deliveries_2">
+                                            <input onclick="change_payment_method(1)" type="radio" name="delivery_id" value="2" checked="" id="deliveries_2">
                                             <img src="https://edapmr.com/files/deliveries_resized/i-trolley-50.50x50.png">
                                             Самовывоз
                                             <span>(бесплатно)</span>
@@ -123,7 +120,7 @@
                                     </div>
                                     <div class="m-l-2">
                                         <label class="font-weight-bold">
-                                            <input onclick="change_payment_method(1)" type="radio" name="delivery_id" value="1" id="deliveries_1">
+                                            <input onclick="change_payment_method(2)" type="radio" name="delivery_id" value="1" id="deliveries_1">
                                             <img src="https://edapmr.com/files/deliveries_resized/i-delivery-50.50x50.png">
                                             Курьерская по г. Тирасполь
                                             (70&nbsp;руб.)
@@ -153,7 +150,7 @@
                                         <label class="font-weight-bold">
                                             <input type="radio" name="payment_method_id" value="14" checked="" id="payment_2_14">
                                             <img src="https://edapmr.com/files/payments_resized/i-wallet-50.50x50.png">
-                                            Наличными , к оплате 145&nbsp;руб.
+                                            Наличными, к оплате <span class="cart-amount-price">@Model.TotalPrice</span> руб.
                                         </label>
                                         <div class="m-l-2 payment-description">
                                             <p><span style="color: #011a3b; font-family: 'Open Sans', sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none;">Оплата наличными в рублях ПМР, при получении заказа.</span></p>
@@ -163,7 +160,7 @@
                                         <label class="font-weight-bold">
                                             <input type="radio" name="payment_method_id" value="17" id="payment_2_17">
                                             <img src="https://edapmr.com/files/payments_resized/raduga5.50x50.png">
-                                            Карта «Клевер» , к оплате 145&nbsp;руб.
+                                            Карта «Клевер», к оплате <span class="cart-amount-price">@Model.TotalPrice</span> руб.
                                         </label>
                                         <div class="m-l-2 payment-description">
                                             <p><span style="color: #011a3b; font-family: 'Open Sans', sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none;">Оплата в рублях ПМР через карту «Клевер» , при получении заказа (в рабочие часы при самовывозе).</span></p>
@@ -173,7 +170,7 @@
                                         <label class="font-weight-bold active">
                                             <input type="radio" name="payment_method_id" value="10" id="payment_2_10">
                                             <img src="https://edapmr.com/files/payments_resized/mobile-apb5.50x50.png">
-                                            «Мобильный платеж» АПБ , к оплате 145&nbsp;руб.
+                                            «Мобильный платеж» АПБ, к оплате <span class="cart-amount-price">@Model.TotalPrice</span> руб.
                                         </label>
                                         <div class="m-l-2 payment-description">
                                             <p><span style="color: #011a3b; font-family: 'Open Sans', sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: justify; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; display: inline !important; float: none;">Оплата в рублях ПМР через «Мобильный платеж» Агропромбанка, при получении заказа (в рабочие часы при самовывозе).</span></p>
@@ -199,7 +196,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input class="form-control contact-input" name="address" type="text" placeholder="Адрес доставки заказа: город, улица, дом">
+                                        <input style="display: none;" class="form-control contact-input" name="address" id="addressOfDelivery" type="text" placeholder="Адрес доставки заказа: город, улица, дом">
                                     </div>
 
                                     <div class="form-group">
@@ -293,95 +290,105 @@
     }
 </style>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script>
+@section Scripts {
+    <script>
+        function change_payment_method(value) {
+            var element = document.getElementById("addressOfDelivery");
+            if (Number(value == 1)) {
+                element.style.display = "none";
+            }
+            else {
+                element.style.display = "block";
+            }
+        }
 
-    if (@Model.Count() == 0) {
-        setEmptyCart();
-    }
+        if (@Model.BasketItems.Count() == 0) {
+            setEmptyCart();
+        }
 
-    function removeItem(basketItemId, elem) {
-        $('#loader').fadeIn(250);
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("RemoveFromCart", "ShoppingCart")',
-            data: { basketItemId: Number(basketItemId) },
-            success: function (data) {
-                $('#loader').fadeOut(250);
-                elem.closest('.cart-product-item').remove();
+        function removeItem(basketItemId, elem) {
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("RemoveFromCart", "ShoppingCart")',
+                data: { basketItemId: Number(basketItemId) },
+                success: function (data) {
+                    $('#loader').fadeOut(250);
+                    elem.closest('.cart-product-item').remove();
 
-                const cartItems = document.querySelectorAll('.cart-product-item');
-                if (cartItems.length == 0) {
+                    const cartItems = document.querySelectorAll('.cart-product-item');
+                    if (cartItems.length == 0) {
+                        setEmptyCart();
+                    }
+                    else {
+                        getCartTotalPrice();
+                    }
+                    getCartCount();
+                }
+            });
+        }
+
+        function removeAllItems() {
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("RemoveAllBasketItems", "ShoppingCart")',
+                success: function (data) {
+                    $('#loader').fadeOut(250);
+                    getCartCount();
                     setEmptyCart();
                 }
-                else {
+            });
+        }
+
+        function setEmptyCart() {
+            $('#cart-container').empty();
+            $('#cart-container').append(document.getElementById('empty_basket_template').innerHTML)
+        }
+
+        function getCartTotalPrice() {
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetBasketTotalPrice", "ShoppingCart")',
+                success: function (data) {
+                    $('#loader').fadeOut(250);
+                    document.querySelectorAll('.cart-amount-price').forEach(_ => _.innerHTML = data);
+                }
+            });
+        }
+
+        function changeCountOfProduct(countOfProduct, basketItemId) {
+            $('#loader').fadeIn(250);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("ChangeCountOfProduct", "ShoppingCart")',
+                data: { count: Number(countOfProduct), basketItemId: Number(basketItemId) },
+                success: function (data) {
+                    $('#loader').fadeOut(250);
                     getCartTotalPrice();
                 }
-                getCartCount();
-            }
-        });
-    }
+            });
+        }
 
-    function removeAllItems() {
-        $('#loader').fadeIn(250);
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("RemoveAllBasketItems", "ShoppingCart")',
-            success: function (data) {
-                $('#loader').fadeOut(250);
-                getCartCount();
-                setEmptyCart();
-            }
-        });
-    }
+        function decreaseCount(basketItemId, productPrice) {
+            let elem = document.getElementById('count_' + basketItemId);
+            elem.value = Number(elem.value) - 1;
+            if (Number(elem.value) < 1)
+                elem.value = 1;
 
-    function setEmptyCart() {
-        $('#cart-container').empty();
-        $('#cart-container').append(document.getElementById('empty_basket_template').innerHTML)
-    }
+            document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
+            changeCountOfProduct(elem.value, basketItemId);
+        }
 
-    function getCartTotalPrice() {
-        $('#loader').fadeIn(250);
-        $.ajax({
-            type: "GET",
-            url: '@Url.Action("GetBasketTotalPrice", "ShoppingCart")',
-            success: function (data) {
-                $('#loader').fadeOut(250);
-                document.querySelectorAll('.cart-amount-price').forEach(_ => _.innerHTML = data);
-            }
-        });
-    }
+        function increaseCount(basketItemId, productPrice) {
+            let elem = document.getElementById('count_' + basketItemId);
+            elem.value = Number(elem.value) + 1;
+            if (Number(elem.value) < 1)
+                elem.value = 1;
 
-    function changeCountOfProduct(countOfProduct, basketItemId) {
-        $('#loader').fadeIn(250);
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("ChangeCountOfProduct", "ShoppingCart")',
-            data: { count: Number(countOfProduct), basketItemId: Number(basketItemId) },
-            success: function (data) {
-                $('#loader').fadeOut(250);
-                getCartTotalPrice();
-            }
-        });
-    }
-
-    function decreaseCount(basketItemId, productPrice) {
-        let elem = document.getElementById('count_' + basketItemId);
-        elem.value = Number(elem.value) - 1;
-        if (Number(elem.value) < 1)
-            elem.value = 1;
-
-        document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
-        changeCountOfProduct(elem.value, basketItemId);
-    }
-
-    function increaseCount(basketItemId, productPrice) {
-        let elem = document.getElementById('count_' + basketItemId);
-        elem.value = Number(elem.value) + 1;
-        if (Number(elem.value) < 1)
-            elem.value = 1;
-
-        document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
-        changeCountOfProduct(elem.value, basketItemId);
-    }
-</script>
+            document.getElementById('total_price_' + basketItemId).innerHTML = elem.value * productPrice;
+            changeCountOfProduct(elem.value, basketItemId);
+        }
+    </script>
+}

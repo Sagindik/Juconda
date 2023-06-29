@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMvc().AddRazorRuntimeCompilation();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddMvc();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession();
 
@@ -18,20 +18,6 @@ builder.Services.AddScoped<InitializeService>();
 builder.Services.AddScoped<ShopService>();
 
 builder.Services.AddAuthentication();
-    //.AddCookie("admin", options =>
-    //{
-    //    options.Cookie.Name = "admin";
-    //    options.LoginPath = "/admin/Account/Login";
-    //    options.LogoutPath = "/admin/Account/Logout";
-    //    options.AccessDeniedPath = "/admin/Account/AccessDenied";
-    //})
-    //.AddCookie("", options =>
-    //{
-    //    options.Cookie.Name = "";
-    //    options.LoginPath = "/Account/Login";
-    //    options.LogoutPath = "/Account/Logout";
-    //    options.AccessDeniedPath = "/Account/AccessDenied";
-    //});
 
 builder.Services.AddAutoMapper(c => c.AddProfile(new MappingProfile()));
 
@@ -74,6 +60,7 @@ app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
 app.Services.CreateScope().ServiceProvider.GetRequiredService<InitializeService>();
 
 app.UseHttpsRedirection();
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -82,7 +69,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();
-
 
 app.MapAreaControllerRoute(
     "admin",
